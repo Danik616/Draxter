@@ -68,7 +68,7 @@
     >
       <div class="container">
         <i class="fa fa-star" style="width: 50px; height: 50px"></i
-        ><a class="navbar-brand" href="inicio.html" style="color: var(--bs-body-bg)"
+        ><a class="navbar-brand" th:href="@{/}" style="color: var(--bs-body-bg)"
           >Draxter</a
         ><button
           data-bs-toggle="collapse"
@@ -81,14 +81,14 @@
         <div class="collapse navbar-collapse" id="navcol-1">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="inicio.html">Inicio</a>
+              <a class="nav-link" th:href="@{/}">Inicio</a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
+            <li class="nav-item"><a class="nav-link" th:href="@{/nosotros}">Nosotros</a></li>
             <li class="nav-item">
-                <a class="nav-link active" href="iniciar.html">Iniciar sesión</a>
+                <a class="nav-link active" th:href="@{/iniciarSesion}">Iniciar sesión</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="registrar.html">Registrarse</a>
+                <a class="nav-link" th:href="@{/registrarse}">Registrarse</a>
               </li>
           </ul>
         </div>
@@ -123,7 +123,7 @@
             </button>
           </div>
           <a class="forgot" href="#">¿Olvidaste tu contraseña?</a
-          ><a class="forgot" href="registrar.html">¿No tienes cuenta? Regístrate aquí</a>
+          ><a class="forgot" th:href="@{/registrarse}">¿No tienes cuenta? Regístrate aquí</a>
         </form>
       </section>
     </div>
@@ -135,7 +135,7 @@
             style="text-align: center"
           >
             <a
-              href="nosotros.html"
+              th:href="@{/nosotros}"
               style="color: var(--bs-gray-100); text-decoration: none"
               data-bs-toggle="_blank"
               >Nosotros</a
