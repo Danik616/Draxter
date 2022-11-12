@@ -101,26 +101,36 @@
     <div style="height: auto; background: var(--bs-body-color)">
       <section class="register-photo" style="background: var(--bs-body-color)">
         <div class="form-container" style="width: 500px">
-          <form method="post" style="background: var(--bs-dark)">
+          <div th:if=${param.exito}>
+            <div class="alert alert-info">
+              se ha registrado exitosamente
+            </div>
+          </div>
+          <form th:action="@{/registrarse}" th:object="${usuario}" method="post" style="background: var(--bs-dark)">
             <h2 class="text-center" style="color: var(--bs-white)">
+              
               <strong>Registrarse</strong>
             </h2>
             <div class="mb-3">
               <input
+              id="nombres"
                 class="form-control"
                 type="text"
                 name="nombres"
                 placeholder="Nombres"
-                th:field="nombres"
+                th:field="*{nombre}"
+                required autofocus="autofocus"
               />
             </div>
             <div class="mb-3">
               <input
+              id="apellidos"
                 class="form-control"
                 type="text"
                 name="apellidos"
                 placeholder="Apellidos"
-                th:field="apellidos"
+                th:field="*{apellidos}"
+                required autofocus="autofocus"
               />
             </div>
             <div class="mb-3">
@@ -130,47 +140,33 @@
                 name="usuario"
                 placeholder="Usuario"
                 th:field="usuario"
+                required autofocus="autofocus"
               />
             </div>
             <div class="mb-3">
               <input
+              id="email"
                 class="form-control"
                 type="email"
                 name="email"
                 placeholder="Email"
-                th:field="email"
+                th:field="*{email}"
+                required autofocus="autofocus"
               />
             </div>
             <div class="mb-3">
               <input
+              id="password"
                 class="form-control"
                 type="password"
                 name="password"
                 placeholder="Contraseña"
-                th:field="password"
+                th:field="*{password}"
+                required autofocus="autofocus"
               />
             </div>
-            <div class="mb-3">
-              <input
-                class="form-control"
-                type="password"
-                name="password-repeat"
-                placeholder="Repetir contraseña"
-                th:field="password-repeat"
-              />
-            </div>
-            <div class="mb-3">
-              <div class="form-check">
-                <label class="form-check-label"
-                  ><input class="form-check-input" type="checkbox" th:field="checkbox"/><a
-                    style="text-decoration: none; color: gray"
-                    th:href="/terminos"
-                  >
-                    Términos y condiciones
-                  </a></label
-                >
-              </div>
-            </div>
+            
+            
             <div class="mb-3">
               <button class="btn btn-primary d-block w-100" type="submit">
                 Registrarse
@@ -179,6 +175,7 @@
             <a class="already" th:href="@{/iniciarSesion}"
               >¿Ya tienes una cuenta? Inicia sesión aquí</a
             >
+            
           </form>
         </div>
       </section>
