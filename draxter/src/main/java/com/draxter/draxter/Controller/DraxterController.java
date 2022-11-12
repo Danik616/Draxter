@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-//import com.draxter.draxter.Service.UsuarioService;
-//import com.draxter.draxter.dto.UsuarioRegistroDTO;
+import com.draxter.draxter.Service.UsuarioService;
+import com.draxter.draxter.dto.UsuarioRegistroDTO;
 
 
 @Controller
 public class DraxterController {
 
-    //private UsuarioService usuarioService;
+    private UsuarioService usuarioService;
 
     @RequestMapping("/")
     public String principal(){
@@ -37,24 +37,24 @@ public class DraxterController {
     }
 
 
-   // public DraxterController(UsuarioService usuarioService) {
-     //   this.usuarioService = usuarioService;
-    //}
+   public DraxterController(UsuarioService usuarioService) {
+     this.usuarioService = usuarioService;
+    }
 
-   // @ModelAttribute("usuario")
-   // public UsuarioRegistroDTO retonerNuevoUsuarioRegistroDTO(){
-   //     return new UsuarioRegistroDTO();
-    //}
+    @ModelAttribute("usuario")
+    public UsuarioRegistroDTO retonerNuevoUsuarioRegistroDTO(){
+        return new UsuarioRegistroDTO();
+   }
 
     @GetMapping("/registrarse")
     public String mostrarFormularioDeRegistro(){
         return "registrar";
     }
 
-  //  @PostMapping
-    //public String registrarCuentaDeUsuario(@ModelAttribute("usuario") UsuarioRegistroDTO registroDTO){
-  //      usuarioService.save(registroDTO);
-  //      return "redirect:/registro?exito";
-   // }
+    @PostMapping
+  public String registrarCuentaDeUsuario(@ModelAttribute("usuario") UsuarioRegistroDTO registroDTO){
+        usuarioService.save(registroDTO);
+        return "redirect:/registro?exito";
+   }
     
 }
