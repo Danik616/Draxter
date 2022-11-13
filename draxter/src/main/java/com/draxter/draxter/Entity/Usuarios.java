@@ -99,11 +99,10 @@ public class Usuarios {
         this.contraseña = contraseña;
         this.roles = roles;
     }
-    public Usuarios(String nombres, String apellidos, String imagen, String email, String contraseña,
+    public Usuarios(String nombres, String apellidos, String email, String contraseña,
             Collection<Rol> roles) {
         this.nombres = nombres;
         this.apellidos = apellidos;
-        this.imagen = imagen;
         this.email = email;
         this.contraseña = contraseña;
         this.roles = roles;

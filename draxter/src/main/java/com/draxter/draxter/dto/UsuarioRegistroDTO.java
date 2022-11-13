@@ -6,7 +6,7 @@ public class UsuarioRegistroDTO {
     private String apellidos;
     private String imagen;
     private String email;
-    private String contraseña;
+    private String password;
     public String getUsuario() {
         return usuario;
     }
@@ -37,27 +37,25 @@ public class UsuarioRegistroDTO {
     public void setEmail(String email) {
         this.email = email;
     }
-    public String getContraseña() {
-        return contraseña;
+    public String getPassword() {
+        return password;
     }
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setPassword(String password) {
+        this.password = password;
     }
     public UsuarioRegistroDTO(String usuario, String nombres, String apellidos, String imagen, String email,
-            String contraseña) {
+            String password) {
         this.usuario = usuario;
         this.nombres = nombres;
         this.apellidos = apellidos;
-        this.imagen = imagen;
         this.email = email;
-        this.contraseña = contraseña;
+        this.password = password;
     }
-    public UsuarioRegistroDTO(String nombres, String apellidos, String imagen, String email, String contraseña) {
+    public UsuarioRegistroDTO(String nombres, String apellidos, String imagen, String email, String password) {
         this.nombres = nombres;
         this.apellidos = apellidos;
-        this.imagen = imagen;
         this.email = email;
-        this.contraseña = contraseña;
+        this.password = password;
     }
     public UsuarioRegistroDTO(String usuario) {
         this.usuario = usuario;

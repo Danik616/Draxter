@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
@@ -100,15 +101,14 @@
     </nav>
     <div style="height: auto; background: var(--bs-body-color)">
       <section class="register-photo" style="background: var(--bs-body-color)">
-        <div class="form-container" style="width: 500px">
-          <div th:if=${param.exito}>
-            <div class="alert alert-info">
-              se ha registrado exitosamente
-            </div>
+        <div th:if=${param.exito}>
+          <div class="alert alert-info">
+            se ha registrado exitosamente
           </div>
+        </div>
+        <div class="form-container" style="width: 500px">
           <form th:action="@{/registrarse}" th:object="${usuario}" method="post" style="background: var(--bs-dark)">
             <h2 class="text-center" style="color: var(--bs-white)">
-              
               <strong>Registrarse</strong>
             </h2>
             <div class="mb-3">
@@ -118,7 +118,7 @@
                 type="text"
                 name="nombres"
                 placeholder="Nombres"
-                th:field="*{nombre}"
+                th:field="*{nombres}"
                 required autofocus="autofocus"
               />
             </div>
@@ -135,11 +135,12 @@
             </div>
             <div class="mb-3">
               <input
+              id="usuario"
                 class="form-control"
                 type="text"
                 name="usuario"
                 placeholder="Usuario"
-                th:field="usuario"
+                th:field="*{usuario}"
                 required autofocus="autofocus"
               />
             </div>

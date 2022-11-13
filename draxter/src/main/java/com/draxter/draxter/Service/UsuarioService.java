@@ -14,10 +14,14 @@ public class UsuarioService implements IUsuarioService {
 
     private IUsuarioRepository usuarioRepository;
 
+    public UsuarioService(IUsuarioRepository usuarioRepository){
+        super();
+        this.usuarioRepository=usuarioRepository;
+    }
     @Override
     public Usuarios save(UsuarioRegistroDTO registroDTO) {
-        Usuarios usuario=new Usuarios(registroDTO.getNombres(), registroDTO.getApellidos(),
-         registroDTO.getImagen(), registroDTO.getEmail(), registroDTO.getContraseña(), Arrays.asList(new Rol("ROLE_USER")));
+        Usuarios usuario=new Usuarios(registroDTO.getNombres(), registroDTO.getApellidos(), 
+        registroDTO.getEmail(), registroDTO.getPassword(), Arrays.asList(new Rol("ROLE_USER")));
          return usuarioRepository.save(usuario);
     }
 
