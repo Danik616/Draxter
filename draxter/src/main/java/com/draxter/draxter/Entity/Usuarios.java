@@ -6,8 +6,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -20,7 +18,6 @@ import javax.persistence.UniqueConstraint;
 public class Usuarios {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String usuario;
 
     @Column(name="Nombre")
@@ -99,7 +96,7 @@ public class Usuarios {
         this.contraseña = contraseña;
         this.roles = roles;
     }
-    public Usuarios(String nombres, String apellidos, String email, String contraseña,
+    public Usuarios(String nombres, String apellidos, String usuario, String email, String contraseña,
             Collection<Rol> roles) {
         this.nombres = nombres;
         this.apellidos = apellidos;

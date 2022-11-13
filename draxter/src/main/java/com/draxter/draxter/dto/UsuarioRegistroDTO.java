@@ -4,7 +4,7 @@ public class UsuarioRegistroDTO {
     private String usuario;
     private String nombres;
     private String apellidos;
-    private String imagen;
+    private String imagen="imagen";
     private String email;
     private String password;
     public String getUsuario() {

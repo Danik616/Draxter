@@ -20,7 +20,7 @@ public class UsuarioService implements IUsuarioService {
     }
     @Override
     public Usuarios save(UsuarioRegistroDTO registroDTO) {
-        Usuarios usuario=new Usuarios(registroDTO.getNombres(), registroDTO.getApellidos(), 
+        Usuarios usuario=new Usuarios(registroDTO.getUsuario(),registroDTO.getNombres(), registroDTO.getApellidos(), registroDTO.getImagen(),
         registroDTO.getEmail(), registroDTO.getPassword(), Arrays.asList(new Rol("ROLE_USER")));
          return usuarioRepository.save(usuario);
     }

@@ -29,6 +29,6 @@ public class DraxterRegistroController {
     @PostMapping
   public String registrarCuentaDeUsuario(@ModelAttribute("usuario") UsuarioRegistroDTO registroDTO){
         usuarioService.save(registroDTO);
-        return "redirect:/registrar?exito";
+        return "redirect:/registro?exito";
    }
 }
