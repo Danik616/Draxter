@@ -7,5 +7,5 @@ import com.draxter.draxter.Entity.Usuarios;
 
 @Repository
 public interface IUsuarioRepository extends JpaRepository<Usuarios, String>{
-    public Usuario findByEmail(String email);
+    public Usuarios findByEmail(String email);
 }
