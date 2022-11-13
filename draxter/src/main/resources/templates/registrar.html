@@ -101,13 +101,14 @@
     </nav>
     <div style="height: auto; background: var(--bs-body-color)">
       <section class="register-photo" style="background: var(--bs-body-color)">
-        <div th:if=${param.exito}>
-          <div class="alert alert-info">
-            se ha registrado exitosamente
-          </div>
-        </div>
-        <div class="form-container" style="width: 500px">
+        
+        <div class="form-container" style="width: 500px;">    
           <form th:action="@{/registrarse}" th:object="${usuario}" method="post" style="background: var(--bs-dark)">
+            <div th:if=${param.exito} >
+              <div class="alert alert-info">
+                Se ha registrado exitosamente.
+              </div>
+            </div>
             <h2 class="text-center" style="color: var(--bs-white)">
               <strong>Registrarse</strong>
             </h2>
