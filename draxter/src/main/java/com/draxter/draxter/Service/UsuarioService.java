@@ -2,6 +2,8 @@ package com.draxter.draxter.Service;
 
 import java.util.Arrays;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.draxter.draxter.Entity.Rol;
@@ -31,6 +33,11 @@ public class UsuarioService implements IUsuarioService {
 
     public void setUsuarioRepository(IUsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
+    }
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
