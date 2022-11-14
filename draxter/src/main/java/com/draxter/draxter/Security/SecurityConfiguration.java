@@ -41,21 +41,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests().antMatchers(
             "/registrarse",
-            "js/**",
-            "/css/**",
-            "/img/**"
+            "/principal",
+            "/nosotros",
+            "/iniciarSesion",
+            "/assets/**"
         ).permitAll()
+        .antMatchers().hasRole("ROLE_USER")
+		.antMatchers().hasRole("ROLE_ADMIN")
+		.antMatchers().hasRole("ROLE_ASESOR")
         .anyRequest().authenticated()
         .and()
         .formLogin()
-        .loginPage("/iniciar")
+        .loginPage("/iniciarSesion")
         .permitAll()
         .and()
         .logout()
         .invalidateHttpSession(true)
         .clearAuthentication(true)
         .logoutRequestMatcher(new AntPathRequestMatcher("/salir"))
-        .logoutSuccessUrl("/iniciar?salir")
+        .logoutSuccessUrl("/iniciarSesion?salir")
         .permitAll();
     }
 }
