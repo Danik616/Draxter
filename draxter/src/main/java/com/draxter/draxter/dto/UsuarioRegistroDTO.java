@@ -4,9 +4,14 @@ public class UsuarioRegistroDTO {
     private String usuario;
     private String nombres;
     private String apellidos;
-    private String imagen="imagen";
+    private String imagen;
     private String email;
     private String password;
+    private String pais;
+    private String celular;
+    private String direccion;
+
+
     public String getUsuario() {
         return usuario;
     }
@@ -43,14 +48,40 @@ public class UsuarioRegistroDTO {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    
+    public String getPais() {
+        return pais;
+    }
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+    public String getCelular() {
+        return celular;
+    }
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+    public String getDireccion() {
+        return direccion;
+    }
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
     public UsuarioRegistroDTO(String usuario, String nombres, String apellidos, String imagen, String email,
-            String password) {
+            String password, String pais, String celular, String direccion) {
         this.usuario = usuario;
         this.nombres = nombres;
         this.apellidos = apellidos;
+        this.imagen = imagen;
         this.email = email;
         this.password = password;
+        this.pais = pais;
+        this.celular = celular;
+        this.direccion = direccion;
     }
+
+
     public UsuarioRegistroDTO(String nombres, String apellidos, String imagen, String email, String password) {
         this.nombres = nombres;
         this.apellidos = apellidos;

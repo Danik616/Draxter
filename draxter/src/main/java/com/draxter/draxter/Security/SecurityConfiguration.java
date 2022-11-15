@@ -46,9 +46,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
             "/iniciarSesion",
             "/assets/**"
         ).permitAll()
-        .antMatchers().hasRole("ROLE_USER")
-		.antMatchers().hasRole("ROLE_ADMIN")
-		.antMatchers().hasRole("ROLE_ASESOR")
+        .regexMatchers("").hasRole("USER")
+		.regexMatchers("").hasRole("ADMIN")
+		.regexMatchers("").hasRole("ASESOR")
         .anyRequest().authenticated()
         .and()
         .formLogin()

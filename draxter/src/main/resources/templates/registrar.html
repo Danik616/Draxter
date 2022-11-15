@@ -104,7 +104,7 @@
         
         <div class="form-container" style="width: 500px;">    
           <form th:action="@{/registrarse}" th:object="${usuario}" method="post" style="background: var(--bs-dark)">
-            <div th:if=${param.exito} >
+            <div  th:if=${param.exito}>
               <div class="alert alert-info">
                 Se ha registrado exitosamente.
               </div>

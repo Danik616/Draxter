@@ -12,6 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="usuarios", uniqueConstraints= @UniqueConstraint(columnNames="email"))
@@ -20,16 +22,33 @@ public class Usuarios {
     @Id
     private String usuario;
 
-    @Column(name="Nombre")
+    
+    @Column(name="nombres")
+    @NotEmpty
     private String nombres;
-    @Column(name="Apellidos")
+
+    @NotEmpty
+    @Column(name="apellidos")
     private String apellidos;
 
+    @Column(name="imagen")
     private String imagen;
 
+    @NotEmpty
+    @Email
+    @Column(name="email")
     private String email;
 
+    @NotEmpty
+    @Column(name="password")
     private String contraseña;
+
+    @Column(name="pais")
+    private String pais;
+    @Column(name="celular")
+    private String celular;
+    @Column(name="direccion")
+    private String direccion;
     
 
     @ManyToMany(fetch= FetchType.EAGER, cascade = CascadeType.ALL)
@@ -80,20 +99,46 @@ public class Usuarios {
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
+    public String getPais() {
+        return pais;
+    }
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+    public String getCelular() {
+        return celular;
+    }
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+    public String getDireccion() {
+        return direccion;
+    }
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
     public Collection<Rol> getRoles() {
         return roles;
     }
     public void setRoles(Collection<Rol> roles) {
         this.roles = roles;
     }
+
+
+    
+
+
     public Usuarios(String usuario, String nombres, String apellidos, String imagen, String email, String contraseña,
-            Collection<Rol> roles) {
+            String pais, String celular, String direccion, Collection<Rol> roles) {
         this.usuario = usuario;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.imagen = imagen;
         this.email = email;
         this.contraseña = contraseña;
+        this.pais = pais;
+        this.celular = celular;
+        this.direccion = direccion;
         this.roles = roles;
     }
     public Usuarios(String nombres, String apellidos, String usuario, String email, String contraseña,
