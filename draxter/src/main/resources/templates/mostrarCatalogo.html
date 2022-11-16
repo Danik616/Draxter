@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
   <head>
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
@@ -68,10 +71,7 @@
     >
       <div class="container">
         <i class="fa fa-star" style="width: 50px; height: 50px"></i
-        ><a
-          class="navbar-brand"
-          href="mostrarCliente.html"
-          style="color: var(--bs-body-bg)"
+        ><a class="navbar-brand" href="@{/}" style="color: var(--bs-body-bg)"
           >Draxter</a
         ><button
           data-bs-toggle="collapse"
@@ -84,75 +84,26 @@
         <div class="collapse navbar-collapse" id="navcol-1">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="mostrarCliente.html">Perfil</a>
+              <a class="nav-link" th:href="@{/}">Perfil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="mostrarCatalogo.html"
+              <a class="nav-link active" th:href="@{/catalogo}"
                 >Catalogo</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="MostrarServicios.html">Servicios</a>
+              <a class="nav-link" th:href="@{/servicios}">Servicios</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="AdministrarPedidos.html">Pedidos</a>
+              <a class="nav-link" th:href="@{/pedidos}">Pedidos</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
     <div
-      style="height: 90vh; background: var(--bs-body-color); padding-top: 50px"
+      style="height: auto; background: var(--bs-body-color); padding-top: 50px; padding-bottom: 50px;" 
     >
-      <div
-        class="d-flex"
-        style="
-          background: var(--bs-body-color);
-          width: 90%;
-          margin-right: 5%;
-          margin-left: 5%;
-          height: 200px;
-        "
-      >
-        <div
-          class="text-center"
-          style="width: 25%; height: 100%; text-align: center"
-        >
-          <div
-            style="
-              width: 150px;
-              height: 150px;
-              margin-right: 31px;
-              margin-left: 31px;
-            "
-          >
-            <img style="width: 100%; height: 100%" />
-          </div>
-          <h5 style="color: var(--bs-white); margin-top: 20px">Nombre</h5>
-        </div>
-        <div class="d-inline" style="width: 75%; height: 100%">
-          <div style="width: 100%; height: 60%">
-            <p style="color: var(--bs-white)">
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout. The
-              point of using Lorem Ipsum is that it has a more-or-less normal
-              distribution of letters, as opposed to using 'Content here,
-              content here', making it look like readable English.&nbsp;<br />
-            </p>
-          </div>
-          <div style="height: 40%; width: 100%">
-            <h3 style="color: var(--bs-white)">Precio</h3>
-            <button
-              class="btn btn-primary"
-              type="button"
-              style="margin-left: 250px"
-              onclick="location.href='MostrarProducto.html'"
-            >
-              Comprar
-            </button>
-          </div>
-        </div>
-      </div>
       <div
         class="d-flex"
         style="
@@ -163,6 +114,7 @@
           height: 200px;
           margin-top: 60px;
         "
+        th:each="producto: ${productos}"
       >
         <div
           class="text-center"
@@ -177,12 +129,13 @@
             "
           >
             <img style="width: 100%; height: 100%" />
+            <h5 style="color: var(--bs-white); margin-top: 10px; text-align: center;" th:text="*{producto.nombre}"></h5>
           </div>
-          <h5 style="color: var(--bs-white); margin-top: 20px">Nombre</h5>
+          
         </div>
         <div class="d-inline" style="width: 75%; height: 100%">
           <div style="width: 100%; height: 60%">
-            <p style="color: var(--bs-white)">
+            <p th:text="*{producto.descripcion}" style="color: var(--bs-white)">
               It is a long established fact that a reader will be distracted by
               the readable content of a page when looking at its layout. The
               point of using Lorem Ipsum is that it has a more-or-less normal
@@ -191,19 +144,23 @@
             </p>
           </div>
           <div style="height: 40%; width: 100%">
-            <h3 style="color: var(--bs-white)">Precio</h3>
-            <button
+            <h3 style="color: var(--bs-white)">$   <span th:text="*{producto.precio}"></span></h3>
+            <a
               class="btn btn-primary"
               type="button"
               style="margin-left: 250px"
-              onclick="location.href='MostrarProducto.html'"
+              th:href="@{catalogo/{id}(id=${producto.id})}"
             >
               Comprar
-            </button>
+          </a>
           </div>
         </div>
       </div>
     </div>
+
+
+
+
     <footer class="footer-dark">
       <div class="container">
         <div class="row">

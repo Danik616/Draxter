@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" 
+xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
   <head>
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
+    
     <title>Draxter</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css" />
@@ -68,7 +73,7 @@
     >
       <div class="container">
         <i class="fa fa-star" style="width: 50px; height: 50px"></i
-        ><a class="navbar-brand" href="mostrarCliente.html" style="color: var(--bs-body-bg)"
+        ><a class="navbar-brand" th:href="@{/}" style="color: var(--bs-body-bg)"
           >Draxter</a
         ><button
           data-bs-toggle="collapse"
@@ -81,16 +86,16 @@
         <div class="collapse navbar-collapse" id="navcol-1">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="mostrarCliente.html">Perfil</a>
+              <a class="nav-link" th:href="@{/}">Perfil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="mostrarCatalogo.html">Catalogo</a>
+              <a class="nav-link active" th:href="@{/catalogo}">Catalogo</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="MostrarServicios.html">Servicios</a>
+              <a class="nav-link" th:href="@{/servicios}">Servicios</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="AdministrarPedidos.html">Pedidos</a>
+              <a class="nav-link" th:href="@{/pedidos}">Pedidos</a>
             </li>
           </ul>
         </div>
@@ -119,7 +124,7 @@
           <div class="w_shop_105_main_header">
             <h1>
               <span style="color: var(--bs-blue)"
-                ><strong>Nombre Producto</strong></span
+                ><strong th:text="*{nombre}">Nombre Producto</strong></span
               >
             </h1>
           </div>
@@ -138,11 +143,13 @@
               <img src="assets/img/w_shop_105_01.png" alt="w_shop_105_01" />
               <div class="w_shop_105_left_box">
                 <span
+                th:text="*{precio}"
                   data-animation="animated fadeInLeft"
                   style="font-family: roboto; color: var(--bs-yellow)"
                   >Precio</span
                 >
                 <p
+                th:text="*{descripcion}"
                   data-animation="animated fadeInLeft"
                   style="color: var(--bs-white)"
                 >
@@ -159,37 +166,13 @@
                 class="w_shop_105_right_box"
                 data-animation="animated fadeInRight"
               >
-                <ul>
+                <ul th:each="caracteristica: ${caracteristicas}">
                   <li
+                  th:text="*{caracteristica}"
                     data-animation="animated fadeInRight"
                     style="color: var(--bs-white)"
                   >
                     Carac 1
-                  </li>
-                  <li
-                    data-animation="animated fadeInRight"
-                    style="color: var(--bs-white)"
-                  >
-                    Carac 2
-                  </li>
-                  <li
-                    data-animation="animated fadeInRight"
-                    style="color: var(--bs-white)"
-                  >
-                    Carac 3
-                  </li>
-                  <li
-                    data-animation="animated fadeInRight"
-                    style="color: var(--bs-white)"
-                  >
-                    Carac 4
-                  </li>
-                  <li
-                    data-animation="animated fadeInRight"
-                    style="color: var(--bs-white)"
-                  >
-                    Carac 5&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                   </li>
                 </ul>
               </div>
@@ -198,11 +181,13 @@
               <img src="assets/img/w_shop_105_01.png" alt="w_shop_105_01" />
               <div class="w_shop_105_left_box">
                 <span
+                th:text="*{precio}"
                   data-animation="animated fadeInLeft"
                   style="font-family: roboto; color: var(--bs-yellow)"
                   >Precio</span
                 >
                 <p
+                th:text="*{descripcion}"
                   data-animation="animated fadeInLeft"
                   style="color: var(--bs-white)"
                 >
@@ -219,50 +204,28 @@
                 class="w_shop_105_right_box"
                 data-animation="animated fadeInRight"
               >
-                <ul>
-                  <li
-                    data-animation="animated fadeInRight"
-                    style="color: var(--bs-white)"
-                  >
-                    Carac 1
-                  </li>
-                  <li
-                    data-animation="animated fadeInRight"
-                    style="color: var(--bs-white)"
-                  >
-                    Carac 2
-                  </li>
-                  <li
-                    data-animation="animated fadeInRight"
-                    style="color: var(--bs-white)"
-                  >
-                    Carac 3
-                  </li>
-                  <li
-                    data-animation="animated fadeInRight"
-                    style="color: var(--bs-white)"
-                  >
-                    Carac 4
-                  </li>
-                  <li
-                    data-animation="animated fadeInRight"
-                    style="color: var(--bs-white)"
-                  >
-                    Carac 5&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  </li>
-                </ul>
+              <ul th:each="caracteristica: ${caracteristicas}">
+                <li
+                th:text="*{caracteristica}"
+                  data-animation="animated fadeInRight"
+                  style="color: var(--bs-white)"
+                >
+                  Carac 1
+                </li>
+              </ul>
               </div>
             </div>
             <div class="carousel-item">
               <img src="assets/img/w_shop_105_01.png" alt="w_shop_105_01" />
               <div class="w_shop_105_left_box">
                 <span
+                th:text="*{precio}"
                   data-animation="animated fadeInLeft"
                   style="font-family: roboto; color: var(--bs-yellow)"
                   >Precio</span
                 >
                 <p
+                th:text="*{descripcion}"
                   data-animation="animated fadeInLeft"
                   style="color: var(--bs-white)"
                 >
@@ -279,39 +242,15 @@
                 class="w_shop_105_right_box"
                 data-animation="animated fadeInRight"
               >
-                <ul>
-                  <li
-                    data-animation="animated fadeInRight"
-                    style="color: var(--bs-white)"
-                  >
-                    Carac 1
-                  </li>
-                  <li
-                    data-animation="animated fadeInRight"
-                    style="color: var(--bs-white)"
-                  >
-                    Carac 2
-                  </li>
-                  <li
-                    data-animation="animated fadeInRight"
-                    style="color: var(--bs-white)"
-                  >
-                    Carac 3
-                  </li>
-                  <li
-                    data-animation="animated fadeInRight"
-                    style="color: var(--bs-white)"
-                  >
-                    Carac 4
-                  </li>
-                  <li
-                    data-animation="animated fadeInRight"
-                    style="color: var(--bs-white)"
-                  >
-                    Carac 5&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  </li>
-                </ul>
+              <ul th:each="caracteristica: ${caracteristicas}">
+                <li
+                th:text="*{caracteristica}"
+                  data-animation="animated fadeInRight"
+                  style="color: var(--bs-white)"
+                >
+                  Carac 1
+                </li>
+              </ul>
               </div>
             </div>
           </div>
