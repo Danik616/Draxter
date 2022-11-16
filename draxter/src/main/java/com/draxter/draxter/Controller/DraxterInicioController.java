@@ -13,6 +13,7 @@ import com.draxter.draxter.Entity.Usuarios;
 @Controller
 public class DraxterInicioController {
 
+    public Usuarios usuario;
     @RequestMapping("/iniciarSesion")
     public String iniciarSesion(){
         return "iniciar";
@@ -20,12 +21,17 @@ public class DraxterInicioController {
 
     @GetMapping("/")
     public String mostrarUsuario(Model model,HttpSession session){
-        Usuarios usuario= (Usuarios) session.getAttribute("usuariosesion");
+        usuario= (Usuarios) session.getAttribute("usuariosesion");
         model.addAttribute("nombre", usuario.getNombres());
         model.addAttribute("usuario", usuario.getUsuario());
         model.addAttribute("pais", usuario.getPais());
         model.addAttribute("celular", usuario.getCelular());
         model.addAttribute("direccion", usuario.getDireccion());
         return "mostrarUsuario";
+    }
+
+    @GetMapping("/catalogo")
+    public String mostrarCatalogo(){
+        return "mostrarCatalogo";
     }
 }
