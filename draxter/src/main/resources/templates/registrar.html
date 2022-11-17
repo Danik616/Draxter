@@ -69,7 +69,10 @@
     >
       <div class="container">
         <i class="fa fa-star" style="width: 50px; height: 50px"></i
-        ><a class="navbar-brand" th:href="@{/principal}" style="color: var(--bs-body-bg)"
+        ><a
+          class="navbar-brand"
+          th:href="@{/principal}"
+          style="color: var(--bs-body-bg)"
           >Draxter</a
         ><button
           data-bs-toggle="collapse"
@@ -101,74 +104,80 @@
     </nav>
     <div style="height: auto; background: var(--bs-body-color)">
       <section class="register-photo" style="background: var(--bs-body-color)">
-        
-        <div class="form-container" style="width: 500px;">    
-          <form th:action="@{/registrarse}" th:object="${usuario}" method="post" style="background: var(--bs-dark)">
-            <div  th:if=${param.exito}>
-              <div class="alert alert-info">
-                Se ha registrado exitosamente.
-              </div>
+        <div class="form-container" style="width: 500px">
+          <form
+            th:action="@{/registrarse}"
+            th:object="${usuario}"
+            method="post"
+            style="background: var(--bs-dark)"
+          >
+            <div th:if="${param.exito}">
+              <div class="alert alert-info">Se ha registrado exitosamente.</div>
             </div>
             <h2 class="text-center" style="color: var(--bs-white)">
               <strong>Registrarse</strong>
             </h2>
             <div class="mb-3">
               <input
-              id="nombres"
+                id="nombres"
                 class="form-control"
                 type="text"
                 name="nombres"
                 placeholder="Nombres"
                 th:field="*{nombres}"
-                required autofocus="autofocus"
+                required
+                autofocus="autofocus"
               />
             </div>
             <div class="mb-3">
               <input
-              id="apellidos"
+                id="apellidos"
                 class="form-control"
                 type="text"
                 name="apellidos"
                 placeholder="Apellidos"
                 th:field="*{apellidos}"
-                required autofocus="autofocus"
+                required
+                autofocus="autofocus"
               />
             </div>
             <div class="mb-3">
               <input
-              id="usuario"
+                id="usuario"
                 class="form-control"
                 type="text"
                 name="usuario"
                 placeholder="Usuario"
                 th:field="*{usuario}"
-                required autofocus="autofocus"
+                required
+                autofocus="autofocus"
               />
             </div>
             <div class="mb-3">
               <input
-              id="email"
+                id="email"
                 class="form-control"
                 type="email"
                 name="email"
                 placeholder="Email"
                 th:field="*{email}"
-                required autofocus="autofocus"
+                required
+                autofocus="autofocus"
               />
             </div>
             <div class="mb-3">
               <input
-              id="password"
+                id="password"
                 class="form-control"
                 type="password"
                 name="password"
                 placeholder="Contraseña"
                 th:field="*{password}"
-                required autofocus="autofocus"
+                required
+                autofocus="autofocus"
               />
             </div>
-            
-            
+
             <div class="mb-3">
               <button class="btn btn-primary d-block w-100" type="submit">
                 Registrarse
@@ -177,7 +186,6 @@
             <a class="already" th:href="@{/iniciarSesion}"
               >¿Ya tienes una cuenta? Inicia sesión aquí</a
             >
-            
           </form>
         </div>
       </section>

@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
   <head>
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
@@ -70,7 +73,7 @@
         <i class="fa fa-star" style="width: 50px; height: 50px"></i
         ><a
           class="navbar-brand"
-          href="mostrarCliente.html"
+          th:href="@{/}"
           style="color: var(--bs-body-bg)"
           >Draxter</a
         ><button
@@ -84,16 +87,16 @@
         <div class="collapse navbar-collapse" id="navcol-1">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="mostrarCliente.html">Perfil</a>
+              <a class="nav-link" th:href="@{/}">Perfil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="mostrarCatalogo.html">Catalogo</a>
+              <a class="nav-link" th:href="@{/catalogo}">Catalogo</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="MostrarServicios.html">Servicios</a>
+              <a class="nav-link active" th:href="@{/servicios}">Servicios</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="AdministrarPedidos.html">Pedidos</a>
+              <a class="nav-link" th:href="@{/pedidos}">Pedidos</a>
             </li>
           </ul>
         </div>
@@ -113,7 +116,7 @@
             <div class="text-center icon-box" style="min-width: 250px">
               <div class="icon">
                 <i class="far fa-user" style="margin-bottom: 15px"></i>
-                <h4 class="title"><a href="radicarPQR.html" style="text-decoration: none;">Radicar PQR</a></h4>
+                <h4 class="title"><a th:href="@{/servicios/radicarPQR}" style="text-decoration: none;">Radicar PQR</a></h4>
                 <p class="description">
                   Voluptatum deleniti atque corrupti quos dolores et quas
                   molestias excepturi<br />&nbsp; &nbsp; &nbsp;&nbsp;
@@ -127,7 +130,7 @@
             <div class="text-center icon-box" style="min-width: 250px">
               <div class="icon">
                 <i class="fa fa-search" style="margin-bottom: 15px"></i>
-                <h4 class="title"><a href="monitorearPQRCliente.html" style="text-decoration: none;">Monitorear PQR</a></h4>
+                <h4 class="title"><a th:href="@{/servicios/monitorearPQR}" style="text-decoration: none;">Monitorear PQR</a></h4>
                 <p class="description">
                   Voluptatum deleniti atque corrupti quos dolores et quas
                   molestias excepturi<br />&nbsp; &nbsp; &nbsp;&nbsp;
@@ -141,7 +144,7 @@
             <div class="text-center icon-box" style="min-width: 250px">
               <div class="icon">
                 <i class="fa fa-cut" style="margin-bottom: 15px"></i>
-                <h4 class="title"><a href="PedirCorte.html" style="text-decoration: none;">Pedir Corte</a></h4>
+                <h4 class="title"><a th:href="@{/servicios/pedirCorte}" style="text-decoration: none;">Pedir Corte</a></h4>
                 <p class="description">
                   Voluptatum deleniti atque corrupti quos dolores et quas
                   molestias excepturi<br />&nbsp; &nbsp; &nbsp;&nbsp;
@@ -158,10 +161,10 @@
                   class="far fa-question-circle"
                   style="margin-bottom: 15px"
                 ></i>
-                <h4 class="title"><a href="mostrarFAQ.html" style="text-decoration: none;">FAQ</a></h4>
+                <h4 class="title"><a th:href="@{/servicios/mostrarFAQ}" style="text-decoration: none;">FAQ</a></h4>
                 <p class="description">
                   Voluptatum deleniti atque corrupti quos dolores et quas
-                  molestias excepturi<br />&nbsp; &nbsp; &nbsp;&nbsp;
+                  molestias excepturi<br />
                 </p>
               </div>
             </div>

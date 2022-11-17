@@ -1,37 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+  xlmns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
   <head>
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
     <title>Draxter</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css" />
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css" />
-    <link rel="stylesheet" href="assets/fonts/ionicons.min.css" />
-    <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css" />
-    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css" />
-    <link rel="stylesheet" href="assets/css/animated-services.css" />
-    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css" />
+    <link
+      rel="stylesheet"
+      href="assets/bootstrap/css/bootstrap.min.css"
+      th:href="@{/assets/bootstrap/css/bootstrap.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/fonts/fontawesome-all.min.css"
+      th:href="@{/assets/fonts/fontawesome-all.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/fonts/font-awesome.min.css"
+      th:href="@{/assets/fonts/font-awesome.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/fonts/ionicons.min.css"
+      th:href="@{/assets/fonts/ionicons.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/fonts/simple-line-icons.min.css"
+      th:href="@{/assets/fonts/simple-line-icons.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/fonts/fontawesome5-overrides.min.css"
+      th:href="@{/assets/fonts/fontawesome5-overrides.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/animated-services.css"
+      th:href="@{/assets/css/animated-services.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Contact-Form-Clean.css"
+      th:href="@{/assets/css/Contact-Form-Clean.css}"
+    />
     <link
       rel="stylesheet"
       href="assets/css/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.css"
+      th:href="@{/assets/css/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.css}"
     />
-    <link rel="stylesheet" href="assets/css/Edit-Form.css" />
+    <link
+      rel="stylesheet"
+      href="assets/css/Edit-Form.css"
+      th:href="@{/assets/css/Edit-Form.css}"
+    />
     <link
       rel="stylesheet"
       href="assets/css/FAQ-Frequentlly-Asked-Questions-1.css"
+      th:href="@{/assets/css/FAQ-Frequentlly-Asked-Questions-1.css}"
     />
     <link
       rel="stylesheet"
       href="assets/css/FAQ-Frequentlly-Asked-Questions.css"
+      th:href="@{/assets/css/FAQ-Frequentlly-Asked-Questions.css}"
     />
-    <link rel="stylesheet" href="assets/css/featured-products-slider-1.css" />
-    <link rel="stylesheet" href="assets/css/featured-products-slider.css" />
-    <link rel="stylesheet" href="assets/css/Footer-Dark.css" />
-    <link rel="stylesheet" href="assets/css/gift-product-long.css" />
+    <link
+      rel="stylesheet"
+      href="assets/css/featured-products-slider-1.css"
+      th:href="@{assets/css/featured-products-slider-1.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/featured-products-slider.css"
+      th:href="@{assets/css/featured-products-slider.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Footer-Dark.css"
+      th:href="@{assets/css/Footer-Dark.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/gift-product-long.css"
+      th:href="@{assets/css/gift-product-long.css}"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
@@ -44,20 +105,50 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
     />
-    <link rel="stylesheet" href="assets/css/Login-Form-Dark.css" />
-    <link rel="stylesheet" href="assets/css/Ludens-Users---3-Profile.css" />
-    <link rel="stylesheet" href="assets/css/Navigation-Clean.css" />
-    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css" />
+    <link
+      rel="stylesheet"
+      href="assets/css/Login-Form-Dark.css"
+      th:href="@{/assets/css/Login-Form-Dark.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Ludens-Users---3-Profile.css"
+      th:href="@{/assets/css/Ludens-Users---3-Profile.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Navigation-Clean.css"
+      th:href="@{/assets/css/Navigation-Clean.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Registration-Form-with-Photo.css"
+      th:href="@{/assets/css/Registration-Form-with-Photo.css}"
+    />
     <link
       rel="stylesheet"
       href="assets/css/Search-Input-Responsive-with-Icon.css"
+      th:href="@{/assets/css/Search-Input-Responsive-with-Icon.css}"
     />
-    <link rel="stylesheet" href="assets/css/styles.css" />
-    <link rel="stylesheet" href="assets/css/Table-With-Search-1.css" />
-    <link rel="stylesheet" href="assets/css/Table-With-Search.css" />
+    <link
+      rel="stylesheet"
+      href="assets/css/styles.css"
+      th:href="@{/assets/css/styles.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Table-With-Search-1.css"
+      th:href="@{/assets/css/Table-With-Search-1.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Table-With-Search.css"
+      th:href="@{/assets/css/Table-With-Search.css}"
+    />
     <link
       rel="stylesheet"
       href="assets/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css"
+      th:href="@{/assets/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css}"
     />
   </head>
 
@@ -68,10 +159,7 @@
     >
       <div class="container">
         <i class="fa fa-star" style="width: 50px; height: 50px"></i
-        ><a
-          class="navbar-brand"
-          href="mostrarCliente.html"
-          style="color: var(--bs-body-bg)"
+        ><a class="navbar-brand" th:href="@{/}" style="color: var(--bs-body-bg)"
           >Draxter</a
         ><button
           data-bs-toggle="collapse"
@@ -84,18 +172,16 @@
         <div class="collapse navbar-collapse" id="navcol-1">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="mostrarCliente.html">Perfil</a>
+              <a class="nav-link" th:href="@{/}">Perfil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="mostrarCatalogo.html">Catalogo</a>
+              <a class="nav-link" th:href="@{/catalogo}">Catalogo</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="MostrarServicios.html"
-                >Servicios</a
-              >
+              <a class="nav-link active" th:href="@{/servicios}">Servicios</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="AdministrarPedidos.html">Pedidos</a>
+              <a class="nav-link" th:href="@{/pedidos}">Pedidos</a>
             </li>
           </ul>
         </div>
@@ -128,13 +214,14 @@
                 color: var(--bs-white);
                 text-align: center;
                 padding-top: 13%;
+                margin-bottom: 40px;
               "
             >
               Radicar PQR
             </h2>
           </div>
           <div class="d-flex" style="height: 100%; width: 70%">
-            <div style="height: 100%; width: 100%">
+            <div style="height: 100%; width: 100%" th:if="${param.exito}">
               <p
                 style="
                   height: 100%;
@@ -142,47 +229,55 @@
                   color: var(--bs-white);
                   text-align: right;
                   padding-top: 9%;
+                  margin-bottom: 50px;
                 "
               >
-                No.&nbsp;&nbsp;
-              </p>
-            </div>
-            <div style="height: 100%; width: 20%">
-              <p
-                style="
-                  width: 100%;
-                  height: 100%;
-                  text-align: left;
-                  color: var(--bs-white);
-                  padding-top: 45%;
-                "
-              >
-                PQR
+                
+                <a
+                  th:href="@{/servicios/monitorearPQR}"
+                  style="text-decoration: none; color: var(--bs-white)"
+                >Su PQR ha sido radicado, puede verlo presionando
+                  aquí.</a
+                >
               </p>
             </div>
           </div>
         </div>
+
         <div
           class="d-flex"
           style="width: 86%; margin-right: 7%; margin-left: 7%; min-height: 50%"
         >
-          <div style="width: 50%; height: 190px">
-            <input
-              type="text"
-              style="text-align: left; width: 90%; height: 100%"
-              placeholder="Escriba su PQR..."
-            />
-          </div>
-          <div style="text-align: center; width: 50%">
-            <button
-              class="btn btn-primary"
-              type="button"
-              style="margin-top: 1%"
-            >
-              Radicar PQR
-            </button>
-            <p style="color: var(--bs-white)">Lorem ipsum</p>
-          </div>
+          <form
+          class="d-flex"
+            th:action="@{/servicios/radicarPQR}"
+            th:object="${pqr}"
+            method="post"
+            style="width: 100%;"
+          >
+            <div style="width: 50%; height: 190px; margin-top: 50px">
+              <input
+              size="40"
+              id="descripcion"
+              name="descripcion"
+                type="text"
+                style="text-align: left; width: 90%; height: 100%;
+                vertical-align: top;
+              "
+                placeholder="Escriba su PQR..."
+                th:field="*{descripcion}"
+              />
+            </div>
+            <div style="text-align: center; width: 50%">
+              <button
+                class="btn btn-primary"
+                type="submit"
+                style="margin-top: 10%"
+              >
+                Radicar PQR
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

@@ -1,6 +1,8 @@
 package com.draxter.draxter.Entity;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
@@ -61,10 +64,20 @@ public class Usuarios {
     )
     private Collection<Rol> roles;
 
-
+    @OneToMany(mappedBy="usuario", cascade= CascadeType.ALL)
+    private Set<PQR> pqr= new HashSet<>();
 
     public String getUsuario() {
         return usuario;
+    }
+    public Set<PQR> getPqr() {
+        return pqr;
+    }
+    public void setPqr(Set<PQR> pqr) {
+        this.pqr = pqr;
+        for(PQR pqrs : pqr){
+            pqrs.setUsuario(this);
+        }
     }
     public void setUsuario(String usuario) {
         this.usuario = usuario;

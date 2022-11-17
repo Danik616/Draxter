@@ -9,11 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.draxter.draxter.Entity.PQR;
 import com.draxter.draxter.Entity.Producto;
 import com.draxter.draxter.Entity.Usuarios;
+import com.draxter.draxter.Service.PQRService;
 import com.draxter.draxter.Service.ProductoService;
 
 @Controller
@@ -24,8 +28,13 @@ public class DraxterInicioController {
     @Autowired
     private ProductoService productoService;
 
-    public DraxterInicioController(ProductoService productoService) {
+    private PQRService pqrService;
+
+    
+
+    public DraxterInicioController(ProductoService productoService, PQRService pqrService) {
         this.productoService = productoService;
+        this.pqrService = pqrService;
     }
 
     @RequestMapping("/iniciarSesion")
@@ -64,8 +73,43 @@ public class DraxterInicioController {
         return "MostrarProducto";
     }
 
-    @GetMapping("/servicios")
+    @RequestMapping("/servicios")
     public String mostrarServicios(){
         return "MostrarServicios";
     }
+
+    @GetMapping("/servicios/radicarPQR")
+    public String radicarPQR(){
+        return "radicarPQR";
+    }
+
+    @ModelAttribute("pqr")
+    public PQR pqr(){
+        return new PQR();
+    }
+
+    @PostMapping("/servicios/radicarPQR")
+    public String radicacionPQR(@ModelAttribute("pqr") PQR pqr){
+        pqr.setEstado("No respondido");
+        pqr.setUsuario(usuario);
+        pqrService.guardarPQR(pqr);
+
+        return "redirect:/servicios/radicarPQR?exito";
+    }
+
+    @GetMapping("/servicios/monitorearPQR")
+    public String monitorearPQR(){
+        return "monitorearPQRCliente";
+    }
+
+    @GetMapping("/7servicios/pedirCorte")
+    public String pedirCorte(){
+        return "PedirCorte";
+    }
+
+    @GetMapping("/servicios/mostrarFAQ")
+    public String mostrarFAQ(){
+        return "mostrarFAQ";
+    }
+
 }
