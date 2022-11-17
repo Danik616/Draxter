@@ -1,37 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
   <head>
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
     <title>Draxter</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css" />
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css" />
-    <link rel="stylesheet" href="assets/fonts/ionicons.min.css" />
-    <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css" />
-    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css" />
-    <link rel="stylesheet" href="assets/css/animated-services.css" />
-    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css" />
+    <link
+      rel="stylesheet"
+      href="assets/bootstrap/css/bootstrap.min.css"
+      th:href="@{/assets/bootstrap/css/bootstrap.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/fonts/fontawesome-all.min.css"
+      th:href="@{/assets/fonts/fontawesome-all.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/fonts/font-awesome.min.css"
+      th:href="@{/assets/fonts/font-awesome.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/fonts/ionicons.min.css"
+      th:href="@{/assets/fonts/ionicons.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/fonts/simple-line-icons.min.css"
+      th:href="@{/assets/fonts/simple-line-icons.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/fonts/fontawesome5-overrides.min.css"
+      th:href="@{/assets/fonts/fontawesome5-overrides.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/animated-services.css"
+      th:href="@{/assets/css/animated-services.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Contact-Form-Clean.css"
+      th:href="@{/assets/css/Contact-Form-Clean.css}"
+    />
     <link
       rel="stylesheet"
       href="assets/css/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.css"
+      th:href="@{/assets/css/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.css}"
     />
-    <link rel="stylesheet" href="assets/css/Edit-Form.css" />
+    <link
+      rel="stylesheet"
+      href="assets/css/Edit-Form.css"
+      th:href="@{/assets/css/Edit-Form.css}"
+    />
     <link
       rel="stylesheet"
       href="assets/css/FAQ-Frequentlly-Asked-Questions-1.css"
+      th:href="@{/assets/css/FAQ-Frequentlly-Asked-Questions-1.css}"
     />
     <link
       rel="stylesheet"
       href="assets/css/FAQ-Frequentlly-Asked-Questions.css"
+      th:href="@{/assets/css/FAQ-Frequentlly-Asked-Questions.css}"
     />
-    <link rel="stylesheet" href="assets/css/featured-products-slider-1.css" />
-    <link rel="stylesheet" href="assets/css/featured-products-slider.css" />
-    <link rel="stylesheet" href="assets/css/Footer-Dark.css" />
-    <link rel="stylesheet" href="assets/css/gift-product-long.css" />
+    <link
+      rel="stylesheet"
+      href="assets/css/featured-products-slider-1.css"
+      th:href="@{assets/css/featured-products-slider-1.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/featured-products-slider.css"
+      th:href="@{assets/css/featured-products-slider.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Footer-Dark.css"
+      th:href="@{assets/css/Footer-Dark.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/gift-product-long.css"
+      th:href="@{assets/css/gift-product-long.css}"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
@@ -44,20 +102,50 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
     />
-    <link rel="stylesheet" href="assets/css/Login-Form-Dark.css" />
-    <link rel="stylesheet" href="assets/css/Ludens-Users---3-Profile.css" />
-    <link rel="stylesheet" href="assets/css/Navigation-Clean.css" />
-    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css" />
+    <link
+      rel="stylesheet"
+      href="assets/css/Login-Form-Dark.css"
+      th:href="@{/assets/css/Login-Form-Dark.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Ludens-Users---3-Profile.css"
+      th:href="@{/assets/css/Ludens-Users---3-Profile.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Navigation-Clean.css"
+      th:href="@{/assets/css/Navigation-Clean.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Registration-Form-with-Photo.css"
+      th:href="@{/assets/css/Registration-Form-with-Photo.css}"
+    />
     <link
       rel="stylesheet"
       href="assets/css/Search-Input-Responsive-with-Icon.css"
+      th:href="@{/assets/css/Search-Input-Responsive-with-Icon.css}"
     />
-    <link rel="stylesheet" href="assets/css/styles.css" />
-    <link rel="stylesheet" href="assets/css/Table-With-Search-1.css" />
-    <link rel="stylesheet" href="assets/css/Table-With-Search.css" />
+    <link
+      rel="stylesheet"
+      href="assets/css/styles.css"
+      th:href="@{/assets/css/styles.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Table-With-Search-1.css"
+      th:href="@{/assets/css/Table-With-Search-1.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Table-With-Search.css"
+      th:href="@{/assets/css/Table-With-Search.css}"
+    />
     <link
       rel="stylesheet"
       href="assets/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css"
+      th:href="@{/assets/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css}"
     />
   </head>
 
@@ -70,7 +158,7 @@
         <i class="fa fa-star" style="width: 50px; height: 50px"></i
         ><a
           class="navbar-brand"
-          href="mostrarCliente.html"
+          th:href="@{/}"
           style="color: var(--bs-body-bg)"
           >Draxter</a
         ><button
@@ -84,18 +172,18 @@
         <div class="collapse navbar-collapse" id="navcol-1">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="mostrarCliente.html">Perfil</a>
+              <a class="nav-link" th:href="@{/}">Perfil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="mostrarCatalogo.html">Catalogo</a>
+              <a class="nav-link" th:href="@{/catalogo}">Catalogo</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="MostrarServicios.html"
+              <a class="nav-link active" th:href="@{/servicios}"
                 >Servicios</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="AdministrarPedidos.html">Pedidos</a>
+              <a class="nav-link" th:href="@{/pedidos}">Pedidos</a>
             </li>
           </ul>
         </div>
@@ -117,11 +205,13 @@
                 <div class="card-body">
                   <form class="d-flex align-items-center">
                     <input
+                    id="id"
                       class="form-control form-control-lg flex-shrink-1 form-control-borderless"
                       type="search"
                       placeholder="Buscar por Código..."
-                      name="searchbar"
-                    /><button class="btn btn-success btn-lg" type="submit">
+                      name="id"
+                      th:field="*{id}"
+                    /><button class="btn btn-success btn-lg" type="submit" th:href="@{/servicios/monitorearPQR/{id}(id=id)}">
                       Buscar
                     </button>
                   </form>
@@ -143,16 +233,17 @@
               </tr>
             </thead>
             <tbody>
-              <tr class="warning no-result">
-                <td colspan="12">
-                  <i class="fa fa-warning"></i>&nbsp; No Result !!!
-                </td>
+              <tr th:unless="${param.exito}" th:each="pqr: ${pqrs}" style="color: white; ">
+                <td th:text="${pqr.id_pqr}" style="border-color: white;"></td>
+                <td th:text="${pqr.descripcion}" style="border-color: white;"></td>
+                <td th:text="${pqr.estado}" style="border-color: white;"></td>
+                <td th:text="${pqr.respuesta}" style="border-color: white;"></td>
               </tr>
-              <tr>
-                <td>Souvik Kundu</td>
-                <td>Bootstrap Stuido</td>
-                <td>2014</td>
-                <td></td>
+              <tr th:if="${param.exito}" th:each="pqri: ${pqrsi}" style="color: white; ">
+                <td th:text="${pqri.id_pqr}" style="border-color: white;"></td>
+                <td th:text="${pqri.descripcion}" style="border-color: white;"></td>
+                <td th:text="${pqri.estado}" style="border-color: white;"></td>
+                <td th:text="${pqri.respuesta}" style="border-color: white;"></td>
               </tr>
             </tbody>
           </table>

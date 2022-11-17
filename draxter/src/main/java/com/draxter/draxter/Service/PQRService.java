@@ -17,13 +17,13 @@ public class PQRService implements IPQRService{
     }
 
     @Override
-    public List<PQR> obtenerPQRs() {
-        return pqrRepository.findAll();
+    public List<PQR> obtenerPQRs(String usuario) {
+        return pqrRepository.obtenerTodosLosPqrPorIdUsuario(usuario);
     }
 
     @Override
-    public PQR obtenerPQRPorId(Long id) {
-        return pqrRepository.findById(id).get();
+    public PQR obtenerPQRPorId(Long id, String usuario) {
+        return pqrRepository.obtenerTodosLosPqrPorIdUsuarioYId(id, usuario);
     }
 
     @Override

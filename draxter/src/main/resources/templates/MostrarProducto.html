@@ -12,31 +12,32 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
     />
     
     <title>Draxter</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css" />
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css" />
-    <link rel="stylesheet" href="assets/fonts/ionicons.min.css" />
-    <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css" />
-    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css" />
-    <link rel="stylesheet" href="assets/css/animated-services.css" />
-    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css" />
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" th:href="@{/assets/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css" th:href="@{/assets/fonts/fontawesome-all.min.css}"/>
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css" th:href="@{/assets/fonts/font-awesome.min.css}"/>
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css" th:href="@{/assets/fonts/ionicons.min.css}"/>
+    <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css" th:href="@{/assets/fonts/simple-line-icons.min.css}"/>
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css" th:href="@{/assets/fonts/fontawesome5-overrides.min.css}"/>
+    <link rel="stylesheet" href="assets/css/animated-services.css" th:href="@{/assets/css/animated-services.css}"/>
+    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css" th:href="@{/assets/css/Contact-Form-Clean.css}"/>
     <link
       rel="stylesheet"
       href="assets/css/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.css"
+      th:href="@{/assets/css/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.css}"
     />
-    <link rel="stylesheet" href="assets/css/Edit-Form.css" />
+    <link rel="stylesheet" href="assets/css/Edit-Form.css" th:href="@{/assets/css/Edit-Form.css}"/>
     <link
       rel="stylesheet"
-      href="assets/css/FAQ-Frequentlly-Asked-Questions-1.css"
+      href="assets/css/FAQ-Frequentlly-Asked-Questions-1.css" th:href="@{/assets/css/FAQ-Frequentlly-Asked-Questions-1.css}"
     />
     <link
       rel="stylesheet"
-      href="assets/css/FAQ-Frequentlly-Asked-Questions.css"
+      href="assets/css/FAQ-Frequentlly-Asked-Questions.css"th:href="@{/assets/css/FAQ-Frequentlly-Asked-Questions.css}"
     />
-    <link rel="stylesheet" href="assets/css/featured-products-slider-1.css" />
-    <link rel="stylesheet" href="assets/css/featured-products-slider.css" />
-    <link rel="stylesheet" href="assets/css/Footer-Dark.css" />
-    <link rel="stylesheet" href="assets/css/gift-product-long.css" />
+    <link rel="stylesheet" href="assets/css/featured-products-slider-1.css" th:href="@{/assets/css/featured-products-slider-1.css}"/>
+    <link rel="stylesheet" href="assets/css/featured-products-slider.css" th:href="@{/assets/css/featured-products-slider.css}" />
+    <link rel="stylesheet" href="assets/css/Footer-Dark.css" th:href="@{/assets/css/Footer-Dark.css}"/>
+    <link rel="stylesheet" href="assets/css/gift-product-long.css" th:href="@{/assets/css/gift-product-long.css}" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
@@ -49,20 +50,21 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
     />
-    <link rel="stylesheet" href="assets/css/Login-Form-Dark.css" />
-    <link rel="stylesheet" href="assets/css/Ludens-Users---3-Profile.css" />
-    <link rel="stylesheet" href="assets/css/Navigation-Clean.css" />
-    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css" />
+    <link rel="stylesheet" href="assets/css/Login-Form-Dark.css" th:href="@{/assets/css/Login-Form-Dark.css}"/>
+    <link rel="stylesheet" href="assets/css/Ludens-Users---3-Profile.css" th:href="@{/assets/css/Ludens-Users---3-Profile.css}"/>
+    <link rel="stylesheet" href="assets/css/Navigation-Clean.css" th:href="@{/assets/css/Navigation-Clean.css}"/>
+    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css" th:href="@{/assets/css/Registration-Form-with-Photo.css}"/>
     <link
       rel="stylesheet"
-      href="assets/css/Search-Input-Responsive-with-Icon.css"
+      href="assets/css/Search-Input-Responsive-with-Icon.css" th:href="@{/assets/css/Search-Input-Responsive-with-Icon.css}"
     />
-    <link rel="stylesheet" href="assets/css/styles.css" />
-    <link rel="stylesheet" href="assets/css/Table-With-Search-1.css" />
-    <link rel="stylesheet" href="assets/css/Table-With-Search.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" th:href="@{/assets/css/styles.css}"/>
+    <link rel="stylesheet" href="assets/css/Table-With-Search-1.css" th:href="@{/assets/css/Table-With-Search-1.css}"/>
+    <link rel="stylesheet" href="assets/css/Table-With-Search.css" th:href="@{/assets/css/Table-With-Search.css}"/>
     <link
       rel="stylesheet"
       href="assets/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css"
+      th:href="@{/assets/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css}"
     />
   </head>
 
@@ -140,8 +142,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
           </ol>
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
-              <img src="assets/img/w_shop_105_01.png" alt="w_shop_105_01" />
+              <img src="assets/img/w_shop_105_01.png" alt="w_shop_105_01" style="height: 200px; width: 200px;" />
               <div class="w_shop_105_left_box">
+                <span data-animation="animated fadeInLeft"
+                style="font-family: roboto; color: var(--bs-yellow)">$ </span>
                 <span
                 th:text="*{precio}"
                   data-animation="animated fadeInLeft"
@@ -156,8 +160,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
                   Descripción
                 </p>
                 <a
-                  href="pagarPedido.html"
+                  th:href="@{/catalogo/{id}/pagarPedido(id=${id})}"
                   data-animation="animated fadeInLeft"
+                  class="btn-primary"
                   style="color: var(--bs-white); background: var(--bs-blue)"
                   >Comprar</a
                 >
@@ -172,14 +177,15 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
                     data-animation="animated fadeInRight"
                     style="color: var(--bs-white)"
                   >
-                    Carac 1
                   </li>
                 </ul>
               </div>
             </div>
             <div class="carousel-item">
-              <img src="assets/img/w_shop_105_01.png" alt="w_shop_105_01" />
+              <img src="assets/img/w_shop_105_01.png" alt="w_shop_105_01" style="height: 200px; width: 200px;" />
               <div class="w_shop_105_left_box">
+                <span data-animation="animated fadeInLeft"
+                style="font-family: roboto; color: var(--bs-yellow)">$ </span>
                 <span
                 th:text="*{precio}"
                   data-animation="animated fadeInLeft"
@@ -194,8 +200,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
                   Descripción
                 </p>
                 <a
-                  href="pagarPedido.html"
+                  th:href="@{/catalogo/{id}/pagarPedido(id=${id})}"
                   data-animation="animated fadeInLeft"
+                  class="btn-primary"
                   style="color: var(--bs-white); background: var(--bs-blue)"
                   >Comprar</a
                 >
@@ -204,20 +211,21 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
                 class="w_shop_105_right_box"
                 data-animation="animated fadeInRight"
               >
-              <ul th:each="caracteristica: ${caracteristicas}">
-                <li
-                th:text="*{caracteristica}"
-                  data-animation="animated fadeInRight"
-                  style="color: var(--bs-white)"
-                >
-                  Carac 1
-                </li>
-              </ul>
+                <ul th:each="caracteristica: ${caracteristicas}">
+                  <li
+                  th:text="*{caracteristica}"
+                    data-animation="animated fadeInRight"
+                    style="color: var(--bs-white)"
+                  >
+                  </li>
+                </ul>
               </div>
             </div>
             <div class="carousel-item">
-              <img src="assets/img/w_shop_105_01.png" alt="w_shop_105_01" />
+              <img src="assets/img/w_shop_105_01.png" alt="w_shop_105_01" style="height: 200px; width: 200px;" />
               <div class="w_shop_105_left_box">
+                <span data-animation="animated fadeInLeft"
+                style="font-family: roboto; color: var(--bs-yellow)">$ </span>
                 <span
                 th:text="*{precio}"
                   data-animation="animated fadeInLeft"
@@ -232,8 +240,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
                   Descripción
                 </p>
                 <a
-                  href="pagarPedido.html"
+                  th:href="@{/catalogo/{id}/pagarPedido(id=${id})}"
                   data-animation="animated fadeInLeft"
+                  class="btn-primary"
                   style="color: var(--bs-white); background: var(--bs-blue)"
                   >Comprar</a
                 >
@@ -242,15 +251,14 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
                 class="w_shop_105_right_box"
                 data-animation="animated fadeInRight"
               >
-              <ul th:each="caracteristica: ${caracteristicas}">
-                <li
-                th:text="*{caracteristica}"
-                  data-animation="animated fadeInRight"
-                  style="color: var(--bs-white)"
-                >
-                  Carac 1
-                </li>
-              </ul>
+                <ul th:each="caracteristica: ${caracteristicas}">
+                  <li
+                  th:text="*{caracteristica}"
+                    data-animation="animated fadeInRight"
+                    style="color: var(--bs-white)"
+                  >
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

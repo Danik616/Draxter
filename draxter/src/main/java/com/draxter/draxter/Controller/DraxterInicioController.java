@@ -65,12 +65,18 @@ public class DraxterInicioController {
         model.addAttribute("nombre", pr.getNombre());
         model.addAttribute("precio", pr.getPrecio());
         model.addAttribute("descripcion", pr.getDescripcion());
+        model.addAttribute("id", id);
         String caracteristicas=pr.getCaracteristicas();
         String[] caracteristicasVector=caracteristicas.split(",");
         List<String> caracteristicasLista=Arrays.asList(caracteristicasVector);
         model.addAttribute("caracteristicas", caracteristicasLista);
 
         return "MostrarProducto";
+    }
+
+    @GetMapping("/catalogo/{id}/pagarPedido")
+    public String pagarPedido(){
+        return "pagarPedido";
     }
 
     @RequestMapping("/servicios")
@@ -89,7 +95,8 @@ public class DraxterInicioController {
     }
 
     @PostMapping("/servicios/radicarPQR")
-    public String radicacionPQR(@ModelAttribute("pqr") PQR pqr){
+    public String radicacionPQR(@ModelAttribute("pqr") PQR pqr, HttpSession session){
+        usuario = (Usuarios) session.getAttribute("usuariosesion");
         pqr.setEstado("No respondido");
         pqr.setUsuario(usuario);
         pqrService.guardarPQR(pqr);
@@ -98,11 +105,25 @@ public class DraxterInicioController {
     }
 
     @GetMapping("/servicios/monitorearPQR")
-    public String monitorearPQR(){
+    public String monitorearPQR(Model model, HttpSession session){
+        usuario = (Usuarios) session.getAttribute("usuariosesion");
+        model.addAttribute("pqrs", pqrService.obtenerPQRs(usuario.getUsuario()));
         return "monitorearPQRCliente";
     }
 
-    @GetMapping("/7servicios/pedirCorte")
+    @ModelAttribute("id")
+    public String id(){
+        return new String();
+    }
+    @GetMapping("/servicios/monitorearPQR/{id}")
+    public String monitorearPQRPorId(@ModelAttribute("id") String id, Model model, HttpSession session){
+        usuario = (Usuarios) session.getAttribute("usuariosesion");
+        Long id_busqueda=Long.parseLong(id);
+        model.addAttribute("pqrsi",pqrService.obtenerPQRPorId(id_busqueda, usuario.getUsuario()));
+        return "redirect:/servicios/monitorearPQR?exito";
+    }
+
+    @GetMapping("/servicios/pedirCorte")
     public String pedirCorte(){
         return "PedirCorte";
     }
