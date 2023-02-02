@@ -111,7 +111,12 @@
             </tr>
           </thead>
           <tbody>
-
+            <tr th:unless="${param.exito}" th:each="pqr: ${pqrs}" style="color: white; ">
+              <td th:text="${pqr.id_pqr}" style="border-color: white;"></td>
+              <td th:text="${pqr.descripcion}" style="border-color: white;"></td>
+              <td th:text="${pqr.estado}" style="border-color: white;"></td>
+              <td th:text="${pqr.respuesta}" style="border-color: white;"></td>
+            </tr>
             <tr th:if="${param.exito}" th:each="pqri: ${pqrsi}" style="color: white; ">
               <td th:text="${pqri.id_pqr}" style="border-color: white;"></td>
               <td th:text="${pqri.descripcion}" style="border-color: white;"></td>

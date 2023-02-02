@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.draxter.draxter.Entity.PQR;
 import com.draxter.draxter.Entity.Producto;
 import com.draxter.draxter.Entity.Usuarios;
+import com.draxter.draxter.Entity.Corte;
 import com.draxter.draxter.Service.PQRService;
 import com.draxter.draxter.Service.ProductoService;
+import com.draxter.draxter.Service.CorteService;
 
 @Controller
 public class DraxterInicioController {
@@ -29,8 +31,6 @@ public class DraxterInicioController {
     private ProductoService productoService;
 
     private PQRService pqrService;
-
-    
 
     public DraxterInicioController(ProductoService productoService, PQRService pqrService) {
         this.productoService = productoService;
@@ -46,7 +46,7 @@ public class DraxterInicioController {
     public String mostrarUsuario(Model model, HttpSession session) {
         usuario = (Usuarios) session.getAttribute("usuariosesion");
         model.addAttribute("nombre", usuario.getNombres());
-        model.addAttribute("correo",usuario.getEmail());
+        model.addAttribute("correo", usuario.getEmail());
         model.addAttribute("usuario", usuario.getUsuario());
         model.addAttribute("pais", usuario.getPais());
         model.addAttribute("celular", usuario.getCelular());
@@ -61,42 +61,42 @@ public class DraxterInicioController {
     }
 
     @GetMapping("/catalogo/{id}")
-    public String mostrarProducto(@PathVariable Long id, Model model){
-        Producto pr= productoService.obtenerProductoPorId(id);
+    public String mostrarProducto(@PathVariable Long id, Model model) {
+        Producto pr = productoService.obtenerProductoPorId(id);
         model.addAttribute("nombre", pr.getNombre());
         model.addAttribute("precio", pr.getPrecio());
         model.addAttribute("descripcion", pr.getDescripcion());
         model.addAttribute("id", id);
-        String caracteristicas=pr.getCaracteristicas();
-        String[] caracteristicasVector=caracteristicas.split(",");
-        List<String> caracteristicasLista=Arrays.asList(caracteristicasVector);
+        String caracteristicas = pr.getCaracteristicas();
+        String[] caracteristicasVector = caracteristicas.split(",");
+        List<String> caracteristicasLista = Arrays.asList(caracteristicasVector);
         model.addAttribute("caracteristicas", caracteristicasLista);
 
         return "MostrarProducto";
     }
 
     @GetMapping("/catalogo/{id}/pagarPedido")
-    public String pagarPedido(){
+    public String pagarPedido() {
         return "pagarPedido";
     }
 
     @RequestMapping("/servicios")
-    public String mostrarServicios(){
+    public String mostrarServicios() {
         return "MostrarServicios";
     }
 
     @GetMapping("/servicios/radicarPQR")
-    public String radicarPQR(){
+    public String radicarPQR() {
         return "radicarPQR";
     }
 
     @ModelAttribute("pqr")
-    public PQR pqr(){
+    public PQR pqr() {
         return new PQR();
     }
 
     @PostMapping("/servicios/radicarPQR")
-    public String radicacionPQR(@ModelAttribute("pqr") PQR pqr, HttpSession session){
+    public String radicacionPQR(@ModelAttribute("pqr") PQR pqr, HttpSession session) {
         usuario = (Usuarios) session.getAttribute("usuariosesion");
         pqr.setEstado("No respondido");
         pqr.setUsuario(usuario);
@@ -106,31 +106,44 @@ public class DraxterInicioController {
     }
 
     @GetMapping("/servicios/monitorearPQR")
-    public String monitorearPQR(Model model, HttpSession session){
+    public String monitorearPQR(Model model, HttpSession session) {
         usuario = (Usuarios) session.getAttribute("usuariosesion");
         model.addAttribute("pqrs", pqrService.obtenerPQRs(usuario.getUsuario()));
         return "monitorearPQRCliente";
     }
 
     @ModelAttribute("id")
-    public String id(){
+    public String id() {
         return new String();
     }
+
     @GetMapping("/servicios/monitorearPQR/{id}")
-    public String monitorearPQRPorId(@ModelAttribute("id") String id, Model model, HttpSession session){
+    public String monitorearPQRPorId(@ModelAttribute("id") String id, Model model, HttpSession session) {
         usuario = (Usuarios) session.getAttribute("usuariosesion");
-        Long id_busqueda=Long.parseLong(id);
-        model.addAttribute("pqrsi",pqrService.obtenerPQRPorId(id_busqueda, usuario.getUsuario()));
+        long id_busqueda = Long.parseLong(id);
+        model.addAttribute("pqrsi", pqrService.obtenerPQRPorId(id_busqueda, usuario.getUsuario()));
         return "redirect:/servicios/monitorearPQR?exito";
     }
 
     @GetMapping("/servicios/pedirCorte")
-    public String pedirCorte(){
+    public String pedirCorte() {
         return "PedirCorte";
     }
 
+    @ModelAttribute("corte")
+    public Corte corte() {
+        return new Corte();
+    }
+
+    @PostMapping("/servicios/pedirCorte")
+    public String peticionCorte(@ModelAttribute("corte") Corte corte, HttpSession session) {
+        usuario = (Usuarios) session.getAttribute("usuariosesion");
+
+        return "redirect:/servicios/pedirCorte?exito";
+    }
+
     @GetMapping("/servicios/mostrarFAQ")
-    public String mostrarFAQ(){
+    public String mostrarFAQ() {
         return "mostrarFAQ";
     }
 
