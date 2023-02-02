@@ -46,6 +46,7 @@ public class DraxterInicioController {
     public String mostrarUsuario(Model model, HttpSession session) {
         usuario = (Usuarios) session.getAttribute("usuariosesion");
         model.addAttribute("nombre", usuario.getNombres());
+        model.addAttribute("correo",usuario.getEmail());
         model.addAttribute("usuario", usuario.getUsuario());
         model.addAttribute("pais", usuario.getPais());
         model.addAttribute("celular", usuario.getCelular());

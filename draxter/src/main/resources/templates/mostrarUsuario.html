@@ -361,7 +361,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
                           <p class="labels"><strong>Correo</strong></p>
                         </div>
                         <div class="col">
-                          <p sec:authorization="name" class="labels">example@gmail.com</p>
+                          <p sec:authorization="name" th:text="*{correo}" class="labels">example@gmail.com</p>
                         </div>
                       </div>
                       <div class="row">
