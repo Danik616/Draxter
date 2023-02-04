@@ -30,11 +30,16 @@ public class DraxterInicioController {
     @Autowired
     private ProductoService productoService;
 
+    @Autowired
     private PQRService pqrService;
 
-    public DraxterInicioController(ProductoService productoService, PQRService pqrService) {
+    @Autowired
+    private CorteService corteService;
+
+    public DraxterInicioController(ProductoService productoService, PQRService pqrService, CorteService corteService) {
         this.productoService = productoService;
         this.pqrService = pqrService;
+        this.corteService = corteService;
     }
 
     @RequestMapping("/iniciarSesion")
@@ -138,7 +143,8 @@ public class DraxterInicioController {
     @PostMapping("/servicios/pedirCorte")
     public String peticionCorte(@ModelAttribute("corte") Corte corte, HttpSession session) {
         usuario = (Usuarios) session.getAttribute("usuariosesion");
-
+        corte.setUsuario(usuario);
+        corteService.guardarCorte(corte);
         return "redirect:/servicios/pedirCorte?exito";
     }
 

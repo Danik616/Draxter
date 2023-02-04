@@ -2,9 +2,12 @@ package com.draxter.draxter.Service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.draxter.draxter.Entity.Corte;
 import com.draxter.draxter.Repository.ICorteRepository;
 
+@Service
 public class CorteService implements ICorteService {
 
     private ICorteRepository corteRepository;

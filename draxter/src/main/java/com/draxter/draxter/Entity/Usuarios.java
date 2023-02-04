@@ -19,127 +19,139 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="usuarios", uniqueConstraints= @UniqueConstraint(columnNames="email"))
+@Table(name = "usuarios", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Usuarios {
 
     @Id
     private String usuario;
 
-    
-    @Column(name="nombres")
+    @Column(name = "nombres")
     @NotEmpty
     private String nombres;
 
     @NotEmpty
-    @Column(name="apellidos")
+    @Column(name = "apellidos")
     private String apellidos;
 
-    @Column(name="imagen")
+    @Column(name = "imagen")
     private String imagen;
 
     @NotEmpty
     @Email
-    @Column(name="email")
+    @Column(name = "email")
     private String email;
 
     @NotEmpty
-    @Column(name="password")
+    @Column(name = "password")
     private String contraseña;
 
-    @Column(name="pais")
+    @Column(name = "pais")
     private String pais;
-    @Column(name="celular")
+    @Column(name = "celular")
     private String celular;
-    @Column(name="direccion")
+    @Column(name = "direccion")
     private String direccion;
-    
 
-    @ManyToMany(fetch= FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-        name="usuarios_roles",
-        joinColumns= @JoinColumn(
-            name="usuario_id",referencedColumnName = "usuario"
-        ),
-        inverseJoinColumns = @JoinColumn(name="rol_id", referencedColumnName = "id")
-    )
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "usuario"), inverseJoinColumns = @JoinColumn(name = "rol_id", referencedColumnName = "id"))
     private Collection<Rol> roles;
 
-    @OneToMany(mappedBy="usuario", cascade= CascadeType.ALL)
-    private Set<PQR> pqr= new HashSet<>();
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private Set<PQR> pqr = new HashSet<>();
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private Set<Corte> corte = new HashSet<>();
 
     public String getUsuario() {
         return usuario;
     }
+
     public Set<PQR> getPqr() {
         return pqr;
     }
+
     public void setPqr(Set<PQR> pqr) {
         this.pqr = pqr;
-        for(PQR pqrs : pqr){
+        for (PQR pqrs : pqr) {
             pqrs.setUsuario(this);
         }
     }
+
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
+
     public String getNombres() {
         return nombres;
     }
+
     public void setNombres(String nombres) {
         this.nombres = nombres;
     }
+
     public String getApellidos() {
         return apellidos;
     }
+
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
+
     public String getImagen() {
         return imagen;
     }
+
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
+
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
+
     public String getContraseña() {
         return contraseña;
     }
+
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
+
     public String getPais() {
         return pais;
     }
+
     public void setPais(String pais) {
         this.pais = pais;
     }
+
     public String getCelular() {
         return celular;
     }
+
     public void setCelular(String celular) {
         this.celular = celular;
     }
+
     public String getDireccion() {
         return direccion;
     }
+
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+
     public Collection<Rol> getRoles() {
         return roles;
     }
+
     public void setRoles(Collection<Rol> roles) {
         this.roles = roles;
     }
-
-
-    
-
 
     public Usuarios(String usuario, String nombres, String apellidos, String imagen, String email, String contraseña,
             String pais, String celular, String direccion, Collection<Rol> roles) {
@@ -154,6 +166,7 @@ public class Usuarios {
         this.direccion = direccion;
         this.roles = roles;
     }
+
     public Usuarios(String nombres, String apellidos, String usuario, String email, String contraseña,
             Collection<Rol> roles) {
         this.nombres = nombres;
@@ -162,10 +175,8 @@ public class Usuarios {
         this.contraseña = contraseña;
         this.roles = roles;
     }
+
     public Usuarios() {
     }
 
-    
-
-    
 }

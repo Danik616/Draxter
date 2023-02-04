@@ -11,9 +11,13 @@ import java.util.List;
 
 @Repository
 public interface ICorteRepository extends JpaRepository<Corte, Long> {
-    @Query("FROM CORTE WHERE id_usuario LIKE :id")
-    public List<Corte> obtenerTodosLosCortesPorIdUsuario(@Param("id") String id);
 
-    @Query("FROM CORTE WHERE id_usuario LIKE :id_usuario AND id_corte LIKE :id")
-    public Corte obtenerTodosLosCortesPorIdUsuarioYId(@Param("id") Long id, @Param("id_usuario") String id_usuario);
+    @Query("FROM corte WHERE id_usuario LIKE :id_usuario")
+    public List<Corte> obtenerTodosLosCortesPorIdUsuario(@Param("id_usuario") String id);
+
+    @Query("FROM corte WHERE id_usuario LIKE :id_usuario AND id_corte LIKE :id_corte")
+    public Corte obtenerTodosLosCortesPorIdUsuarioYId(@Param("id_corte") Long id,
+
+            @Param("id_usuario") String id_usuario);
+
 }
