@@ -2,34 +2,43 @@ package com.draxter.draxter.Entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="producto")
+@Table(name = "producto")
 public class Producto {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
 
-    @Column(name="nombre")
+    @Column(name = "nombre")
     private String nombre;
 
-    @Column(name="descripcion")
+    @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name="precio")
+    @Column(name = "precio")
     private long precio;
 
-    @Column(name="imagen")
+    @Column(name = "imagen")
     private String imagen;
 
-    @Column(name="caracteristicas")
+    @Column(name = "caracteristicas")
     private String caracteristicas;
 
+    /*
+     * @ManyToOne(fetch = FetchType.EAGER)
+     * 
+     * @JoinColumn(name = "id_usuario")
+     * private Usuarios usuario;
+     */
     public long getId() {
         return id;
     }
@@ -90,5 +99,4 @@ public class Producto {
     public Producto() {
     }
 
-    
 }

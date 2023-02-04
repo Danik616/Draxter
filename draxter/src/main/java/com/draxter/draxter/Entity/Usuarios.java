@@ -62,6 +62,14 @@ public class Usuarios {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Set<Corte> corte = new HashSet<>();
 
+    /*
+     * @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+     * private Set<Producto> producto = new HashSet<>();
+     */
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private Set<FAQ> faq = new HashSet<>();
+
     public String getUsuario() {
         return usuario;
     }

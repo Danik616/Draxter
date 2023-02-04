@@ -89,7 +89,8 @@
                 <form class="d-flex align-items-center">
                   <input id="id" class="form-control form-control-lg flex-shrink-1 form-control-borderless"
                     type="search" placeholder="Buscar por Código..." name="id" th:field="*{id}" /><button
-                    class="btn btn-success btn-lg" type="submit" th:href="@{/servicios/monitorearPQR/{id}(id=id)}">
+                    class="btn btn-success btn-lg" type="submit" method="get"
+                    th:href="@{/servicios/monitorearPQR/{id}(id=id)}">
                     Buscar
                   </button>
                 </form>
