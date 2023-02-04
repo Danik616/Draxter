@@ -161,4 +161,8 @@ public class DraxterInicioController {
         return "mostrarFAQ";
     }
 
+    @GetMapping("/pedidos")
+    public String mostrarPedidos(Model model, HttpSession session) {
+        return "AdministrarPedidos";
+    }
 }
