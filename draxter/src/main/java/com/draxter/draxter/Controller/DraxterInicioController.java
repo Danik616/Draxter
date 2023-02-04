@@ -21,6 +21,7 @@ import com.draxter.draxter.Entity.Corte;
 import com.draxter.draxter.Service.PQRService;
 import com.draxter.draxter.Service.ProductoService;
 import com.draxter.draxter.Service.CorteService;
+import com.draxter.draxter.Service.FAQService;
 
 @Controller
 public class DraxterInicioController {
@@ -36,10 +37,15 @@ public class DraxterInicioController {
     @Autowired
     private CorteService corteService;
 
-    public DraxterInicioController(ProductoService productoService, PQRService pqrService, CorteService corteService) {
+    @Autowired
+    private FAQService faqService;
+
+    public DraxterInicioController(ProductoService productoService, PQRService pqrService, CorteService corteService,
+            FAQService faqService) {
         this.productoService = productoService;
         this.pqrService = pqrService;
         this.corteService = corteService;
+        this.faqService = faqService;
     }
 
     @RequestMapping("/iniciarSesion")
@@ -149,7 +155,9 @@ public class DraxterInicioController {
     }
 
     @GetMapping("/servicios/mostrarFAQ")
-    public String mostrarFAQ() {
+    public String mostrarFAQ(Model model, HttpSession session) {
+        usuario = (Usuarios) session.getAttribute("usuariosesion");
+        model.addAttribute("faqs", faqService.obtenerFAQs());
         return "mostrarFAQ";
     }
 
