@@ -33,12 +33,10 @@ public class Producto {
     @Column(name = "caracteristicas")
     private String caracteristicas;
 
-    /*
-     * @ManyToOne(fetch = FetchType.EAGER)
-     * 
-     * @JoinColumn(name = "id_usuario")
-     * private Usuarios usuario;
-     */
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_usuario")
+    private Usuarios usuario;
+
     public long getId() {
         return id;
     }
