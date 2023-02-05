@@ -10,4 +10,6 @@ public interface IPQRService {
     public PQR obtenerPQRPorId(Long id, String usuario);
 
     public PQR guardarPQR(PQR pqr);
+
+    public List<PQR> obtenerTodosLosPQRs();
 }

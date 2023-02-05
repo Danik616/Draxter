@@ -18,6 +18,7 @@ import com.draxter.draxter.Entity.PQR;
 import com.draxter.draxter.Entity.Producto;
 import com.draxter.draxter.Entity.Usuarios;
 import com.draxter.draxter.Entity.Corte;
+import com.draxter.draxter.Entity.FAQ;
 import com.draxter.draxter.Service.PQRService;
 import com.draxter.draxter.Service.ProductoService;
 import com.draxter.draxter.Service.CorteService;
@@ -120,6 +121,7 @@ public class DraxterInicioController {
     public String monitorearPQR(Model model, HttpSession session) {
         usuario = (Usuarios) session.getAttribute("usuariosesion");
         model.addAttribute("pqrs", pqrService.obtenerPQRs(usuario.getUsuario()));
+        model.addAttribute("pqrsAdmin", pqrService.obtenerTodosLosPQRs());
         return "monitorearPQRCliente";
     }
 
@@ -165,4 +167,34 @@ public class DraxterInicioController {
     public String mostrarPedidos(Model model, HttpSession session) {
         return "AdministrarPedidos";
     }
+
+    @GetMapping("/editarPQR")
+    public String editarPQR(Model model, HttpSession session) {
+        return "editarPQR";
+    }
+
+    @GetMapping("/servicios/FAQ")
+    public String editarFAQ(Model model, HttpSession session) {
+        model.addAttribute("faqs", faqService.obtenerFAQs());
+        return "FAQ";
+    }
+
+    @GetMapping("/servicios/FAQ/nuevoFAQ")
+    public String nuevoFAQ(Model model, HttpSession session) {
+        return "nuevoFAQ";
+    }
+
+    @ModelAttribute("FAQ")
+    public FAQ nuevoFaq() {
+        return new FAQ();
+    }
+
+    @PostMapping("/servicios/FAQ/nuevoFAQ")
+    public String peticionFAQ(@ModelAttribute("FAQ") FAQ faq, HttpSession session) {
+        usuario = (Usuarios) session.getAttribute("usuariosesion");
+        faq.setUsuario(usuario);
+        faqService.guardarFAQ(faq);
+        return "redirect:/servicios/FAQ/nuevoFAQ?exito";
+    }
+
 }

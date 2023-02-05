@@ -8,10 +8,10 @@ import com.draxter.draxter.Entity.PQR;
 import com.draxter.draxter.Repository.IPQRRepository;
 
 @Service
-public class PQRService implements IPQRService{
+public class PQRService implements IPQRService {
 
     private IPQRRepository pqrRepository;
-    
+
     public PQRService(IPQRRepository pqrRepository) {
         this.pqrRepository = pqrRepository;
     }
@@ -30,5 +30,10 @@ public class PQRService implements IPQRService{
     public PQR guardarPQR(PQR pqr) {
         return pqrRepository.save(pqr);
     }
-    
+
+    @Override
+    public List<PQR> obtenerTodosLosPQRs() {
+        return pqrRepository.findAll();
+    }
+
 }

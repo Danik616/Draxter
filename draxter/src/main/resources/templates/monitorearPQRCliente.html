@@ -52,45 +52,114 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-light navbar-expand-lg navigation-clean"
-    style="color: var(--bs-body-color); background: var(--bs-body-color)">
-    <div class="container">
-      <i class="fa fa-star" style="width: 50px; height: 50px"></i><a class="navbar-brand" th:href="@{/}"
-        style="color: var(--bs-body-bg)">Draxter</a><button data-bs-toggle="collapse" class="navbar-toggler"
-        data-bs-target="#navcol-1">
-        <span class="visually-hidden">Opciones</span><span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navcol-1">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/}">Perfil</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/catalogo}">Catalogo</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" th:href="@{/servicios}">Servicios</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/pedidos}">Pedidos</a>
-          </li>
-        </ul>
+  <div sec:authorize="hasRole('USER')">
+    <nav class="navbar navbar-light navbar-expand-lg navigation-clean"
+      style="color: var(--bs-body-color); background: var(--bs-body-color)">
+      <div class="container">
+        <i class="fa fa-star" style="width: 50px; height: 50px"></i><a class="navbar-brand" th:href="@{/}"
+          style="color: var(--bs-body-bg)">Draxter</a><button data-bs-toggle="collapse" class="navbar-toggler"
+          data-bs-target="#navcol-1">
+          <span class="visually-hidden">Opciones</span><span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/}">Perfil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/catalogo}">Catalogo</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" th:href="@{/servicios}">Servicios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/pedidos}">Pedidos</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="d-block" style="height: 100vh; background: var(--bs-body-color)">
+      <div class="d-flex" style="width: 100%; height: 100px">
+        <div style="width: 50%; height: 100%"></div>
+        <div style="height: 100%; width: 50%">
+          <div class="row" style="width: 100%">
+            <div class="col-md-10 offset-md-1" style="width: 90%">
+              <div class="card m-auto" style="max-width: 850px; background: var(--bs-gray-900)">
+                <div class="card-body">
+                  <form class="d-flex align-items-center">
+                    <input id="id" class="form-control form-control-lg flex-shrink-1 form-control-borderless"
+                      type="search" placeholder="Buscar por Código..." name="id" th:field="*{id}" /><button
+                      class="btn btn-success btn-lg" type="submit" method="get"
+                      th:href="@{/servicios/monitorearPQR/{id}(id=id)}">
+                      Buscar
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 search-table-col" style="margin-top: 0">
+        <div class="table-responsive table table-hover table-bordered results">
+          <table class="table table-hover table-bordered">
+            <thead class="bill-header cs">
+              <tr>
+                <th id="trs-hd-1" class="col-lg-2">Código PQR</th>
+                <th id="trs-hd-2" class="col-lg-3">Pregunta</th>
+                <th id="trs-hd-3" class="col-lg-2">Estado</th>
+                <th id="trs-hd-4" class="col-lg-2">Respuesta</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:unless="${param.exito}" th:each="pqr: ${pqrs}" style="color: white; ">
+                <td th:text="${pqr.id_pqr}" style="border-color: white;"></td>
+                <td th:text="${pqr.descripcion}" style="border-color: white;"></td>
+                <td th:text="${pqr.estado}" style="border-color: white;"></td>
+                <td th:text="${pqr.respuesta}" style="border-color: white;"></td>
+              </tr>
+              <tr th:if="${param.exito}" th:each="pqri: ${pqrsi}" style="color: white; ">
+                <td th:text="${pqri.id_pqr}" style="border-color: white;"></td>
+                <td th:text="${pqri.descripcion}" style="border-color: white;"></td>
+                <td th:text="${pqri.estado}" style="border-color: white;"></td>
+                <td th:text="${pqri.respuesta}" style="border-color: white;"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-  </nav>
-  <div class="d-block" style="height: 100vh; background: var(--bs-body-color)">
-    <div class="d-flex" style="width: 100%; height: 100px">
-      <div style="width: 50%; height: 100%"></div>
-      <div style="height: 100%; width: 50%">
-        <div class="row" style="width: 100%">
+  </div>
+
+  <div sec:authorize="hasRole('ADMIN')">
+    <nav class="navbar navbar-light navbar-expand-lg navigation-clean"
+      style="color: var(--bs-body-color); background: var(--bs-body-color)">
+      <div class="container">
+        <i class="fa fa-star" style="width: 50px; height: 50px"></i><a class="navbar-brand" th:href="@{/}"
+          style="color: var(--bs-body-bg)">Draxter</a><button data-bs-toggle="collapse" class="navbar-toggler"
+          data-bs-target="#navcol-1">
+          <span class="visually-hidden">Opciones</span><span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" th:href="@{/servicios/monitorearPQR}">MonitorearPQR</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div style="height: auto; background: var(--bs-body-color)">
+      <div class="col-md-12 search-table-col" style="margin-top: 0">
+        <div class="form-group pull-right col-lg-4">
           <div class="col-md-10 offset-md-1" style="width: 90%">
-            <div class="card m-auto" style="max-width: 850px; background: var(--bs-gray-900)">
+            <div class="card m-auto" style="max-width: 850px; background: var(--bs-gray-900); width: 100%;">
               <div class="card-body">
                 <form class="d-flex align-items-center">
-                  <input id="id" class="form-control form-control-lg flex-shrink-1 form-control-borderless"
-                    type="search" placeholder="Buscar por Código..." name="id" th:field="*{id}" /><button
-                    class="btn btn-success btn-lg" type="submit" method="get"
-                    th:href="@{/servicios/monitorearPQR/{id}(id=id)}">
+                  <input class="form-control form-control-lg flex-shrink-1 form-control-borderless" type="search"
+                    placeholder="Buscar por Código..." name="searchbar" /><button class="btn btn-primary btn-lg"
+                    type="submit">
                     Buscar
                   </button>
                 </form>
@@ -98,34 +167,113 @@
             </div>
           </div>
         </div>
+        <span class="counter pull-right"></span>
+
+        <div class="table-responsive table table-hover table-bordered results">
+          <table class="table table-hover table-bordered">
+            <thead class="bill-header cs">
+              <tr>
+                <th id="trs-hd-1" class="col-lg-2">Código PQR</th>
+                <th id="trs-hd-2" class="col-lg-2">Pregunta</th>
+                <th id="trs-hd-3" class="col-lg-2">Respondido Por</th>
+                <th id="trs-hd-4" class="col-lg-2">Estado</th>
+                <th id="trs-hd-5" class="col-lg-2">Respuesta</th>
+                <th id="trs-hd-6" class="col-lg-2">Cambios</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="pqr : ${pqrsAdmin}" style="color: white; ">
+                <td th:text="${pqr.id_pqr}" style="border-color: white;"></td>
+                <td th:text="${pqr.descripcion}" style="border-color: white;"></td>
+                <td th:text="${pqr.respondidoPor}" style="border-color: white;"></td>
+                <td th:text="${pqr.estado}" style="border-color: white;"></td>
+                <td th:text="${pqr.respuesta}" style="border-color: white;"></td>
+                <td>
+                  <div style="display: flex">
+                    <a th:href="@{/editarPQR}" class="btn btn-primary">Editar</a>
+                    <a th:href="@{/borrarPQR}" class="btn btn-danger">Borrar</a>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
       </div>
     </div>
-    <div class="col-md-12 search-table-col" style="margin-top: 0">
-      <div class="table-responsive table table-hover table-bordered results">
-        <table class="table table-hover table-bordered">
-          <thead class="bill-header cs">
-            <tr>
-              <th id="trs-hd-1" class="col-lg-2">Código PQR</th>
-              <th id="trs-hd-2" class="col-lg-3">Pregunta</th>
-              <th id="trs-hd-3" class="col-lg-2">Estado</th>
-              <th id="trs-hd-4" class="col-lg-2">Respuesta</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr th:unless="${param.exito}" th:each="pqr: ${pqrs}" style="color: white; ">
-              <td th:text="${pqr.id_pqr}" style="border-color: white;"></td>
-              <td th:text="${pqr.descripcion}" style="border-color: white;"></td>
-              <td th:text="${pqr.estado}" style="border-color: white;"></td>
-              <td th:text="${pqr.respuesta}" style="border-color: white;"></td>
-            </tr>
-            <tr th:if="${param.exito}" th:each="pqri: ${pqrsi}" style="color: white; ">
-              <td th:text="${pqri.id_pqr}" style="border-color: white;"></td>
-              <td th:text="${pqri.descripcion}" style="border-color: white;"></td>
-              <td th:text="${pqri.estado}" style="border-color: white;"></td>
-              <td th:text="${pqri.respuesta}" style="border-color: white;"></td>
-            </tr>
-          </tbody>
-        </table>
+  </div>
+
+
+  <div sec:authorize="hasRole('ASESOR')">
+    <nav class="navbar navbar-light navbar-expand-lg navigation-clean"
+      style="color: var(--bs-body-color); background: var(--bs-body-color)">
+      <div class="container">
+        <i class="fa fa-star" style="width: 50px; height: 50px"></i><a class="navbar-brand" href="mostrarAsesor.html"
+          style="color: var(--bs-body-bg)">Draxter</a><button data-bs-toggle="collapse" class="navbar-toggler"
+          data-bs-target="#navcol-1">
+          <span class="visually-hidden">Opciones</span><span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="mostrarAsesor.html">Perfil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="FAQ.html">FAQ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" th:href="@{/servicios/monitorearPQR}">MonitorearPQR</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div style="height: 100vh; background: var(--bs-body-color)">
+      <div class="col-md-12 search-table-col" style="margin-top: 0">
+        <div class="form-group pull-right col-lg-4">
+          <div class="col-md-10 offset-md-1" style="width: 90%">
+            <div class="card m-auto" style="max-width: 850px; background: var(--bs-gray-900); width: 100%;">
+              <div class="card-body">
+                <form class="d-flex align-items-center">
+                  <input class="form-control form-control-lg flex-shrink-1 form-control-borderless" type="search"
+                    placeholder="Buscar por Código..." name="searchbar" /><button class="btn btn-primary btn-lg"
+                    type="submit">
+                    Buscar
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="counter pull-right"></span>
+        <div class="table-responsive table table-hover table-bordered results">
+          <table class="table table-hover table-bordered">
+            <thead class="bill-header cs">
+              <tr>
+                <th id="trs-hd-1" class="col-lg-2">Código PQR</th>
+                <th id="trs-hd-2" class="col-lg-2">Pregunta</th>
+                <th id="trs-hd-3" class="col-lg-2">Respondido Por</th>
+                <th id="trs-hd-4" class="col-lg-2">Estado</th>
+                <th id="trs-hd-5" class="col-lg-2">Respuesta</th>
+                <th id="trs-hd-6" class="col-lg-2">Cambios</th>
+              </tr>
+            </thead>
+            <tbody>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <div style="display: flex">
+                  <a th:href="" href="editarPQR.html" class="btn btn-primary">Editar</a>
+                  <a th:href="" class="btn btn-danger">Borrar</a>
+                </div>
+              </td>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
