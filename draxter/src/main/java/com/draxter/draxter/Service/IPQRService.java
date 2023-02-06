@@ -17,4 +17,6 @@ public interface IPQRService {
 
     public PQR obtenerUnPQRPorID(String id);
 
+    public void eliminarPQR(String id);
+
 }

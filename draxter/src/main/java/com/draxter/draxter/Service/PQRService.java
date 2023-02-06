@@ -43,8 +43,8 @@ public class PQRService implements IPQRService {
 
     @Override
     public List<PQR> obtenerPQRPorIdAdmin(String id) {
-        if(id != null){
-            long idBusqueda=Long.parseLong(id);
+        if (id != null) {
+            long idBusqueda = Long.parseLong(id);
             return pqrRepository.obtenerTodosLosPqrPorId(idBusqueda);
         }
         return pqrRepository.findAll();
@@ -52,8 +52,17 @@ public class PQRService implements IPQRService {
 
     @Override
     public PQR obtenerUnPQRPorID(String id) {
-        long idBusqueda=Long.parseLong(id);
-        return pqrRepository.obtenerunPQR(idBusqueda);
+        if (id != null) {
+            long idBusqueda = Long.parseLong(id);
+            return pqrRepository.obtenerunPQR(idBusqueda);
+        }
+        return pqrRepository.obtenerunPQR(1);
+    }
+
+    @Override
+    public void eliminarPQR(String id) {
+        long idBusqueda = Long.parseLong(id);
+        pqrRepository.deleteById(idBusqueda);
     }
 
 }

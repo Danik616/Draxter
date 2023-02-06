@@ -160,10 +160,35 @@ public class DraxterInicioController {
     }
 
     @GetMapping("/editarPQR/{id}")
-    public String editarPQR(Model model, HttpSession session, @PathVariable(name="id") String id) {
-    PQR pqr=pqrService.obtenerUnPQRPorID(id);
+    public String editarPQR(Model model, HttpSession session, @PathVariable(name = "id") String id) {
+        PQR pqr = pqrService.obtenerUnPQRPorID(id);
+        model.addAttribute("pqr", pqr);
         model.addAttribute("pregunta", pqr.getDescripcion());
         return "editarPQR";
+    }
+
+    @PostMapping("/actualizar/{id}")
+    public String actualizarPQR(HttpSession session, @PathVariable("id") String id,
+            @ModelAttribute("pqr") PQR pqr, Model model) {
+        PQR pqrExistente = pqrService.obtenerUnPQRPorID(id);
+        if (pqrExistente != null) {
+            pqrExistente.setRespondidoPor(usuario.getUsuario());
+            pqrExistente.setEstado("respondido");
+            pqrExistente.setRespuesta(pqr.getRespuesta());
+
+            pqrService.guardarPQR(pqrExistente);
+            return "redirect:/servicios/monitorearPQR";
+        } else {
+
+            return "redirect:/editarPQR/{" + id + "}?error))";
+        }
+
+    }
+
+    @GetMapping("/borrarPQR/{id}")
+    public String borrarPQR(Model model, HttpSession session, @PathVariable(name = "id") String id) {
+        pqrService.eliminarPQR(id);
+        return "redirect:/servicios/monitorearPQR";
     }
 
     @GetMapping("/servicios/FAQ")
