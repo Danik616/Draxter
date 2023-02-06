@@ -106,7 +106,7 @@
             <td th:text="${faq.respuesta}"></td>
             <td>
               <div style="display: flex;">
-                <a th:href="@{servicios/FAQ/editar/{id}}" class="btn btn-warning">Editar</a>
+                <a th:href="@{/editarFAQ/{id} (id=${faq.id_faq})}" class="btn btn-warning">Editar</a>
               </div>
             </td>
           </tr>

@@ -8,7 +8,7 @@ import com.draxter.draxter.Entity.FAQ;
 import com.draxter.draxter.Repository.IFAQRepository;
 
 @Service
-public class FAQService implements IFAQService{
+public class FAQService implements IFAQService {
 
     private IFAQRepository faqRepository;
 
@@ -24,6 +24,12 @@ public class FAQService implements IFAQService{
     @Override
     public List<FAQ> obtenerFAQs() {
         return faqRepository.findAll();
+    }
+
+    @Override
+    public FAQ obtenerFAQporID(String id) {
+        long idBusqueda = Long.parseLong(id);
+        return faqRepository.obtenerFaqPorID(idBusqueda);
     }
 
 }

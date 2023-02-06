@@ -167,7 +167,7 @@ public class DraxterInicioController {
         return "editarPQR";
     }
 
-    @PostMapping("/actualizar/{id}")
+    @PostMapping("/actualizarPQR/{id}")
     public String actualizarPQR(HttpSession session, @PathVariable("id") String id,
             @ModelAttribute("pqr") PQR pqr, Model model) {
         PQR pqrExistente = pqrService.obtenerUnPQRPorID(id);
@@ -212,7 +212,35 @@ public class DraxterInicioController {
         usuario = (Usuarios) session.getAttribute("usuariosesion");
         faq.setUsuario(usuario);
         faqService.guardarFAQ(faq);
-        return "redirect:/servicios/FAQ/nuevoFAQ?exito";
+        return "redirect:/servicios/FAQ";
+    }
+
+    @GetMapping("/editarFAQ/{id}")
+    public String editarFAQ(Model model, HttpSession session, @PathVariable(name = "id") String id) {
+        FAQ faq = faqService.obtenerFAQporID(id);
+        model.addAttribute("faq", faq);
+        model.addAttribute("pregunta", faq.getPregunta());
+        model.addAttribute("respuesta", faq.getRespuesta());
+        return "editarFAQ";
+    }
+
+    @PostMapping("/actualizarFAQ/{id}")
+    public String actualizarFAQ(HttpSession session, @PathVariable("id") String id,
+            @ModelAttribute("faq") FAQ faq, Model model) {
+        FAQ faqExistente = faqService.obtenerFAQporID(id);
+
+        if (faqExistente != null) {
+            faqExistente.setPregunta(faq.getPregunta());
+            faqExistente.setRespuesta(faq.getRespuesta());
+            faqExistente.setUsuario(usuario);
+
+            faqService.guardarFAQ(faqExistente);
+            return "redirect:/servicios/FAQ";
+        } else {
+
+            return "redirect:/editarFAQ/{" + id + "}?error))";
+        }
+
     }
 
 }
