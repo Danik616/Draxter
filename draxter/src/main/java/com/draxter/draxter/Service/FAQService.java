@@ -22,14 +22,22 @@ public class FAQService implements IFAQService {
     }
 
     @Override
-    public List<FAQ> obtenerFAQs() {
-        return faqRepository.findAll();
+    public void eliminarFAQsporID(String id) {
+        if (id != null) {
+            long idBusqueda = Long.parseLong(id);
+            faqRepository.deleteById(idBusqueda);
+        }
     }
 
     @Override
     public FAQ obtenerFAQporID(String id) {
         long idBusqueda = Long.parseLong(id);
         return faqRepository.obtenerFaqPorID(idBusqueda);
+    }
+
+    @Override
+    public List<FAQ> obtenerFAQs() {
+        return faqRepository.findAll();
     }
 
 }

@@ -192,8 +192,14 @@ public class DraxterInicioController {
     }
 
     @GetMapping("/servicios/FAQ")
-    public String editarFAQ(Model model, HttpSession session) {
+    public String mostrarFAQ(Model model, HttpSession session, @Param("id") String id) {
+        if (id != null) {
+            faqService.eliminarFAQsporID(id);
+            model.addAttribute("id", id);
+            return "redirect:/servicios/FAQ";
+        }
         model.addAttribute("faqs", faqService.obtenerFAQs());
+
         return "FAQ";
     }
 

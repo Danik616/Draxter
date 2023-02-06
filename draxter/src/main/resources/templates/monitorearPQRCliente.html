@@ -239,12 +239,12 @@
                   width: 100%;
                 ">
               <div class="card-body">
-                <form class="d-flex align-items-center">
-                  <input class="form-control form-control-lg flex-shrink-1 form-control-borderless" type="search"
-                    placeholder="Buscar por Código..." name="searchbar" /><button class="btn btn-primary btn-lg"
-                    type="submit">
-                    Buscar
-                  </button>
+                <form th:action="@{/servicios/monitorearPQR}" class="d-flex align-items-center">
+                  <input id="id" class="form-control form-control-lg flex-shrink-1 form-control-borderless" type="text"
+                    placeholder="Buscar por Código..." name="id" th:value="${id}" /><input
+                    class="btn btn-success btn-lg" type="submit">
+                  Buscar
+                  </input>
                 </form>
               </div>
             </div>

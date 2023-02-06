@@ -8,7 +8,9 @@ public interface IFAQService {
 
     public FAQ guardarFAQ(FAQ faq);
 
-    public List<FAQ> obtenerFAQs();
+    public void eliminarFAQsporID(String id);
 
     public FAQ obtenerFAQporID(String id);
+
+    public List<FAQ> obtenerFAQs();
 }

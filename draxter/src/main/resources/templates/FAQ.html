@@ -82,10 +82,12 @@
       </a>
     </div>
     <div class="d-inline" style="width: 50%; text-align: center">
-      <input type="text" style="width: 250px" /><button class="btn btn-danger" type="button"
-        style="width: 100px; margin: 40px">
+      <form th:action="@{/servicios/FAQ}">
+        <input type="text" style="width: 250px" th:value="${id}" name="id" /><input class="btn btn-danger" type="submit"
+          style="width: 100px; margin: 40px">
         Eliminar
-      </button>
+        </input>
+      </form>
     </div>
   </div>
   <div style="height: auto; min-height: 70vh; background: var(--bs-body-color)">
