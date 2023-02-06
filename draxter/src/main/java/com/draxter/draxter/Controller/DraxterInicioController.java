@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -118,24 +119,14 @@ public class DraxterInicioController {
     }
 
     @GetMapping("/servicios/monitorearPQR")
-    public String monitorearPQR(Model model, HttpSession session) {
+    public String monitorearPQR(Model model, HttpSession session, @Param("id") String id) {
         usuario = (Usuarios) session.getAttribute("usuariosesion");
-        model.addAttribute("pqrs", pqrService.obtenerPQRs(usuario.getUsuario()));
-        model.addAttribute("pqrsAdmin", pqrService.obtenerTodosLosPQRs());
+        List<PQR> listaPqr = pqrService.obtenerPQRPorId(id, usuario.getUsuario());
+        List<PQR> listaPqrAdmin = pqrService.obtenerPQRPorIdAdmin(id);
+        model.addAttribute("pqrs", listaPqr);
+        model.addAttribute("pqrsAdmin", listaPqrAdmin);
+        model.addAttribute("id", id);
         return "monitorearPQRCliente";
-    }
-
-    @ModelAttribute("id")
-    public String id() {
-        return new String();
-    }
-
-    @GetMapping("/servicios/monitorearPQR/{id}")
-    public String monitorearPQRPorId(@ModelAttribute("id") String id, Model model, HttpSession session) {
-        usuario = (Usuarios) session.getAttribute("usuariosesion");
-        long id_busqueda = Long.parseLong(id);
-        model.addAttribute("pqrsi", pqrService.obtenerPQRPorId(id_busqueda, usuario.getUsuario()));
-        return "redirect:/servicios/monitorearPQR?exito";
     }
 
     @GetMapping("/servicios/pedirCorte")
@@ -168,8 +159,10 @@ public class DraxterInicioController {
         return "AdministrarPedidos";
     }
 
-    @GetMapping("/editarPQR")
-    public String editarPQR(Model model, HttpSession session) {
+    @GetMapping("/editarPQR/{id}")
+    public String editarPQR(Model model, HttpSession session, @PathVariable(name="id") String id) {
+    PQR pqr=pqrService.obtenerUnPQRPorID(id);
+        model.addAttribute("pregunta", pqr.getDescripcion());
         return "editarPQR";
     }
 

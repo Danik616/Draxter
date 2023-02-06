@@ -7,9 +7,14 @@ import com.draxter.draxter.Entity.PQR;
 public interface IPQRService {
     public List<PQR> obtenerPQRs(String usuario);
 
-    public PQR obtenerPQRPorId(Long id, String usuario);
+    public List<PQR> obtenerPQRPorId(String id, String usuario);
 
     public PQR guardarPQR(PQR pqr);
 
     public List<PQR> obtenerTodosLosPQRs();
+
+    public List<PQR> obtenerPQRPorIdAdmin(String id);
+
+    public PQR obtenerUnPQRPorID(String id);
+
 }
