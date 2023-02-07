@@ -209,7 +209,7 @@
     <nav class="navbar navbar-light navbar-expand-lg navigation-clean"
       style="color: var(--bs-body-color); background: var(--bs-body-color)">
       <div class="container">
-        <i class="fa fa-star" style="width: 50px; height: 50px"></i><a class="navbar-brand" href="mostrarAsesor.html"
+        <i class="fa fa-star" style="width: 50px; height: 50px"></i><a class="navbar-brand" th:href="@{/}"
           style="color: var(--bs-body-bg)">Draxter</a><button data-bs-toggle="collapse" class="navbar-toggler"
           data-bs-target="#navcol-1">
           <span class="visually-hidden">Opciones</span><span class="navbar-toggler-icon"></span>
@@ -217,10 +217,10 @@
         <div class="collapse navbar-collapse" id="navcol-1">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="mostrarAsesor.html">Perfil</a>
+              <a class="nav-link" th:href="@{/}">Perfil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="FAQ.html">FAQ</a>
+              <a class="nav-link" th:href="@{/servicios/FAQ}">FAQ</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" th:href="@{/servicios/monitorearPQR}">MonitorearPQR</a>
@@ -264,17 +264,19 @@
               </tr>
             </thead>
             <tbody>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <div style="display: flex">
-                  <a th:href="@{/editarPQR/{id}(id=${pqr.id_pqr})}" class="btn btn-primary">Editar</a>
-                  <a th:href="@{/borrarPQR/{id}(id=${pqr.id_pqr}) }" class="btn btn-danger">Borrar</a>
-                </div>
-              </td>
+              <tr th:each="pqr : ${pqrsAdmin}" style="color: white">
+                <td th:text="${pqr.id_pqr}" style="border-color: white"></td>
+                <td th:text="${pqr.descripcion}" style="border-color: white"></td>
+                <td th:text="${pqr.respondidoPor}" style="border-color: white"></td>
+                <td th:text="${pqr.estado}" style="border-color: white"></td>
+                <td th:text="${pqr.respuesta}" style="border-color: white"></td>
+                <td>
+                  <div style="display: flex">
+                    <a th:href="@{/editarPQR/{id}(id=${pqr.id_pqr})}" class="btn btn-primary">Editar</a>
+                    <a th:href="@{/borrarPQR/{id}(id=${pqr.id_pqr})}" class="btn btn-danger">Borrar</a>
+                  </div>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>

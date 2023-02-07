@@ -70,6 +70,9 @@
           <li class="nav-item">
             <a class="nav-link" th:href="@{/servicios/monitorearPQR}">MonitorearPQR</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/salir}">salir</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -83,8 +86,8 @@
     </div>
     <div class="d-inline" style="width: 50%; text-align: center">
       <form th:action="@{/servicios/FAQ}">
-        <input type="text" style="width: 250px" th:value="${id}" name="id" /><input class="btn btn-danger" type="submit"
-          style="width: 100px; margin: 40px">
+        <input type="text" style="width: 250px" th:value="${id}" name="id" /><input name="Eliminar"
+          placeholder="Eliminar" class="btn btn-danger" type="submit" style="width: 100px; margin: 40px">
         Eliminar
         </input>
       </form>
