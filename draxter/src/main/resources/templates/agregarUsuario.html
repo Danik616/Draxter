@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+  xlmns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>Agregar Productos</title>
+    <link
+      rel="stylesheet"
+      th:href="@{assets/css/estilos.css}"
+      href="assets/css/estilos.css"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/bootstrap/css/bootstrap.min.css"
+      th:href="@{/assets/bootstrap/css/bootstrap.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/fonts/fontawesome-all.min.css"
+      th:href="@{/assets/fonts/fontawesome-all.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/fonts/font-awesome.min.css"
+      th:href="@{/assets/fonts/font-awesome.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/fonts/ionicons.min.css"
+      th:href="@{/assets/fonts/ionicons.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/fonts/simple-line-icons.min.css"
+      th:href="@{/assets/fonts/simple-line-icons.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/fonts/fontawesome5-overrides.min.css"
+      th:href="@{/assets/fonts/fontawesome5-overrides.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/animated-services.css"
+      th:href="@{/assets/css/animated-services.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Contact-Form-Clean.css"
+      th:href="@{/assets/css/Contact-Form-Clean.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.css"
+      th:href="@{/assets/css/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Edit-Form.css"
+      th:href="@{/assets/css/Edit-Form.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/FAQ-Frequentlly-Asked-Questions-1.css"
+      th:href="@{/assets/css/FAQ-Frequentlly-Asked-Questions-1.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/FAQ-Frequentlly-Asked-Questions.css"
+      th:href="@{/assets/css/FAQ-Frequentlly-Asked-Questions.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/featured-products-slider-1.css"
+      th:href="@{/assets/css/featured-products-slider-1.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/featured-products-slider.css"
+      th:href="@{/assets/css/featured-products-slider.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Footer-Dark.css"
+      th:href="@{/assets/css/Footer-Dark.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/gift-product-long.css"
+      th:href="@{/assets/css/gift-product-long.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Login-Form-Dark.css"
+      th:href="@{/assets/css/Login-Form-Dark.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Ludens-Users---3-Profile.css"
+      th:href="@{/assets/css/Ludens-Users---3-Profile.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Navigation-Clean.css"
+      th:href="@{/assets/css/Navigation-Clean.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Registration-Form-with-Photo.css"
+      th:href="@{/assets/css/Registration-Form-with-Photo.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Search-Input-Responsive-with-Icon.css"
+      th:href="@{/assets/css/Search-Input-Responsive-with-Icon.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/styles.css"
+      th:href="@{/assets/css/styles.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Table-With-Search-1.css"
+      th:href="@{/assets/css/Table-With-Search-1.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Table-With-Search.css"
+      th:href="@{/assets/css/Table-With-Search.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css"
+      th:href="@{/assets/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css}"
+    />
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-light navbar-expand-lg navigation-clean"
+      style="color: var(--bs-body-color); background: var(--bs-body-color)"
+    >
+      <div class="container">
+        <i class="fa fa-star" style="width: 50px; height: 50px"></i
+        ><a
+          class="navbar-brand"
+          th:href="@{/principal}"
+          style="
+            color: var(--bs-body-bg);
+            margin: 5px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold',
+              sans-serif;
+          "
+          >Draxter</a
+        ><button
+          data-bs-toggle="collapse"
+          class="navbar-toggler"
+          data-bs-target="#navcol-1"
+          style="height: 22px"
+        >
+          <span class="visually-hidden">Opciones</span
+          ><span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/principal}">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/}"> PQR</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" th:href="@{/}"> + Usuario</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/}">FAQ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/}">+ Producto</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/}">Productos</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div style="width: 100%; height: 100%; background: var(--bs-dark)">
+      <div style="height: 90vh">
+        <form action="" autocomplete="off" enctype="multipart/form-data">
+          <input
+            type="text"
+            name="Usuario"
+            placeholder="Nombre de Usuario"
+            class="item"
+          />
+          <select name="" id="roll">
+            <option value="Admin">Admin</option>
+            <option value="Asesor">Asesor</option>
+          </select>
+          <input type="text" name="Nombre" placeholder="Nombres" class="item" />
+          <input
+            type="text"
+            name="Apellido"
+            placeholder="Apellidos"
+            class="item"
+          />
+          <input type="email" name="Email" placeholder="Email" class="item" />
+          <input
+            type="text"
+            name="Numero"
+            placeholder="Numero de telefono"
+            class="item"
+          />
+          <input
+            type="password"
+            name="Contraseña"
+            placeholder="Contraseña"
+            class="item"
+          />
+          <input type="submit" name="Guardar" id="" value="Crear" class="btn" />
+        </form>
+      </div>
+    </div>
+    <footer class="footer-dark">
+      <div class="container">
+        <div class="row">
+          <div style="text-align: center">
+            <a
+              th:href="@{/nosotros}"
+              style="color: var(--bs-gray-100); text-decoration: none"
+              data-bs-toggle="_blank"
+              >Nosotros</a
+            >
+          </div>
+          <div>
+            <h3>Draxter</h3>
+            <p>
+              Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus
+              ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique
+              lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.
+            </p>
+          </div>
+          <div">
+          <a data-bss-hover-animate="flash" href="#" style="margin-bottom: 7px"
+            ><i
+              class="icon ion-social-facebook"
+              data-bss-hover-animate="flash"
+            ></i></a
+          ><a data-bss-hover-animate="flash" href="#" style="margin-bottom: 7px"
+            ><i class="icon ion-social-twitter"></i></a
+          ><a data-bss-hover-animate="flash" href="#" style="margin-bottom: 7px"
+            ><i class="icon ion-social-whatsapp-outline"></i></a
+          ><a data-bss-hover-animate="flash" href="#" style="margin-bottom: 7px"
+            ><i class="icon ion-social-instagram"></i
+          ></a>
+        </div>
+      </div>
+      <p class="copyright">Draxter © 2022</p>
+    </footer>
+  </body>
+</html>
