@@ -165,7 +165,7 @@
         <i class="fa fa-star" style="width: 50px; height: 50px"></i
         ><a
           class="navbar-brand"
-          th:href="@{/principal}"
+          th:href="@{/}"
           style="
             color: var(--bs-body-bg);
             margin: 5px;
@@ -185,22 +185,28 @@
         <div class="collapse navbar-collapse" id="navcol-1">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/principal}">Inicio</a>
+              <a class="nav-link" th:href="@{/}">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/}"> PQR</a>
+              <a class="nav-link" th:href="@{/servicios/monitorearPQR}"> PQR</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" th:href="@{/}"> + Usuario</a>
+              <a class="nav-link active" th:href="@{/servicios/agregarUsuario}">
+                + Usuario</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/}">FAQ</a>
+              <a class="nav-link" th:href="@{/servicios/monitorearFAQ}">FAQ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/}">+ Producto</a>
+              <a class="nav-link" th:href="@{/servicios/agregarProducto}"
+                >+ Producto</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/}">Productos</a>
+              <a class="nav-link" th:href="@{/servicios/monitorearProductos}"
+                >Productos</a
+              >
             </li>
           </ul>
         </div>

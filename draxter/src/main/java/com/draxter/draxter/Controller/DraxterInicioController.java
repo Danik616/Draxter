@@ -287,6 +287,11 @@ public class DraxterInicioController {
         return "redirect:/servicios/agregarProducto?Sucess";
     }
 
+    @GetMapping("/servicios/agregarUsuario")
+    public String agregarUsuario(Model model, HttpSession session) {
+        return "mostrarCatalogo";
+    }
+
     @GetMapping("/servicios/monitorearProductos")
     public String monitorearProductos(Model model, HttpSession session) {
         return "mostrarCatalogo";
