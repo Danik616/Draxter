@@ -9,4 +9,6 @@ public interface IProductoService {
     public List<Producto> obtenerProductos();
 
     public Producto obtenerProductoPorId(Long id);
+
+    public Producto guardaProducto(Producto producto);
 }

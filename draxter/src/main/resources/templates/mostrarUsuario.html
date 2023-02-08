@@ -51,7 +51,20 @@
         <div class="collapse navbar-collapse" id="navcol-1">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/servicios/monitorearPQR}">Monitorear PQR</a>
+              <a class="nav-link active" th:href="@{/}">Perfil</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" th:href="@{/servicios/monitorearPQR}"> PQR</a></li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/servicios/agregarUsuario}"> + Usuario</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/servicios/monitorearFAQ}">FAQ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/servicios/agregarProducto}">+ Producto</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/servicios/monitorearProductos}">Productos</a>
             </li>
           </ul>
         </div>

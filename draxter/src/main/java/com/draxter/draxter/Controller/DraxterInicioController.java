@@ -2,6 +2,10 @@ package com.draxter.draxter.Controller;
 
 import javax.servlet.http.HttpSession;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,11 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.draxter.draxter.Entity.PQR;
 import com.draxter.draxter.Entity.Producto;
@@ -249,4 +257,39 @@ public class DraxterInicioController {
 
     }
 
+    @GetMapping("/servicios/agregarProducto")
+    public String agregarProducto(Model model, HttpSession session) {
+        return "agregarProducto";
+    }
+
+    @PostMapping("/servicios/agregarProducto")
+    public String guardarProducto(HttpSession session, @RequestParam("file") MultipartFile imagen,
+            @ModelAttribute("producto") Producto producto, Model model) {
+        usuario = (Usuarios) session.getAttribute("usuariosesion");
+        producto.setUsuario(usuario);
+        if (!imagen.isEmpty()) {
+            Path directorioImagenes = Paths.get("src//main//resources//static//assets/img");
+            String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
+
+            try {
+                byte[] bytesImg = imagen.getBytes();
+                Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + imagen.getOriginalFilename());
+                Files.write(rutaCompleta, bytesImg);
+
+                producto.setImagen(imagen.getOriginalFilename());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            return "redirect:/servicios/agregarProducto?vacio";
+        }
+
+        productoService.guardaProducto(producto);
+        return "redirect:/servicios/agregarProducto?Sucess";
+    }
+
+    @GetMapping("/servicios/monitorearProductos")
+    public String monitorearProductos(Model model, HttpSession session) {
+        return "mostrarCatalogo";
+    }
 }

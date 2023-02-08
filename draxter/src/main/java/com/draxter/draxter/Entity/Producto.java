@@ -97,4 +97,12 @@ public class Producto {
     public Producto() {
     }
 
+    public Usuarios getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuarios usuario) {
+        this.usuario = usuario;
+    }
+
 }

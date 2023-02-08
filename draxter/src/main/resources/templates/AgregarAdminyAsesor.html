@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar usuario</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav
+    class="navbar navbar-light navbar-expand-lg navigation-clean"
+    style="color: var(--bs-body-color); background: var(--bs-body-color)"
+    >
+    <div class="container">
+        <i class="fa fa-star" style="width: 50px; height: 50px; "></i
+        ><a class="navbar-brand" th:href="@{/principal}" style="color: var(--bs-body-bg); margin: 5px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;"
+        >Draxter</a
+        ><button
+        data-bs-toggle="collapse"
+        class="navbar-toggler"
+        data-bs-target="#navcol-1"
+        style="height: 22px;"
+        >
+        <span class="visually-hidden">Opciones</span
+        ><span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+            <a class="nav-link" th:href="@{/principal}">Inicio</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" th:href="@{/}"> PQR</a></li>
+            <li class="nav-item">
+                <a class="nav-link active" th:href="@{/}"> + Usuario</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">FAQ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">+ Producto</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">Productos</a>
+            </li>
+        </ul>
+        </div>
+    </div>
+    </nav>
+    <div style="width: 100%; height: 100%; background: var(--bs-dark)">
+        <di v style="height: 90vh">
+            <form action="" autocomplete="off" enctype="multipart/form-data">
+                <input type="text" name="Usuario" placeholder="Nombre de Usuario" class="item">
+                <select name="" id="roll">
+                    <option value="Admin">Admin</option>
+                    <option value="Asesor">Asesor</option>
+                </select>
+                <input type="text" name="Nombre" placeholder="Nombres" class="item">
+                <input type="text" name="Apellido" placeholder="Apellidos" class="item">
+                <input type="email" name="Email" placeholder="Email" class="item">
+                <input type="text" name="Numero" placeholder="Numero de telefono" class="item">
+                <input type="password" name="Contraseña" placeholder="Contraseña" class="item">
+                <input type="submit" name="Guardar" id="" value="Crear" class="btn">
+            </form>
+        </div>
+        <footer class="footer-dark">
+        <div class="container">
+            <div class="row">
+            <div
+                style="text-align: center"
+            >
+                <a
+                th:href="@{/nosotros}"
+                style="color: var(--bs-gray-100); text-decoration: none"
+                data-bs-toggle="_blank"
+                >Nosotros</a
+                >
+            </div>
+            <div >
+                <h3>Draxter</h3>
+                <p>
+                Praesent sed lobortis mi. Suspendisse vel placerat ligula.
+                Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis
+                tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel
+                in justo.
+                </p>
+            </div>
+            <div">
+                <a
+                data-bss-hover-animate="flash"
+                href="#"
+                style="margin-bottom: 7px"
+                ><i
+                    class="icon ion-social-facebook"
+                    data-bss-hover-animate="flash"
+                ></i></a
+                ><a
+                data-bss-hover-animate="flash"
+                href="#"
+                style="margin-bottom: 7px"
+                ><i class="icon ion-social-twitter"></i></a
+                ><a
+                data-bss-hover-animate="flash"
+                href="#"
+                style="margin-bottom: 7px"
+                ><i class="icon ion-social-whatsapp-outline"></i></a
+                ><a
+                data-bss-hover-animate="flash"
+                href="#"
+                style="margin-bottom: 7px"
+                ><i class="icon ion-social-instagram"></i
+                ></a>
+            </div>
+            </div>
+            <p class="copyright">Draxter © 2022</p>
+        </div>
+        </footer>
+</body>
+</html>

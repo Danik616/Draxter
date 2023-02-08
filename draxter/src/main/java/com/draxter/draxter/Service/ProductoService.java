@@ -8,10 +8,9 @@ import com.draxter.draxter.Entity.Producto;
 import com.draxter.draxter.Repository.IProductoRepository;
 
 @Service
-public class ProductoService implements IProductoService{
+public class ProductoService implements IProductoService {
 
     private IProductoRepository productoRepository;
-
 
     public ProductoService(IProductoRepository productoRepository) {
         this.productoRepository = productoRepository;
@@ -23,8 +22,13 @@ public class ProductoService implements IProductoService{
     }
 
     @Override
-    public Producto obtenerProductoPorId(Long id){
+    public Producto obtenerProductoPorId(Long id) {
         return productoRepository.findById(id).get();
     }
-    
+
+    @Override
+    public Producto guardaProducto(Producto producto) {
+        return productoRepository.save(producto);
+    }
+
 }
