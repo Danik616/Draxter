@@ -268,23 +268,22 @@ public class DraxterInicioController {
         usuario = (Usuarios) session.getAttribute("usuariosesion");
         producto.setUsuario(usuario);
         if (!imagen.isEmpty()) {
-            Path directorioImagenes = Paths.get("src//main//resources//static//assets/img");
-            String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
+            String rutaAbsoluta = "draxter//src//main//resources//static//assets//img";
 
             try {
                 byte[] bytesImg = imagen.getBytes();
                 Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + imagen.getOriginalFilename());
                 Files.write(rutaCompleta, bytesImg);
-
                 producto.setImagen(imagen.getOriginalFilename());
             } catch (IOException e) {
                 e.printStackTrace();
+
             }
+            productoService.guardaProducto(producto);
         } else {
             return "redirect:/servicios/agregarProducto?vacio";
         }
 
-        productoService.guardaProducto(producto);
         return "redirect:/servicios/agregarProducto?Sucess";
     }
 
