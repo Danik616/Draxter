@@ -214,38 +214,71 @@
     </nav>
     <div style="width: 100%; height: 100%; background: var(--bs-dark)">
       <div style="height: 90vh">
-        <form action="" autocomplete="off" enctype="multipart/form-data">
+        <form
+          th:action="@{/servicios/agregarUsuario}"
+          th:object="${usuario}"
+          autocomplete="off"
+          method="POST"
+        >
           <input
             type="text"
-            name="Usuario"
+            name="usuario"
             placeholder="Nombre de Usuario"
             class="item"
+            th:field="*{usuario}"
           />
-          <select name="" id="roll">
-            <option value="Admin">Admin</option>
-            <option value="Asesor">Asesor</option>
+          <select th:value="${rol}" name="" id="roll">
+            <option value="" disabled>Seleccione el Rol</option>
+            <option
+              th:each="rol :${listadoRol}"
+              th:value="*{rol.id}"
+              th:text="${rol.nombre}"
+            ></option>
           </select>
-          <input type="text" name="Nombre" placeholder="Nombres" class="item" />
           <input
+            th:field="*{nombres}"
             type="text"
-            name="Apellido"
-            placeholder="Apellidos"
+            name="nombres"
+            placeholder="Nombres"
             class="item"
           />
-          <input type="email" name="Email" placeholder="Email" class="item" />
           <input
+            th:field="*{apellidos}"
             type="text"
-            name="Numero"
+            name="apellidos"
+            placeholder="apellidos"
+            class="item"
+          />
+          <input
+            th:field="*{email}"
+            type="email"
+            name="email"
+            placeholder="Email"
+            class="item"
+          />
+          <input
+            th:field="*{celular}"
+            type="text"
+            name="celular"
             placeholder="Numero de telefono"
             class="item"
           />
           <input
+            th:field="*{contraseña}"
             type="password"
-            name="Contraseña"
+            name="contraseña"
             placeholder="Contraseña"
             class="item"
           />
-          <input type="submit" name="Guardar" id="" value="Crear" class="btn" />
+          <button
+            type="submit"
+            name="Guardar"
+            id=""
+            value="Crear"
+            class="btn btn-warning"
+          >
+            Crear
+          </button>
         </form>
       </div>
     </div>
@@ -268,22 +301,36 @@
               lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.
             </p>
           </div>
-          <div">
-          <a data-bss-hover-animate="flash" href="#" style="margin-bottom: 7px"
-            ><i
-              class="icon ion-social-facebook"
+          <div>
+            <a
               data-bss-hover-animate="flash"
-            ></i></a
-          ><a data-bss-hover-animate="flash" href="#" style="margin-bottom: 7px"
-            ><i class="icon ion-social-twitter"></i></a
-          ><a data-bss-hover-animate="flash" href="#" style="margin-bottom: 7px"
-            ><i class="icon ion-social-whatsapp-outline"></i></a
-          ><a data-bss-hover-animate="flash" href="#" style="margin-bottom: 7px"
-            ><i class="icon ion-social-instagram"></i
-          ></a>
+              href="#"
+              style="margin-bottom: 7px"
+              ><i
+                class="icon ion-social-facebook"
+                data-bss-hover-animate="flash"
+              ></i></a
+            ><a
+              data-bss-hover-animate="flash"
+              href="#"
+              style="margin-bottom: 7px"
+              ><i class="icon ion-social-twitter"></i></a
+            ><a
+              data-bss-hover-animate="flash"
+              href="#"
+              style="margin-bottom: 7px"
+              ><i class="icon ion-social-whatsapp-outline"></i></a
+            ><a
+              data-bss-hover-animate="flash"
+              href="#"
+              style="margin-bottom: 7px"
+              ><i class="icon ion-social-instagram"></i
+            ></a>
+          </div>
         </div>
+
+        <p class="copyright">Draxter © 2022</p>
       </div>
-      <p class="copyright">Draxter © 2022</p>
     </footer>
   </body>
 </html>

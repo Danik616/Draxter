@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,11 +26,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.draxter.draxter.Entity.PQR;
 import com.draxter.draxter.Entity.Producto;
+import com.draxter.draxter.Entity.Rol;
 import com.draxter.draxter.Entity.Usuarios;
 import com.draxter.draxter.Entity.Corte;
 import com.draxter.draxter.Entity.FAQ;
 import com.draxter.draxter.Service.PQRService;
 import com.draxter.draxter.Service.ProductoService;
+import com.draxter.draxter.Service.UsuarioService;
 import com.draxter.draxter.Service.CorteService;
 import com.draxter.draxter.Service.FAQService;
 
@@ -50,12 +53,21 @@ public class DraxterInicioController {
     @Autowired
     private FAQService faqService;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
+    List<Rol> listadoRol = new ArrayList<Rol>();
+
     public DraxterInicioController(ProductoService productoService, PQRService pqrService, CorteService corteService,
-            FAQService faqService) {
+            FAQService faqService, UsuarioService usuarioService) {
         this.productoService = productoService;
         this.pqrService = pqrService;
         this.corteService = corteService;
         this.faqService = faqService;
+        this.usuarioService = usuarioService;
+
+        listadoRol.add(new Rol("ROLE_ASESOR"));
+        listadoRol.add(new Rol("ROLE_ADMIN"));
     }
 
     @RequestMapping("/iniciarSesion")
@@ -272,9 +284,11 @@ public class DraxterInicioController {
 
             try {
                 byte[] bytesImg = imagen.getBytes();
-                Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + imagen.getOriginalFilename());
+                String id = Long.toString(producto.getId());
+                String nombreArchivo = id + imagen.getOriginalFilename();
+                Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + nombreArchivo);
                 Files.write(rutaCompleta, bytesImg);
-                producto.setImagen(imagen.getOriginalFilename());
+                producto.setImagen(nombreArchivo);
             } catch (IOException e) {
                 e.printStackTrace();
 
@@ -289,11 +303,28 @@ public class DraxterInicioController {
 
     @GetMapping("/servicios/agregarUsuario")
     public String agregarUsuario(Model model, HttpSession session) {
-        return "mostrarCatalogo";
+
+        model.addAttribute("listadoRol", listadoRol);
+        model.addAttribute("usuario", new Usuarios());
+        return "agregarUsuario";
+    }
+
+    @PostMapping("/servicios/agregarUsuario")
+    public String agregarNuevoUsuario(Model model, HttpSession session, @Param("rol") Rol rol,
+            @ModelAttribute("usuario") Usuarios usuario) {
+        if (rol.getNombre() != "ROLE_ADMIN" && rol.getNombre() != "ROLE_ASESOR") {
+            return "redirect:/servicios/agregarUsuario?error";
+        }
+        rol.setNombre("ROLE_ADMIN");
+        usuario.setRoles(Arrays.asList(rol));
+        usuarioService.guardar(usuario);
+
+        return "redirect:/agregarUsuario";
     }
 
     @GetMapping("/servicios/monitorearProductos")
     public String monitorearProductos(Model model, HttpSession session) {
+
         return "mostrarCatalogo";
     }
 }
