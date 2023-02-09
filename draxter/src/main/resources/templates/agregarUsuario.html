@@ -227,7 +227,7 @@
             class="item"
             th:field="*{usuario}"
           />
-          <select th:field="*{bck}" name="rol" id="rol">
+          <select th:field="*{bck}" name="rol" id="rol" required>
             <option value="" disabled>Seleccione el Rol</option>
             <option
               th:each="rol :${listadoRol}"
