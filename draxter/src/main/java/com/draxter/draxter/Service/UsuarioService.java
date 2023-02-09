@@ -29,15 +29,18 @@ public class UsuarioService implements IUsuarioService {
     private BCryptPasswordEncoder passwordEncoder;
     private IUsuarioRepository usuarioRepository;
 
-    public UsuarioService(IUsuarioRepository usuarioRepository){
+    public UsuarioService(IUsuarioRepository usuarioRepository) {
         super();
-        this.usuarioRepository=usuarioRepository;
+        this.usuarioRepository = usuarioRepository;
     }
+
     @Override
     public Usuarios save(UsuarioRegistroDTO registroDTO) {
-        Usuarios usuario=new Usuarios(registroDTO.getUsuario(),registroDTO.getNombres(), registroDTO.getApellidos(), registroDTO.getImagen(),
-        registroDTO.getEmail(), passwordEncoder.encode(registroDTO.getPassword()), registroDTO.getPais(), registroDTO.getCelular(),registroDTO.getDireccion() ,Arrays.asList(new Rol("ROLE_USER")));
-         return usuarioRepository.save(usuario);
+        Usuarios usuario = new Usuarios(registroDTO.getUsuario(), registroDTO.getNombres(), registroDTO.getApellidos(),
+                registroDTO.getImagen(),
+                registroDTO.getEmail(), passwordEncoder.encode(registroDTO.getPassword()), registroDTO.getPais(),
+                registroDTO.getCelular(), registroDTO.getDireccion(), Arrays.asList(new Rol("ROLE_USER")));
+        return usuarioRepository.save(usuario);
     }
 
     public IUsuarioRepository getUsuarioRepository() {
@@ -47,21 +50,29 @@ public class UsuarioService implements IUsuarioService {
     public void setUsuarioRepository(IUsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
     }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuarios usuario= usuarioRepository.findByEmail(username);
-        if(usuario == null){
+        Usuarios usuario = usuarioRepository.findByEmail(username);
+        if (usuario == null) {
             throw new UsernameNotFoundException("Usuario o password inválidos");
         }
-        ServletRequestAttributes attr=(ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        
-        HttpSession session=attr.getRequest().getSession(true);
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+
+        HttpSession session = attr.getRequest().getSession(true);
         session.setAttribute("usuariosesion", usuario);
-        
-        return new User(usuario.getEmail(), usuario.getContraseña() , mapearAutoridadesRoles(usuario.getRoles()));
+
+        return new User(usuario.getEmail(), usuario.getContraseña(), mapearAutoridadesRoles(usuario.getRoles()));
     }
 
-    private Collection<? extends GrantedAuthority> mapearAutoridadesRoles(Collection<Rol> roles){
+    private Collection<? extends GrantedAuthority> mapearAutoridadesRoles(Collection<Rol> roles) {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getNombre())).collect(Collectors.toList());
-    } 
+    }
+
+    @Override
+    public Usuarios guardar(Usuarios usuario) {
+        String contraseña = usuario.getContraseña();
+        usuario.setContraseña(passwordEncoder.encode(contraseña));
+        return usuarioRepository.save(usuario);
+    }
 }
