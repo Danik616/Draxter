@@ -227,12 +227,12 @@
             class="item"
             th:field="*{usuario}"
           />
-          <select th:value="${rol}" name="" id="roll">
+          <select th:field="*{bck}" name="rol" id="rol">
             <option value="" disabled>Seleccione el Rol</option>
             <option
               th:each="rol :${listadoRol}"
-              th:value="*{rol.id}"
-              th:text="${rol.nombre}"
+              th:value="${rol}"
+              th:text="${rol}"
             ></option>
           </select>
           <input
@@ -280,6 +280,10 @@
             Crear
           </button>
         </form>
+        <a
+          th:href="@{/servicios/monitorearUsuarios}"
+          class="btn btn-primary"
+        ></a>
       </div>
     </div>
     <footer class="footer-dark">

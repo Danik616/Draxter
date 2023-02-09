@@ -51,6 +51,16 @@ public class Usuarios {
     private String celular;
     @Column(name = "direccion")
     private String direccion;
+    @Column(name="bck")
+    private String bck;
+
+    public String getBck() {
+        return bck;
+    }
+
+    public void setBck(String bck) {
+        this.bck = bck;
+    }
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "usuario"), inverseJoinColumns = @JoinColumn(name = "rol_id", referencedColumnName = "id"))

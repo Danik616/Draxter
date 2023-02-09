@@ -304,22 +304,31 @@ public class DraxterInicioController {
     @GetMapping("/servicios/agregarUsuario")
     public String agregarUsuario(Model model, HttpSession session) {
 
-        model.addAttribute("listadoRol", listadoRol);
+        List<String> listadoPrueba = new ArrayList<String>();
+        listadoPrueba.add("ROLE_ADMIN");
+        listadoPrueba.add("ROLE_ASESOR");
+        model.addAttribute("listadoRol", listadoPrueba);
         model.addAttribute("usuario", new Usuarios());
         return "agregarUsuario";
     }
 
     @PostMapping("/servicios/agregarUsuario")
-    public String agregarNuevoUsuario(Model model, HttpSession session, @Param("rol") Rol rol,
+    public String agregarNuevoUsuario(Model model, HttpSession session,
             @ModelAttribute("usuario") Usuarios usuario) {
-        if (rol.getNombre() != "ROLE_ADMIN" && rol.getNombre() != "ROLE_ASESOR") {
-            return "redirect:/servicios/agregarUsuario?error";
-        }
-        rol.setNombre("ROLE_ADMIN");
+        // rol.setNombre("ROLE_ADMIN");
+        Rol rol = new Rol();
+        rol.setNombre(usuario.getBck());
         usuario.setRoles(Arrays.asList(rol));
+        usuario.setBck(null);
         usuarioService.guardar(usuario);
 
-        return "redirect:/agregarUsuario";
+        return "redirect:/servicios/monitorearUsuarios";
+    }
+
+    @GetMapping("/servicios/monitorearUsuarios")
+    public String monitorearUsuarios(Model model, HttpSession session) {
+
+        return "mostrarCatalogo";
     }
 
     @GetMapping("/servicios/monitorearProductos")
