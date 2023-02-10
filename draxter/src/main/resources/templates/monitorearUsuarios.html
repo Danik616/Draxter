@@ -3,21 +3,16 @@
   lang="en"
   xmlns:th="http://www.thymeleaf.org"
   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-  xlmns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 >
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
-    <title>Agregar Productos</title>
-    <link
-      rel="stylesheet"
-      th:href="@{assets/css/estilos.css}"
-      href="assets/css/estilos.css"
-    />
+
+    <title>Draxter</title>
     <link
       rel="stylesheet"
       href="assets/bootstrap/css/bootstrap.min.css"
@@ -164,21 +159,12 @@
     >
       <div class="container">
         <i class="fa fa-star" style="width: 50px; height: 50px"></i
-        ><a
-          class="navbar-brand"
-          th:href="@{/}"
-          style="
-            color: var(--bs-body-bg);
-            margin: 5px;
-            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold',
-              sans-serif;
-          "
+        ><a class="navbar-brand" href="@{/}" style="color: var(--bs-body-bg)"
           >Draxter</a
         ><button
           data-bs-toggle="collapse"
           class="navbar-toggler"
           data-bs-target="#navcol-1"
-          style="height: 22px"
         >
           <span class="visually-hidden">Opciones</span
           ><span class="navbar-toggler-icon"></span>
@@ -192,7 +178,7 @@
               <a class="nav-link" th:href="@{/servicios/monitorearPQR}"> PQR</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/servicios/agregarUsuario}">
+              <a class="nav-link active" th:href="@{/servicios/agregarUsuario}">
                 + Usuario</a
               >
             </li>
@@ -200,7 +186,7 @@
               <a class="nav-link" th:href="@{/servicios/FAQ}">FAQ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" th:href="@{/servicios/agregarProducto}"
+              <a class="nav-link" th:href="@{/servicios/agregarProducto}"
                 >+ Producto</a
               >
             </li>
@@ -213,47 +199,164 @@
         </div>
       </div>
     </nav>
-
-    <div style="width: 100%; height: 100%; background: white">
-      <div style="min-height: 90vh">
-        <form
-          th:action="@{/servicios/agregarProducto}"
-          th:object="${producto}"
-          method="post"
-          enctype="multipart/form-data"
+    <div
+      style="
+        height: auto;
+        background: var(--bs-body-color);
+        padding-top: 50px;
+        padding-bottom: 50px;
+      "
+    >
+      <a
+        class="btn btn-danger"
+        type="button"
+        style="margin-left: 250px"
+        th:href="@{/servicios/agregarUsuario}"
+      >
+        Atrás
+      </a>
+      <div
+        class="d-flex"
+        style="
+          background: var(--bs-body-color);
+          width: 90%;
+          margin-right: 5%;
+          margin-left: 5%;
+          height: 200px;
+          margin-top: 60px;
+        "
+        th:each="usuario: ${usuarios}"
+      >
+        <div
+          class="text-center"
+          style="width: 25%; height: 100%; text-align: center"
         >
-          <input
-            field="*{nombre}"
-            type="text"
-            name="nombre"
-            id="nombre"
-            placeholder="Nombre del Producto"
-            class="item"
-          />
-          <textarea
-            field="*{descripcion}"
-            name="descripcion"
-            id="descripcion"
-            class="texto"
-            placeholder="descripcion del producto"
-          ></textarea>
-          <input
-            field="*{precio}"
-            type="number"
-            name="precio"
-            id="precio"
-            placeholder="Ingrese el Precio"
-            class="item"
-          />
-          <input type="file" name="file" class="file" id="file" />
-          <textarea
-            field="*{caracteristicas}"
-            name="caracteristicas"
-            placeholder="Caracteristicas- Separelas por comas"
-          ></textarea>
-          <button type="submit" name="guardar" class="btn btn_warning"></button>
-        </form>
+          <div
+            style="
+              width: 150px;
+              height: 150px;
+              margin-right: 31px;
+              margin-left: 31px;
+            "
+          >
+            <img style="width: 100%; height: 100%" />
+            <h5
+              style="
+                color: var(--bs-white);
+                margin-top: 10px;
+                text-align: center;
+              "
+              th:text="*{usuario.usuario}"
+            ></h5>
+            <h4
+              style="
+                color: var(--bs-white);
+                margin-top: 10px;
+                text-align: center;
+              "
+              th:text="*{usuario.nombres}"
+            ></h4>
+            <h4
+              style="
+                color: var(--bs-white);
+                margin-top: 10px;
+                text-align: center;
+              "
+              th:text="*{usuario.apellidos}"
+            ></h4>
+          </div>
+        </div>
+        <div class="d-inline" style="width: 75%; height: 100%">
+          <div style="width: 100%; height: 60%">
+            <p th:text="*{usuario.email}" style="color: var(--bs-white)">
+              <br />
+            </p>
+          </div>
+          <div style="height: 40%; width: 100%">
+            <h3 style="color: var(--bs-white)">
+              <span
+                style="
+                  color: var(--bs-white);
+                  margin-top: 10px;
+                  text-align: center;
+                "
+                th:text="*{usuario.direccion}"
+              ></span>
+            </h3>
+            <a
+              class="btn btn-danger"
+              type="button"
+              style="margin-left: 250px"
+              th:href="@{/servicios/borrarUsuarios/{id}(id=${usuario.usuario})}"
+            >
+              Eliminar
+            </a>
+          </div>
+        </div>
       </div>
     </div>
+
+    <footer class="footer-dark">
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-sm-6 col-md-2 offset-md-0 item"
+            style="text-align: center"
+          >
+            <a
+              style="color: var(--bs-gray-100); text-decoration: none"
+              data-bs-toggle="_blank"
+              >Nosotros</a
+            >
+          </div>
+          <div class="col-md-8 item text">
+            <h3>Draxter</h3>
+            <p>
+              Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus
+              ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique
+              lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.
+            </p>
+          </div>
+          <div class="col-md-2 item social">
+            <a
+              data-bss-hover-animate="flash"
+              href="#"
+              style="margin-bottom: 7px"
+              ><i
+                class="icon ion-social-facebook"
+                data-bss-hover-animate="flash"
+              ></i></a
+            ><a
+              data-bss-hover-animate="flash"
+              href="#"
+              style="margin-bottom: 7px"
+              ><i class="icon ion-social-twitter"></i></a
+            ><a
+              data-bss-hover-animate="flash"
+              href="#"
+              style="margin-bottom: 7px"
+              ><i class="icon ion-social-whatsapp-outline"></i></a
+            ><a
+              data-bss-hover-animate="flash"
+              href="#"
+              style="margin-bottom: 7px"
+              ><i class="icon ion-social-instagram"></i
+            ></a>
+          </div>
+        </div>
+        <p class="copyright">Draxter © 2022</p>
+      </div>
+    </footer>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="assets/js/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.js"></script>
+    <script src="assets/js/featured-products-slider.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/jquery.tablesorter.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-filter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-storage.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/Table-With-Search.js"></script>
   </body>
 </html>

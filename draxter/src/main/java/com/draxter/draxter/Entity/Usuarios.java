@@ -51,7 +51,7 @@ public class Usuarios {
     private String celular;
     @Column(name = "direccion")
     private String direccion;
-    @Column(name="bck")
+    @Column(name = "bck")
     private String bck;
 
     public String getBck() {

@@ -315,7 +315,6 @@ public class DraxterInicioController {
     @PostMapping("/servicios/agregarUsuario")
     public String agregarNuevoUsuario(Model model, HttpSession session,
             @ModelAttribute("usuario") Usuarios usuario) {
-        // rol.setNombre("ROLE_ADMIN");
         Rol rol = new Rol();
         rol.setNombre(usuario.getBck());
         usuario.setRoles(Arrays.asList(rol));
@@ -327,8 +326,14 @@ public class DraxterInicioController {
 
     @GetMapping("/servicios/monitorearUsuarios")
     public String monitorearUsuarios(Model model, HttpSession session) {
+        model.addAttribute("usuarios", usuarioService.obtenerUsuarios());
+        return "monitorearUsuarios";
+    }
 
-        return "mostrarCatalogo";
+    @GetMapping("/servicios/borrarUsuarios/{id}")
+    public String borrarUsuario(Model model, HttpSession session, @PathVariable(name = "id") String id) {
+        usuarioService.eliminarUsuarioPorID(id);
+        return "redirect:/servicios/monitorearUsuarios";
     }
 
     @GetMapping("/servicios/monitorearProductos")

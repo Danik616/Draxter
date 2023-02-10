@@ -2,6 +2,7 @@ package com.draxter.draxter.Service;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
@@ -74,5 +75,16 @@ public class UsuarioService implements IUsuarioService {
         String contraseña = usuario.getContraseña();
         usuario.setContraseña(passwordEncoder.encode(contraseña));
         return usuarioRepository.save(usuario);
+    }
+
+    @Override
+    public List<Usuarios> obtenerUsuarios() {
+        return usuarioRepository.findAll();
+    }
+
+    @Override
+    public void eliminarUsuarioPorID(String id) {
+        usuarioRepository.deleteById(id);
+
     }
 }
