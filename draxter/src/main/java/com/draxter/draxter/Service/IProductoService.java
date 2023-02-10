@@ -11,4 +11,6 @@ public interface IProductoService {
     public Producto obtenerProductoPorId(Long id);
 
     public Producto guardaProducto(Producto producto);
+
+    public void eliminarProductoPorID(String id);
 }

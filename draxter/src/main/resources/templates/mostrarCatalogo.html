@@ -169,7 +169,11 @@
           <span class="visually-hidden">Opciones</span
           ><span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navcol-1">
+        <div
+          sec:authorize="hasRole('USER')"
+          class="collapse navbar-collapse"
+          id="navcol-1"
+        >
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
               <a class="nav-link" th:href="@{/}">Perfil</a>
@@ -185,9 +189,44 @@
             </li>
           </ul>
         </div>
+        <div
+          sec:authorize="hasRole('ADMIN')"
+          class="collapse navbar-collapse"
+          id="navcol-1"
+        >
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/}">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/servicios/monitorearPQR}"> PQR</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/servicios/agregarUsuario}">
+                + Usuario</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/servicios/FAQ}">FAQ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/servicios/agregarProducto}"
+                >+ Producto</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                th:href="@{/servicios/monitorearProductos}"
+                >Productos</a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
     <div
+      sec:authorize="hasRole('USER')"
       style="
         height: auto;
         background: var(--bs-body-color);
@@ -219,7 +258,11 @@
               margin-left: 31px;
             "
           >
-            <img style="width: 100%; height: 100%" />
+            <img
+              style="width: 100%; height: 100%"
+              th:src="@{'/assets/img/' + ${producto.imagen}}"
+              th:alt="${producto.imagen}"
+            />
             <h5
               style="
                 color: var(--bs-white);
@@ -251,6 +294,89 @@
               th:href="@{catalogo/{id}(id=${producto.id})}"
             >
               Comprar
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      sec:authorize="hasRole('ADMIN')"
+      style="
+        height: auto;
+        background: var(--bs-body-color);
+        padding-top: 50px;
+        padding-bottom: 50px;
+      "
+    >
+      <div
+        class="d-flex"
+        style="
+          background: var(--bs-body-color);
+          width: 90%;
+          margin-right: 5%;
+          margin-left: 5%;
+          height: 200px;
+          margin-top: 60px;
+        "
+        th:each="producto: ${productos}"
+      >
+        <div
+          class="text-center"
+          style="width: 25%; height: 100%; text-align: center"
+        >
+          <div
+            style="
+              width: 150px;
+              height: 150px;
+              margin-right: 31px;
+              margin-left: 31px;
+            "
+          >
+            <img
+              style="width: 100%; height: 100%"
+              th:src="@{'/assets/img/' + ${producto.imagen}}"
+              th:alt="${producto.imagen}"
+            />
+            <h5
+              style="
+                color: var(--bs-white);
+                margin-top: 10px;
+                text-align: center;
+              "
+              th:text="*{producto.nombre}"
+            ></h5>
+          </div>
+        </div>
+        <div class="d-inline" style="width: 75%; height: 100%">
+          <div style="width: 100%; height: 60%">
+            <p th:text="*{producto.descripcion}" style="color: var(--bs-white)">
+              It is a long established fact that a reader will be distracted by
+              the readable content of a page when looking at its layout. The
+              point of using Lorem Ipsum is that it has a more-or-less normal
+              distribution of letters, as opposed to using 'Content here,
+              content here', making it look like readable English.&nbsp;<br />
+            </p>
+          </div>
+          <div style="height: 40%; width: 100%">
+            <h3 style="color: var(--bs-white)">
+              $ <span th:text="*{producto.precio}"></span>
+            </h3>
+            <a
+              class="btn btn-primary"
+              type="button"
+              style="margin-left: 250px"
+              th:href="@{/servicios/monitorearProductos/{id}(id=${producto.id})}"
+            >
+              Eliminar
+            </a>
+            <a
+              class="btn btn-primary"
+              type="button"
+              style="margin-left: 250px"
+              th:href="@{/servicios/monitorearProductos/editar/{id} (id=${producto.id})}"
+            >
+              Editar
             </a>
           </div>
         </div>

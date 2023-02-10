@@ -31,4 +31,11 @@ public class ProductoService implements IProductoService {
         return productoRepository.save(producto);
     }
 
+    @Override
+    public void eliminarProductoPorID(String id) {
+        long idBusqueda = Long.parseLong(id);
+        productoRepository.deleteById(idBusqueda);
+
+    }
+
 }

@@ -284,7 +284,7 @@ public class DraxterInicioController {
 
             try {
                 byte[] bytesImg = imagen.getBytes();
-                String id = Long.toString(producto.getId());
+                String id = producto.getNombre();
                 String nombreArchivo = id + imagen.getOriginalFilename();
                 Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + nombreArchivo);
                 Files.write(rutaCompleta, bytesImg);
@@ -338,7 +338,18 @@ public class DraxterInicioController {
 
     @GetMapping("/servicios/monitorearProductos")
     public String monitorearProductos(Model model, HttpSession session) {
-
+        model.addAttribute("productos", productoService.obtenerProductos());
         return "mostrarCatalogo";
+    }
+
+    @GetMapping("/servicios/monitorearProductos/{id}")
+    public String eliminarProducto(Model model, HttpSession session, @PathVariable(name = "id") String id) {
+        productoService.eliminarProductoPorID(id);
+        return "redirect:/servicios/monitorearProductos";
+    }
+
+    @GetMapping("/servicios/monitorearProductos/editar/{id}")
+    public String editarProducto(Model model, HttpSession session, @PathVariable(name = "id") String id) {
+        return "editarProducto";
     }
 }
