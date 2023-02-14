@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+  xlmns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>Editar Productos</title>
+    <link
+      rel="stylesheet"
+      th:href="@{assets/css/estilos.css}"
+      href="assets/css/estilos.css"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/bootstrap/css/bootstrap.min.css"
+      th:href="@{/assets/bootstrap/css/bootstrap.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/fonts/fontawesome-all.min.css"
+      th:href="@{/assets/fonts/fontawesome-all.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/fonts/font-awesome.min.css"
+      th:href="@{/assets/fonts/font-awesome.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/fonts/ionicons.min.css"
+      th:href="@{/assets/fonts/ionicons.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/fonts/simple-line-icons.min.css"
+      th:href="@{/assets/fonts/simple-line-icons.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/fonts/fontawesome5-overrides.min.css"
+      th:href="@{/assets/fonts/fontawesome5-overrides.min.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/animated-services.css"
+      th:href="@{/assets/css/animated-services.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Contact-Form-Clean.css"
+      th:href="@{/assets/css/Contact-Form-Clean.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.css"
+      th:href="@{/assets/css/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Edit-Form.css"
+      th:href="@{/assets/css/Edit-Form.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/FAQ-Frequentlly-Asked-Questions-1.css"
+      th:href="@{/assets/css/FAQ-Frequentlly-Asked-Questions-1.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/FAQ-Frequentlly-Asked-Questions.css"
+      th:href="@{/assets/css/FAQ-Frequentlly-Asked-Questions.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/featured-products-slider-1.css"
+      th:href="@{/assets/css/featured-products-slider-1.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/featured-products-slider.css"
+      th:href="@{/assets/css/featured-products-slider.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Footer-Dark.css"
+      th:href="@{/assets/css/Footer-Dark.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/gift-product-long.css"
+      th:href="@{/assets/css/gift-product-long.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Login-Form-Dark.css"
+      th:href="@{/assets/css/Login-Form-Dark.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Ludens-Users---3-Profile.css"
+      th:href="@{/assets/css/Ludens-Users---3-Profile.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Navigation-Clean.css"
+      th:href="@{/assets/css/Navigation-Clean.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Registration-Form-with-Photo.css"
+      th:href="@{/assets/css/Registration-Form-with-Photo.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Search-Input-Responsive-with-Icon.css"
+      th:href="@{/assets/css/Search-Input-Responsive-with-Icon.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/styles.css"
+      th:href="@{/assets/css/styles.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Table-With-Search-1.css"
+      th:href="@{/assets/css/Table-With-Search-1.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/Table-With-Search.css"
+      th:href="@{/assets/css/Table-With-Search.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css"
+      th:href="@{/assets/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css}"
+    />
+  </head>
+
+  <body>
+    <nav
+      class="navbar navbar-light navbar-expand-lg navigation-clean"
+      style="color: var(--bs-body-color); background: var(--bs-body-color)"
+    >
+      <div class="container">
+        <i class="fa fa-star" style="width: 50px; height: 50px"></i
+        ><a
+          class="navbar-brand"
+          th:href="@{/}"
+          style="
+            color: var(--bs-body-bg);
+            margin: 5px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold',
+              sans-serif;
+          "
+          >Draxter</a
+        ><button
+          data-bs-toggle="collapse"
+          class="navbar-toggler"
+          data-bs-target="#navcol-1"
+          style="height: 22px"
+        >
+          <span class="visually-hidden">Opciones</span
+          ><span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/}">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/servicios/monitorearPQR}"> PQR</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/servicios/agregarUsuario}">
+                + Usuario</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/servicios/FAQ}">FAQ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" th:href="@{/servicios/agregarProducto}"
+                >+ Producto</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/servicios/monitorearProductos}"
+                >Productos</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div style="width: 100%; height: 100%; background: white">
+      <div style="min-height: 90vh">
+        <form
+          th:action="@{/servicios/agregarProducto}"
+          th:object="${producto}"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <div>
+            <input class="form-control form-control-lg" id="formFileLg" type="file" placeholder="ingrese de perfil">
+          </div>
+          <input class="form-control" type="text" placeholder="Nombre de Usuario" aria-label="default input example" disabled>
+          <input class="form-control" type="text" placeholder="Nombre" aria-label="default input example">
+          <input class="form-control" type="text" placeholder="Pais de Origen" aria-label="default input example" disabled>
+          <input class="form-control" type="text" placeholder="Numero Telefonico" aria-label="default input example" disabled>
+          <input class="form-control" type="email" placeholder="Correo electronico" aria-label="default input example" disabled>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+          <input type="submit" name="guardar" class="btn btn_warning"></input>
+        </form>
+        </div>
+    </div>
+    </body>
+</html>
+
+
