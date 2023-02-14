@@ -12,7 +12,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
-    <title>Editar Productos</title>
+    <title>Draxter</title>
     <link
       rel="stylesheet"
       th:href="@{assets/css/estilos.css}"
@@ -186,7 +186,7 @@
         <div class="collapse navbar-collapse" id="navcol-1">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/}">Inicio</a>
+              <a class="nav-link active" th:href="@{/}">Inicio</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" th:href="@{/servicios/monitorearPQR}"> PQR</a>
@@ -200,7 +200,7 @@
               <a class="nav-link" th:href="@{/servicios/FAQ}">FAQ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" th:href="@{/servicios/agregarProducto}"
+              <a class="nav-link" th:href="@{/servicios/agregarProducto}"
                 >+ Producto</a
               >
             </li>
@@ -217,25 +217,82 @@
     <div style="width: 100%; height: 100%; background: white">
       <div style="min-height: 90vh">
         <form
-          th:action="@{/servicios/agregarProducto}"
-          th:object="${producto}"
+          th:action="@{/servicios/editarUsuario/{id} (id=${usuario.usuario})}"
+          th:object="${usuario}"
           method="post"
           enctype="multipart/form-data"
         >
           <div>
-            <input class="form-control form-control-lg" id="formFileLg" type="file" placeholder="ingrese de perfil">
+            <input
+              class="form-control form-control-lg"
+              id="file"
+              name="file"
+              type="file"
+              placeholder="ingrese de perfil"
+            />
           </div>
-          <input class="form-control" type="text" placeholder="Nombre de Usuario" aria-label="default input example" disabled>
-          <input class="form-control" type="text" placeholder="Nombre" aria-label="default input example">
-          <input class="form-control" type="text" placeholder="Pais de Origen" aria-label="default input example" disabled>
-          <input class="form-control" type="text" placeholder="Numero Telefonico" aria-label="default input example" disabled>
-          <input class="form-control" type="email" placeholder="Correo electronico" aria-label="default input example" disabled>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
-          <input type="submit" name="guardar" class="btn btn_warning"></input>
+          <input
+            th:field="*{usuario}"
+            class="form-control"
+            type="text"
+            placeholder="Usuario"
+            disabled
+          />
+          <input
+            th:field="*{nombres}"
+            class="form-control"
+            type="text"
+            placeholder="Nombre"
+            aria-label="default input example"
+          />
+          <input
+            th:field="*{apellidos}"
+            class="form-control"
+            type="text"
+            placeholder="Apellidos"
+            aria-label="default input example"
+          />
+          <input
+            th:field="*{pais}"
+            class="form-control"
+            type="text"
+            placeholder="Pais de Origen"
+            aria-label="default input example"
+          />
+          <input
+            th:field="*{celular}"
+            class="form-control"
+            type="number"
+            placeholder="Numero Telefonico"
+            aria-label="default input example"
+          />
+          <input
+            th:field="*{direccion}"
+            class="form-control"
+            type="text"
+            placeholder="direccion"
+            aria-label="default input example"
+          />
+          <input
+            th:field="*{email}"
+            class="form-control"
+            type="email"
+            placeholder="Correo electronico"
+            aria-label="default input example"
+            disabled
+          />
+          <input
+            th:field="*{contraseña}"
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+            placeholder="Contraseña"
+          />
+          <button type="submit" name="guardar" class="btn btn-warning">
+            Guardar
+          </button>
         </form>
-        </div>
+      </div>
     </div>
-    </body>
+  </body>
 </html>
-
-

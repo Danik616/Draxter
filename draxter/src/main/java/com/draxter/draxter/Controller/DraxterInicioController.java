@@ -84,6 +84,7 @@ public class DraxterInicioController {
         model.addAttribute("pais", usuario.getPais());
         model.addAttribute("celular", usuario.getCelular());
         model.addAttribute("direccion", usuario.getDireccion());
+        model.addAttribute("user", usuario);
         return "mostrarUsuario";
     }
 
@@ -395,4 +396,50 @@ public class DraxterInicioController {
         return "redirect:/servicios/monitorearProductos";
 
     }
+
+    @GetMapping("/servicios/editarUsuario/{id}")
+    public String editarUsuario(Model model, HttpSession session, @PathVariable(name = "id") String id) {
+        Usuarios usuario = usuarioService.obtenerUsuarioPorID(id);
+        model.addAttribute("usuario", usuario);
+        return "editarUsuario";
+    }
+
+    @PostMapping("/servicios/editarUsuario/{id}")
+    public String actualizarUsuario(Model model, @RequestParam("file") MultipartFile imagen, HttpSession session,
+            @PathVariable(name = "id") String id,
+            @ModelAttribute("usuario") Usuarios usuario) {
+        Usuarios usuarioExistente = usuarioService.obtenerUsuarioPorID(id);
+        String nombreAnteriorImagen = usuarioExistente.getImagen();
+        if (!imagen.isEmpty()) {
+            String rutaAbsoluta = "draxter//src//main//resources//static//assets//img";
+
+            try {
+                byte[] bytesImg = imagen.getBytes();
+                String usuarioDelUsuario = usuarioExistente.getUsuario();
+                String nombreArchivo = usuarioDelUsuario + imagen.getOriginalFilename();
+                Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + nombreArchivo);
+                if (nombreAnteriorImagen != null) {
+                    Path rutaEliminacion = Paths.get(rutaAbsoluta + "//" + nombreAnteriorImagen);
+                    Files.delete(rutaEliminacion);
+                }
+                Files.write(rutaCompleta, bytesImg);
+                usuarioExistente.setApellidos(usuario.getApellidos());
+                usuarioExistente.setCelular(usuario.getCelular());
+                usuarioExistente.setContraseña(usuario.getContraseña());
+                usuarioExistente.setDireccion(usuario.getDireccion());
+                usuarioExistente.setImagen(nombreArchivo);
+                usuarioExistente.setNombres(usuario.getNombres());
+                usuarioExistente.setPais(usuario.getPais());
+            } catch (IOException e) {
+                e.printStackTrace();
+
+            }
+            usuarioService.guardar(usuarioExistente);
+        } else {
+            return "redirect:/";
+        }
+
+        return "redirect:/";
+    }
+
 }

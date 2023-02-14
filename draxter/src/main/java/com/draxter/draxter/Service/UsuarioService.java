@@ -87,4 +87,9 @@ public class UsuarioService implements IUsuarioService {
         usuarioRepository.deleteById(id);
 
     }
+
+    @Override
+    public Usuarios obtenerUsuarioPorID(String id) {
+        return usuarioRepository.obtenerUsuarioPorID(id);
+    }
 }

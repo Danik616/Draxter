@@ -131,7 +131,8 @@
             <img
               class="rounded-circle me-3"
               style="height: 200px; width: 200px"
-              src="assets/img/user-photo2.jpg"
+              th:src="@{'/assets/img/' + ${user.imagen}}"
+              th:alt="${user.imagen}"
             />
           </div>
           <div
@@ -162,6 +163,11 @@
               <li th:text="*{usuario}" style="color: var(--bs-white)">
                 Usuario
               </li>
+              <a
+                class="btn btn-primary"
+                th:href="@{/servicios/editarUsuario/{id} (id=${usuario})}"
+                >Editar</a
+              >
             </ul>
           </div>
         </div>
@@ -258,7 +264,8 @@
               <div class="card clean-card text-center">
                 <img
                   class="card-img-top w-100 d-block"
-                  src="assets/img/logoComedor/avatar1.jpg"
+                  th:src="@{'/assets/img/' + ${imagen}}"
+                  th:alt="${imagen}"
                 />
                 <div
                   class="card-body info"
@@ -288,8 +295,7 @@
                         <div class="col-md-12">
                           <a
                             class="btn btn-success"
-                            role="button"
-                            href="editProfile.html"
+                            th:href="@{/servicios/editarUsuario/{id} (id=${usuario})}"
                             ><i class="fas fa-pencil-alt"></i>Editar</a
                           >
                         </div>
@@ -387,7 +393,8 @@
               <div class="card clean-card text-center">
                 <img
                   class="card-img-top w-100 d-block"
-                  src="assets/img/logoComedor/avatar1.jpg"
+                  th:src="@{'/assets/img/' + ${imagen}}"
+                  th:alt="${imagen}"
                 />
                 <div
                   class="card-body info"
@@ -449,8 +456,7 @@
                         <div class="col-md-12">
                           <a
                             class="btn btn-success"
-                            role="button"
-                            href="editProfile.html"
+                            th:href="@{/servicios/editarUsuario/{id} (id=${usuario})}"
                             ><i class="fas fa-pencil-alt"></i>&nbsp;Editar</a
                           >
                         </div>

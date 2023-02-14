@@ -16,4 +16,6 @@ public interface IUsuarioService extends UserDetailsService {
     public List<Usuarios> obtenerUsuarios();
 
     public void eliminarUsuarioPorID(String id);
+
+    public Usuarios obtenerUsuarioPorID(String id);
 }
