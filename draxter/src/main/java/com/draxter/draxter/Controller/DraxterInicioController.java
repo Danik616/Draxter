@@ -350,6 +350,49 @@ public class DraxterInicioController {
 
     @GetMapping("/servicios/monitorearProductos/editar/{id}")
     public String editarProducto(Model model, HttpSession session, @PathVariable(name = "id") String id) {
+        long idBusqueda = Long.parseLong(id);
+        Producto producto = productoService.obtenerProductoPorId(idBusqueda);
+        model.addAttribute("producto", producto);
         return "editarProducto";
+    }
+
+    @PostMapping("/servicios/monitorearProductos/editar/{id}")
+    public String actualizarProducto(@RequestParam("file") MultipartFile imagen, HttpSession session,
+            @PathVariable(name = "id") String id,
+            @ModelAttribute("producto") Producto producto) {
+        usuario = (Usuarios) session.getAttribute("usuariosesion");
+        long idBusqueda = Long.parseLong(id);
+        Producto productoExistente = productoService.obtenerProductoPorId(idBusqueda);
+        String nombreAnteriorImagen = productoExistente.getImagen();
+        productoExistente.setUsuario(usuario);
+        if (!imagen.isEmpty()) {
+            String rutaAbsoluta = "draxter//src//main//resources//static//assets//img";
+
+            try {
+                byte[] bytesImg = imagen.getBytes();
+                String nombreProducto = producto.getNombre();
+                String nombreArchivo = nombreProducto + imagen.getOriginalFilename();
+                Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + nombreArchivo);
+                if (nombreAnteriorImagen != null) {
+                    Path rutaEliminacion = Paths.get(rutaAbsoluta + "//" + nombreAnteriorImagen);
+                    Files.delete(rutaEliminacion);
+                }
+                Files.write(rutaCompleta, bytesImg);
+                productoExistente.setImagen(nombreArchivo);
+                productoExistente.setCaracteristicas(producto.getCaracteristicas());
+                productoExistente.setDescripcion(producto.getDescripcion());
+                productoExistente.setNombre(producto.getNombre());
+                productoExistente.setPrecio(producto.getPrecio());
+            } catch (IOException e) {
+                e.printStackTrace();
+
+            }
+            productoService.guardaProducto(productoExistente);
+        } else {
+            return "redirect:/servicios/monitorearProductos?vacio";
+        }
+
+        return "redirect:/servicios/monitorearProductos";
+
     }
 }

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.draxter.draxter.Entity.Usuarios;
 
 @Repository
-public interface IUsuarioRepository extends JpaRepository<Usuarios, String>{
+public interface IUsuarioRepository extends JpaRepository<Usuarios, String> {
     public Usuarios findByEmail(String email);
 }

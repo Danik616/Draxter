@@ -217,21 +217,53 @@
     <div style="width: 100%; height: 100%; background: white">
       <div style="min-height: 90vh">
         <form
-          th:action="@{/servicios/agregarProducto}"
+          th:action="@{/servicios/monitorearProductos/editar/{id} (id=${producto.id})}"
           th:object="${producto}"
           method="post"
           enctype="multipart/form-data"
         >
           <div>
-            <input class="form-control form-control-lg" id="formFileLg" type="file" placeholder="ingrese imagen">
+            <input
+              class="form-control form-control-lg"
+              id="file"
+              name="file"
+              type="file"
+              placeholder="ingrese imagen"
+            />
           </div>
-          <input class="form-control" type="text" placeholder="nombre del prodcto" aria-label="default input example">
-          <input class="form-control" type="text" placeholder="Ingrese el Precio" aria-label="default input example">
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="descripcion del producto"></textarea>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Caracteristicas del Prodicto"></textarea>
-          <input type="submit" name="guardar" class="btn btn_warning"></input>
+          <input
+            th:field="*{nombre}"
+            class="form-control"
+            type="text"
+            placeholder="nombre del prodcto"
+            aria-label="default input example"
+          />
+          <input
+            th:field="*{precio}"
+            class="form-control"
+            type="number"
+            placeholder="Ingrese el Precio"
+            aria-label="default input example"
+          />
+          <textarea
+            th:field="*{descripcion}"
+            class="form-control"
+            id="exampleFormControlTextarea1"
+            rows="3"
+            placeholder="descripcion del producto"
+          ></textarea>
+          <textarea
+            th:field="*{caracteristicas}"
+            class="form-control"
+            id="exampleFormControlTextarea1"
+            rows="3"
+            placeholder="Caracteristicas del Producto"
+          ></textarea>
+          <button type="submit" name="guardar" class="btn btn-warning">
+            Guardar
+          </button>
         </form>
-        </div>
+      </div>
     </div>
-    </body>
+  </body>
 </html>
