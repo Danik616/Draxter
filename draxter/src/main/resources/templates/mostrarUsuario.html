@@ -235,7 +235,7 @@
       </nav>
       <main
         class="page"
-        style="min-height: 100%; background: var(--bs-gray-900)"
+        style="min-height: 110vh; background: var(--bs-gray-900)"
       >
         <section class="clean-block about-us" style="height: 520px">
           <div class="row" style="margin-right: 0px; margin-left: 0px">
@@ -264,8 +264,8 @@
               <div class="card clean-card text-center">
                 <img
                   class="card-img-top w-100 d-block"
-                  th:src="@{'/assets/img/' + ${imagen}}"
-                  th:alt="${imagen}"
+                  th:src="@{'/assets/img/' + ${user.imagen}}"
+                  th:alt="${user.imagen}"
                 />
                 <div
                   class="card-body info"
@@ -364,7 +364,11 @@
       </nav>
       <main
         class="page"
-        style="min-height: 100%; background: var(--bs-gray-900)"
+        style="
+          min-height: 110vh;
+          max-height: 130vh;
+          background: var(--bs-gray-900);
+        "
       >
         <section class="clean-block about-us">
           <div class="row" style="margin-right: 0px; margin-left: 0px">
@@ -393,8 +397,8 @@
               <div class="card clean-card text-center">
                 <img
                   class="card-img-top w-100 d-block"
-                  th:src="@{'/assets/img/' + ${imagen}}"
-                  th:alt="${imagen}"
+                  th:src="@{'/assets/img/' + ${user.imagen}}"
+                  th:alt="${user.imagen}"
                 />
                 <div
                   class="card-body info"
