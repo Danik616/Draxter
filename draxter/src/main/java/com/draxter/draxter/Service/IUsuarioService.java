@@ -18,4 +18,6 @@ public interface IUsuarioService extends UserDetailsService {
     public void eliminarUsuarioPorID(String id);
 
     public Usuarios obtenerUsuarioPorID(String id);
+
+    public Usuarios obtenerPorEmail(String email);
 }

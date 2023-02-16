@@ -92,4 +92,9 @@ public class UsuarioService implements IUsuarioService {
     public Usuarios obtenerUsuarioPorID(String id) {
         return usuarioRepository.obtenerUsuarioPorID(id);
     }
+
+    @Override
+    public Usuarios obtenerPorEmail(String email) {
+        return usuarioRepository.findByEmail(email);
+    }
 }

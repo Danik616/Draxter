@@ -69,7 +69,10 @@
     >
       <div class="container">
         <i class="fa fa-star" style="width: 50px; height: 50px"></i
-        ><a class="navbar-brand" th:href="@{/principal}" style="color: var(--bs-body-bg)"
+        ><a
+          class="navbar-brand"
+          th:href="@{/principal}"
+          style="color: var(--bs-body-bg)"
           >Draxter</a
         ><button
           data-bs-toggle="collapse"
@@ -84,13 +87,17 @@
             <li class="nav-item">
               <a class="nav-link" th:href="@{/principal}">Inicio</a>
             </li>
-            <li class="nav-item"><a class="nav-link" th:href="@{/nosotros}">Nosotros</a></li>
             <li class="nav-item">
-                <a class="nav-link active" th:href="@{/iniciarSesion}">Iniciar sesión</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" th:href="@{/registrarse}">Registrarse</a>
-              </li>
+              <a class="nav-link" th:href="@{/nosotros}">Nosotros</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" th:href="@{/iniciarSesion}"
+                >Iniciar sesión</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/registrarse}">Registrarse</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -100,47 +107,53 @@
         <form method="post" th:action="@{/iniciarSesion}">
           <h2 class="visually-hidden">Login Form</h2>
           <div th:if="${param.error}">
-            <div class="alert alert-danger">
-              Usuario o contraseña invalidos
-            </div>
+            <div class="alert alert-danger">Usuario o contraseña invalidos</div>
           </div>
           <div th:if="${param.logout}">
-            <div class="alert alert-danger">
-              Ha cerrado sesion exitosamente
-            </div>
+            <div class="alert alert-danger">Ha cerrado sesion exitosamente</div>
           </div>
           <div class="illustration">
             <i class="icon ion-ios-locked-outline"></i>
           </div>
           <div class="mb-3">
             <input
-            id="username"
+              id="username"
               class="form-control"
               type="text"
               name="username"
               placeholder="Email"
-                required autofocus="autofocus"
+              required
+              autofocus="autofocus"
             />
           </div>
           <div class="mb-3">
             <input
-            id="password"
+              id="password"
               class="form-control"
               type="password"
               name="password"
               placeholder="Contraseña"
-                required autofocus="autofocus"
+              required
+              autofocus="autofocus"
             />
           </div>
           <div class="mb-3">
-            <input class="btn btn-primary d-block w-100" type="submit" id="iniciar-submit" value="Iniciar sesión" >
-          </input>
+            <input
+              class="btn btn-primary d-block w-100"
+              type="submit"
+              id="iniciar-submit"
+              value="Iniciar sesión"
+            />
           </div>
-          <a class="forgot" href="#">¿Olvidaste tu contraseña?</a
-          ><a class="forgot" th:href="@{/registrarse}">¿No tienes cuenta? Regístrate aquí</a>
+          <a class="forgot" data-target="#forgotPasswordModel"
+            >¿Olvidaste tu contraseña?</a
+          ><a class="forgot" th:href="@{/registrarse}"
+            >¿No tienes cuenta? Regístrate aquí</a
+          >
         </form>
       </section>
     </div>
+    <div th:replace="forgotPassword :: forgotPasswordModel"></div>
     <footer class="footer-dark">
       <div class="container">
         <div class="row">
