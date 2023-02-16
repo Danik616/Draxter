@@ -33,6 +33,7 @@ import com.draxter.draxter.Entity.FAQ;
 import com.draxter.draxter.Service.PQRService;
 import com.draxter.draxter.Service.ProductoService;
 import com.draxter.draxter.Service.UsuarioService;
+import com.draxter.draxter.data.ResetPasswordData;
 import com.draxter.draxter.Service.CorteService;
 import com.draxter.draxter.Service.FAQService;
 
@@ -71,7 +72,8 @@ public class DraxterInicioController {
     }
 
     @RequestMapping("/iniciarSesion")
-    public String iniciarSesion() {
+    public String iniciarSesion(Model model) {
+        model.addAttribute("forgotPassword", new ResetPasswordData());
         return "iniciar";
     }
 
