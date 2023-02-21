@@ -36,7 +36,7 @@ public class DraxterPasswordResetController {
         }
         redirAttr.addFlashAttribute(MSG,
                 messageSource.getMessage("user.forgotpwd.msg", null, LocaleContextHolder.getLocale()));
-        return "redirect:/prueba";
+        return REDIRECT_LOGIN;
     }
 
     @GetMapping("/change")
@@ -53,7 +53,7 @@ public class DraxterPasswordResetController {
         data.setToken(token);
         setResetPasswordForm(model, data);
 
-        return "/changePassword";
+        return "/emails/changePassword";
     }
 
     @PostMapping("/change")
@@ -66,12 +66,12 @@ public class DraxterPasswordResetController {
                     messageSource.getMessage("user.registration.verification.invalid.token", null,
                             LocaleContextHolder.getLocale()));
 
-            return "/changePassword";
+            return "/emails/changePassword";
         }
         model.addAttribute("passwordUpdateMsg",
                 messageSource.getMessage("user.password.updated.msg", null, LocaleContextHolder.getLocale()));
         setResetPasswordForm(model, new ResetPasswordData());
-        return "/changePassword";
+        return "/emails/changePassword";
     }
 
     private void setResetPasswordForm(final Model model, ResetPasswordData data) {

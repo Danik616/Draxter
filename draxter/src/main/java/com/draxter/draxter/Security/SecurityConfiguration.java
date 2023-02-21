@@ -15,17 +15,17 @@ import com.draxter.draxter.Service.IUsuarioService;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private IUsuarioService iUsuarioService;
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public DaoAuthenticationProvider authenticationProvider(){
+    public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
         auth.setUserDetailsService(iUsuarioService);
         auth.setPasswordEncoder(passwordEncoder());
@@ -33,33 +33,33 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception{
+    protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers(
-            "/registrarse",
-            "/principal",
-            "/nosotros",
-            "/iniciarSesion",
-            "/assets/**"
-        ).permitAll()
-        .regexMatchers("").hasRole("USER")
-		.regexMatchers("").hasRole("ADMIN")
-		.regexMatchers("").hasRole("ASESOR")
-        .anyRequest().authenticated()
-        .and()
-        .formLogin()
-        .loginPage("/iniciarSesion")
-        .permitAll()
-        .and()
-        .logout()
-        .invalidateHttpSession(true)
-        .clearAuthentication(true)
-        .logoutRequestMatcher(new AntPathRequestMatcher("/salir"))
-        .logoutSuccessUrl("/iniciarSesion?salir")
-        .permitAll();
+                "/registrarse",
+                "/principal",
+                "/nosotros",
+                "/iniciarSesion",
+                "/password/**",
+                "/assets/**").permitAll()
+                .regexMatchers("").hasRole("USER")
+                .regexMatchers("").hasRole("ADMIN")
+                .regexMatchers("").hasRole("ASESOR")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/iniciarSesion")
+                .permitAll()
+                .and()
+                .logout()
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/salir"))
+                .logoutSuccessUrl("/iniciarSesion?salir")
+                .permitAll();
     }
 }
