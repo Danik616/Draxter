@@ -106,24 +106,24 @@
     </nav>
     <div style="height: auto">
       <section class="login-dark" style="height: 700px">
-        <div
-          class="alert alert-success"
-          role="alert"
-          th:if="${resetPasswordMsg != null}"
-        >
-          <p style="color: aliceblue" th:text="${resetPasswordMsg}"></p>
-        </div>
-        <div
-          class="alert alert-danger"
-          role="alert"
-          th:if="${tokenError != null}"
-        >
-          <p style="color: aliceblue" th:text="${tokenError}"></p>
-        </div>
         <form method="post" th:action="@{/iniciarSesion}">
           <h2 class="visually-hidden">Login Form</h2>
           <div th:if="${param.error}">
             <div class="alert alert-danger">Usuario o contraseña invalidos</div>
+          </div>
+          <div
+            class="alert alert-success"
+            role="alert"
+            th:if="${resetPasswordMsg != null}"
+          >
+            <p style="color: aliceblue" th:text="${resetPasswordMsg}"></p>
+          </div>
+          <div
+            class="alert alert-danger"
+            role="alert"
+            th:if="${tokenError != null}"
+          >
+            <p style="color: aliceblue" th:text="${tokenError}"></p>
           </div>
 
           <div th:if="${param.logout}">
