@@ -8,7 +8,11 @@
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
     <title>Draxter</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="assets/bootstrap/css/bootstrap.min.css"
+      th:href="@{/assets/bootstrap/css/bootstrap.min.css}"
+    />
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css" />
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css" />
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css" />
@@ -16,19 +20,6 @@
     <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css" />
     <link rel="stylesheet" href="assets/css/animated-services.css" />
     <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css" />
-    <link
-      rel="stylesheet"
-      href="assets/css/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.css"
-    />
-    <link rel="stylesheet" href="assets/css/Edit-Form.css" />
-    <link
-      rel="stylesheet"
-      href="assets/css/FAQ-Frequentlly-Asked-Questions-1.css"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/css/FAQ-Frequentlly-Asked-Questions.css"
-    />
     <link rel="stylesheet" href="assets/css/featured-products-slider-1.css" />
     <link rel="stylesheet" href="assets/css/featured-products-slider.css" />
     <link rel="stylesheet" href="assets/css/Footer-Dark.css" />
@@ -183,11 +174,21 @@
                 Registrarse
               </button>
             </div>
+            <a
+              class="already"
+              href="#"
+              data-toggle="modal"
+              data-target="#termsAndConditions"
+              >Terminos y condiciones</a
+            >
             <a class="already" th:href="@{/iniciarSesion}"
               >¿Ya tienes una cuenta? Inicia sesión aquí</a
             >
           </form>
         </div>
+        <div
+          th:replace="/fragments/termsAndConditions :: termsAndConditions"
+        ></div>
       </section>
     </div>
     <footer class="footer-dark">
@@ -242,7 +243,14 @@
         <p class="copyright">Draxter © 2022</p>
       </div>
     </footer>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script
+      src="assets/bootstrap/js/bootstrap.min.js"
+      th:src="@{/assets/bootstrap/js/bootstrap.min.js}"
+    ></script>
+    <script
+      src="assets/JQuery/jquery.min.js"
+      th:src="@{/assets/JQuery/jquery.min.js}"
+    ></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.js"></script>
     <script src="assets/js/featured-products-slider.js"></script>
