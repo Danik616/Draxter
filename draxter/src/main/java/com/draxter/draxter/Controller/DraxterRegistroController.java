@@ -12,23 +12,23 @@ import com.draxter.draxter.dto.UsuarioRegistroDTO;
 @Controller
 @RequestMapping("/registrarse")
 public class DraxterRegistroController {
-    
+
     @Autowired
     private UsuarioService usuarioService;
 
     @GetMapping
-    public String mostrarFormularioDeRegistro(){
+    public String mostrarFormularioDeRegistro() {
         return "registrar";
     }
 
     @ModelAttribute("usuario")
-    public UsuarioRegistroDTO retonerNuevoUsuarioRegistroDTO(){
+    public UsuarioRegistroDTO retonerNuevoUsuarioRegistroDTO() {
         return new UsuarioRegistroDTO();
-   }
+    }
 
     @PostMapping
-  public String registrarCuentaDeUsuario(@ModelAttribute("usuario") UsuarioRegistroDTO registroDTO){
+    public String registrarCuentaDeUsuario(@ModelAttribute("usuario") UsuarioRegistroDTO registroDTO) {
         usuarioService.save(registroDTO);
         return "redirect:/registrarse?exito";
-   }
+    }
 }

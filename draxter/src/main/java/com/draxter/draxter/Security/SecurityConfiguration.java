@@ -39,7 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers(
+        http.authorizeHttpRequests().antMatchers(
                 "/registrarse",
                 "/principal",
                 "/nosotros",
@@ -50,10 +50,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .regexMatchers("").hasRole("ADMIN")
                 .regexMatchers("").hasRole("ASESOR")
                 .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/iniciarSesion")
-                .permitAll()
                 .and()
                 .logout()
                 .invalidateHttpSession(true)

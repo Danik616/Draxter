@@ -170,17 +170,26 @@
             </div>
 
             <div class="mb-3">
-              <button class="btn btn-primary d-block w-100" type="submit">
+              <button
+                class="btn btn-primary d-block w-100 guardar"
+                type="submit"
+                disabled="disabled"
+              >
                 Registrarse
               </button>
             </div>
-            <a
-              class="already"
-              href="#"
-              data-toggle="modal"
-              data-target="#termsAndConditions"
-              >Terminos y condiciones</a
-            >
+            <p style="display: flex">
+              <input type="checkbox" value="Leído" class="checkbox" />
+              &nbsp;
+              <a
+                class="already"
+                href="#"
+                data-toggle="modal"
+                data-target="#termsAndConditions"
+                >He leído los terminos y condiciones</a
+              >
+            </p>
+
             <a class="already" th:href="@{/iniciarSesion}"
               >¿Ya tienes una cuenta? Inicia sesión aquí</a
             >
@@ -251,9 +260,18 @@
       src="assets/JQuery/jquery.min.js"
       th:src="@{/assets/JQuery/jquery.min.js}"
     ></script>
+    <script type="text/javascript">
+      $(function () {
+        $(".checkbox").click(function () {
+          $(".guardar").prop(
+            "disabled",
+            $("input.checkbox:checked").length == 0
+          );
+        });
+      });
+    </script>
     <script src="assets/js/bs-init.js"></script>
-    <script src="assets/js/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.js"></script>
-    <script src="assets/js/featured-products-slider.js"></script>
+
     <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/jquery.tablesorter.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-filter.min.js"></script>
