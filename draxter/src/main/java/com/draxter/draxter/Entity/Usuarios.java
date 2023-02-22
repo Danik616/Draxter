@@ -86,6 +86,10 @@ public class Usuarios {
     @JoinColumn(name = "id_carrito")
     private Carrito carrito;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_orden")
+    private Orden orden;
+
     public Set<Corte> getCorte() {
         return corte;
     }
