@@ -37,6 +37,18 @@ public class Producto {
     @JoinColumn(name = "id_usuario")
     private Usuarios usuario;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_carrito")
+    private Carrito carrito;
+
+    public Carrito getCarrito() {
+        return carrito;
+    }
+
+    public void setCarrito(Carrito carrito) {
+        this.carrito = carrito;
+    }
+
     public long getId() {
         return id;
     }
