@@ -13,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
@@ -82,14 +81,6 @@ public class Usuarios {
     @OneToMany(mappedBy = "user")
     private Set<SecureToken> tokens;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_carrito")
-    private Carrito carrito;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_orden")
-    private Orden orden;
-
     public Set<Corte> getCorte() {
         return corte;
     }
@@ -120,14 +111,6 @@ public class Usuarios {
 
     public void setTokens(Set<SecureToken> tokens) {
         this.tokens = tokens;
-    }
-
-    public Carrito getCarrito() {
-        return carrito;
-    }
-
-    public void setCarrito(Carrito carrito) {
-        this.carrito = carrito;
     }
 
     public String getUsuario() {

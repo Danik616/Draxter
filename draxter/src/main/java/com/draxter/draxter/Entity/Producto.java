@@ -8,8 +8,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 
 @Entity
@@ -38,22 +42,6 @@ public class Producto {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_usuario")
     private Usuarios usuario;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_carrito")
-    private Carrito carrito;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_orden")
-    private Orden orden;
-
-    public Carrito getCarrito() {
-        return carrito;
-    }
-
-    public void setCarrito(Carrito carrito) {
-        this.carrito = carrito;
-    }
 
     public long getId() {
         return id;
