@@ -177,11 +177,6 @@ public class DraxterInicioController {
         return "mostrarFAQ";
     }
 
-    @GetMapping("/pedidos")
-    public String mostrarPedidos(Model model, HttpSession session) {
-        return "AdministrarPedidos";
-    }
-
     @GetMapping("/editarPQR/{id}")
     public String editarPQR(Model model, HttpSession session, @PathVariable(name = "id") String id) {
         PQR pqr = pqrService.obtenerUnPQRPorID(id);
@@ -443,7 +438,5 @@ public class DraxterInicioController {
 
         return "redirect:/";
     }
-
-    
 
 }

@@ -159,7 +159,7 @@
     >
       <div class="container">
         <i class="fa fa-star" style="width: 50px; height: 50px"></i
-        ><a class="navbar-brand" href="@{/}" style="color: var(--bs-body-bg)"
+        ><a class="navbar-brand" th:href="@{/}" style="color: var(--bs-body-bg)"
           >Draxter</a
         ><button
           data-bs-toggle="collapse"
@@ -185,7 +185,7 @@
               <a class="nav-link" th:href="@{/servicios}">Servicios</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/pedidos}">Pedidos</a>
+              <a class="nav-link" th:href="@{/carrito}">Pedidos</a>
             </li>
           </ul>
         </div>
@@ -234,6 +234,21 @@
         padding-bottom: 50px;
       "
     >
+      <div
+        class="alert alert-success"
+        role="alert"
+        th:if="${carritoGuardado != null}"
+      >
+        <p style="color: aliceblue" th:text="${carritoGuardado}"></p>
+      </div>
+
+      <div
+        class="alert alert-success"
+        role="alert"
+        th:if="${carritoNoGuardado != null}"
+      >
+        <p style="color: aliceblue" th:text="${carritoNoGuardado}"></p>
+      </div>
       <div
         class="d-flex"
         style="

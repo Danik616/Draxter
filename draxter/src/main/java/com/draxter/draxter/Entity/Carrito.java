@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 
-@Entity
+@Entity(name = "carrito")
 @Table(name = "carrito")
 public class Carrito {
     @Id
@@ -30,6 +30,22 @@ public class Carrito {
 
     public Carrito(Usuarios usuario, Producto producto) {
         this.usuario = usuario;
+        this.producto = producto;
+    }
+
+    public Usuarios getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuarios usuario) {
+        this.usuario = usuario;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
         this.producto = producto;
     }
 
