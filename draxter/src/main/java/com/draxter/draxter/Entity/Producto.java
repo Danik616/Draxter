@@ -20,7 +20,7 @@ import javax.persistence.CascadeType;
 @Table(name = "producto")
 public class Producto {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private long id;
 
@@ -42,6 +42,9 @@ public class Producto {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_usuario")
     private Usuarios usuario;
+
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+    private Set<Carrito> carrito = new HashSet<>();
 
     public long getId() {
         return id;

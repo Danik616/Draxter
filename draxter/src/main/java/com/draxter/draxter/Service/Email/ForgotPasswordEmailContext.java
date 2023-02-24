@@ -18,6 +18,7 @@ public class ForgotPasswordEmailContext extends AbstractEmailContext {
         setTo(customer.getEmail());
     }
 
+
     public void setToken(String token) {
         this.token = token;
         put("token", token);

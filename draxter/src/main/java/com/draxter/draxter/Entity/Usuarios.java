@@ -78,6 +78,9 @@ public class Usuarios {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Set<FAQ> faq = new HashSet<>();
 
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private Set<Carrito> carrito = new HashSet<>();
+
     @OneToMany(mappedBy = "user")
     private Set<SecureToken> tokens;
 
