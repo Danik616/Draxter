@@ -273,6 +273,7 @@ public class DraxterInicioController {
         List<String> listadoGenero = new ArrayList<String>();
         listadoGenero.add("FEMENINA");
         listadoGenero.add("MASCULINA");
+        listadoGenero.add("UNISEX");
         model.addAttribute("listadoGenero", listadoGenero);
         return "agregarProducto";
     }
