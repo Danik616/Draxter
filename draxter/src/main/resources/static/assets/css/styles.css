@@ -3,3 +3,7 @@
     height: 10px;
     border-radius: 100%;
   }
+
+  .carousel, .carousel-inner > .carousel-item > img {
+    height: 400px;
+  }
