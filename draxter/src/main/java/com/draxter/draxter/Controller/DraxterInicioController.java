@@ -91,8 +91,8 @@ public class DraxterInicioController {
     }
 
     @GetMapping("/catalogo")
-    public String mostrarCatalogo(Model model) {
-        model.addAttribute("productos", productoService.obtenerProductos());
+    public String mostrarCatalogo(Model model, @PathVariable(required = false) String genero) {
+        model.addAttribute("productos", productoService.obtenerProductoPorGenero(genero));
         return "mostrarCatalogo";
     }
 
@@ -103,6 +103,7 @@ public class DraxterInicioController {
         model.addAttribute("precio", pr.getPrecio());
         model.addAttribute("descripcion", pr.getDescripcion());
         model.addAttribute("id", id);
+        model.addAttribute("genero", pr.getGenero());
         String caracteristicas = pr.getCaracteristicas();
         String[] caracteristicasVector = caracteristicas.split(",");
         List<String> caracteristicasLista = Arrays.asList(caracteristicasVector);
@@ -269,6 +270,10 @@ public class DraxterInicioController {
 
     @GetMapping("/servicios/agregarProducto")
     public String agregarProducto(Model model, HttpSession session) {
+        List<String> listadoGenero = new ArrayList<String>();
+        listadoGenero.add("FEMENINA");
+        listadoGenero.add("MASCULINA");
+        model.addAttribute("listadoGenero", listadoGenero);
         return "agregarProducto";
     }
 

@@ -13,4 +13,6 @@ public interface IProductoService {
     public Producto guardaProducto(Producto producto);
 
     public void eliminarProductoPorID(String id);
+
+    public List<Producto> obtenerProductoPorGenero(String genero);
 }

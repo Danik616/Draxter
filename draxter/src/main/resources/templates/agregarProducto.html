@@ -245,6 +245,14 @@
             placeholder="Ingrese el Precio"
             class="item"
           />
+          <select field="*{genero}" name="genero" id="genero" required>
+            <option value="" disabled>Seleccione el genero</option>
+            <option
+              th:each="genero :${listadoGenero}"
+              th:value="${genero}"
+              th:text="${genero}"
+            ></option>
+          </select>
           <input type="file" name="file" class="file" id="file" />
           <textarea
             field="*{caracteristicas}"

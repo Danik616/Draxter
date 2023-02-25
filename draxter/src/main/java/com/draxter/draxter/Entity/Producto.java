@@ -16,7 +16,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 
-@Entity
+@Entity(name = "producto")
 @Table(name = "producto")
 public class Producto {
     @Id
@@ -38,6 +38,9 @@ public class Producto {
 
     @Column(name = "caracteristicas")
     private String caracteristicas;
+
+    @Column(name = "genero")
+    public String genero;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_usuario")
@@ -112,6 +115,14 @@ public class Producto {
 
     public void setUsuario(Usuarios usuario) {
         this.usuario = usuario;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
 }
