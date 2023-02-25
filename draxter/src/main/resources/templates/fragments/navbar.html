@@ -1,8 +1,97 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <div th:fragment="navbar">
-    <div sec:authorize="hasRole('ADMIN')"></div>
-    <div sec:authorize="hasRole('USER')"></div>
+    <div sec:authorize="hasRole('ADMIN')">
+      <nav
+        class="navbar navbar-light navbar-expand-lg navigation-clean"
+        style="color: var(--bs-body-color); background: var(--bs-body-color)"
+      >
+        <div class="container">
+          <i class="fa fa-star" style="width: 50px; height: 50px"></i
+          ><a
+            class="navbar-brand"
+            th:href="@{/}"
+            style="color: var(--bs-body-bg)"
+            >Draxter</a
+          ><button
+            data-bs-toggle="collapse"
+            class="navbar-toggler"
+            data-bs-target="#navcol-1"
+          >
+            <span class="visually-hidden">Opciones</span
+            ><span class="navbar-toggler-icon"></span>
+          </button>
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/}">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/servicios/monitorearPQR}"> PQR</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/servicios/agregarUsuario}">
+                + Usuario</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/servicios/FAQ}">FAQ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/servicios/agregarProducto}"
+                >+ Producto</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                th:href="@{/servicios/monitorearProductos}"
+                >Productos</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div sec:authorize="hasRole('USER')">
+      <nav
+        class="navbar navbar-light navbar-expand-lg navigation-clean"
+        style="color: var(--bs-body-color); background: var(--bs-body-color)"
+      >
+        <div class="container">
+          <i class="fa fa-star" style="width: 50px; height: 50px"></i
+          ><a
+            class="navbar-brand"
+            th:href="@{/}"
+            style="color: var(--bs-body-bg)"
+            >Draxter</a
+          ><button
+            data-bs-toggle="collapse"
+            class="navbar-toggler"
+            data-bs-target="#navcol-1"
+          >
+            <span class="visually-hidden">Opciones</span
+            ><span class="navbar-toggler-icon"></span>
+          </button>
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/}">Perfil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" th:href="@{/catalogo}">Catalogo</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/servicios}">Servicios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/carrito}">Pedidos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/salir}">Salir</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
     <div sec:authorize="hasRole('ASESOR')"></div>
 
     <div sec:authorize="!isAuthenticated()">
@@ -14,7 +103,7 @@
           <i class="fa fa-star" style="width: 50px; height: 50px"></i
           ><a
             class="navbar-brand"
-            th:href="@{/principal}"
+            th:href="@{/catalogo}"
             style="color: var(--bs-body-bg)"
             >Draxter</a
           ><button
@@ -28,7 +117,7 @@
           <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link" th:href="@{/principal}">Inicio</a>
+                <a class="nav-link" th:href="@{/catalogo}">Inicio</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" th:href="@{/nosotros}">Nosotros</a>

@@ -6,11 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class DraxterController {
 
-    @RequestMapping("/principal")
-    public String principal() {
-        return "inicio";
-    }
-
     @RequestMapping("/nosotros")
     public String nosotros() {
         return "nosotros";

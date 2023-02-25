@@ -40,7 +40,7 @@ public class SecurityConfiguration {
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests().antMatchers(
                 "/registrarse",
-                "/principal",
+                "/catalogo",
                 "/nosotros",
                 "/iniciarSesion",
                 "/password/**",
