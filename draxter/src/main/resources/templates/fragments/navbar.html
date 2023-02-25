@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <div th:fragment="navbar">
+    <div sec:authorize="hasRole('ADMIN')"></div>
+    <div sec:authorize="hasRole('USER')"></div>
+    <div sec:authorize="hasRole('ASESOR')"></div>
+
+    <div sec:authorize="!isAuthenticated()">
+      <nav
+        class="navbar navbar-light navbar-expand-lg navigation-clean"
+        style="color: var(--bs-body-color); background: var(--bs-body-color)"
+      >
+        <div class="container">
+          <i class="fa fa-star" style="width: 50px; height: 50px"></i
+          ><a
+            class="navbar-brand"
+            th:href="@{/principal}"
+            style="color: var(--bs-body-bg)"
+            >Draxter</a
+          ><button
+            data-bs-toggle="collapse"
+            class="navbar-toggler"
+            data-bs-target="#navcol-1"
+          >
+            <span class="visually-hidden">Opciones</span
+            ><span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" th:href="@{/principal}">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" th:href="@{/nosotros}">Nosotros</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" th:href="@{/iniciarSesion}"
+                  >Iniciar sesión</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" th:href="@{/registrarse}">Registrarse</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</html>

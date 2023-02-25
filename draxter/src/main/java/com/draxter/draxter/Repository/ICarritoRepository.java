@@ -12,4 +12,7 @@ public interface ICarritoRepository extends JpaRepository<Carrito, Long> {
 
     @Query("FROM carrito WHERE id_usuario LIKE :id")
     public List<Carrito> obtenerTodosLoscarritoPorIdUsuario(@Param("id") String id);
+
+    @Query("FROM carrito WHERE id_producto LIKE :id")
+    public Carrito obtenerCarritoPorIdProducto(@Param("id") long id);
 }

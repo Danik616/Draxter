@@ -37,4 +37,10 @@ public class CarritoService implements ICarritoService {
         return productos;
     }
 
+    @Override
+    public void eliminarCarritoPorIdProducto(long id) {
+        Carrito carrito = carritoRepository.obtenerCarritoPorIdProducto(id);
+        carritoRepository.delete(carrito);
+    }
+
 }

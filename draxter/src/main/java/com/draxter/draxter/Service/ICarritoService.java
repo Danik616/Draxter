@@ -10,4 +10,6 @@ public interface ICarritoService {
     public List<Producto> obtenerProductosPorUsuario(Usuarios usuario);
 
     public void addToCarrito(Usuarios usuario, Producto producto);
+
+    public void eliminarCarritoPorIdProducto(long id);
 }

@@ -81,6 +81,10 @@ public class DraxterCarritoOrdenController {
     @GetMapping("eliminarDelCarrito/{id}")
     public String eliminarDelCarrito(Model model, HttpSession session, @PathVariable Long id,
             RedirectAttributes redirAttr) {
+        carritoService.eliminarCarritoPorIdProducto(id);
+        redirAttr.addFlashAttribute("eliminacionCarrito",
+                messageSource.getMessage("user.shopping.kart.deleted", null,
+                        LocaleContextHolder.getLocale()));
         return "redirect:/carrito";
     }
 
