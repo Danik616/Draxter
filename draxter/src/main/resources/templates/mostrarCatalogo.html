@@ -9,14 +9,7 @@
   <body>
     <div th:replace="/fragments/navbar :: navbar"></div>
 
-    <div
-      sec:authorize="!hasRole('ADMIN')"
-      style="
-        height: auto;
-        background: var(--bs-body-color);
-        padding-bottom: 50px;
-      "
-    >
+    <div sec:authorize="!hasRole('ADMIN')" class="pb-50">
       <div
         id="carouselExampleIndicators"
         class="carousel slide"
@@ -38,6 +31,12 @@
               th:src="@{'/assets/img/Draxter-slider-1.jpg'}"
               th:alt="Draxter-slider-2.jpg"
             />
+            <div class="carousel-caption d-none d-md-block text-dark">
+              <h5>First slide label</h5>
+              <p>
+                Some representative placeholder content for the first slide.
+              </p>
+            </div>
           </div>
           <div class="carousel-item">
             <img
@@ -45,6 +44,12 @@
               th:src="@{'/assets/img/Draxter-slider-2.jpg'}"
               th:alt="Draxter-slider-2.jpg"
             />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Second slide label</h5>
+              <p>
+                Some representative placeholder content for the first slide.
+              </p>
+            </div>
           </div>
           <div class="carousel-item">
             <img
@@ -52,6 +57,12 @@
               th:src="@{'/assets/img/Draxter-slider-2.jpg'}"
               th:alt="Draxter-slider-2.jpg"
             />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Third slide label</h5>
+              <p>
+                Some representative placeholder content for the first slide.
+              </p>
+            </div>
           </div>
         </div>
         <a
@@ -73,6 +84,109 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
+
+      <section class="products-area pt-60 pb-60">
+        <div class="container">
+          <div class="tab products-category-tab">
+            <div class="title">
+              <h2><span class="dot"></span> Mejores productos</h2>
+            </div>
+            <ul class="tabs active">
+              <li>
+                <a class="active" href="#">Todo</a>
+              </li>
+              <li>
+                <a class="" href="#">Hombre</a>
+              </li>
+              <li>
+                <a class="" href="#">Mujer</a>
+              </li>
+              <li>
+                <a class="" href="#">Unisex</a>
+              </li>
+            </ul>
+
+            <div class="tab_content">
+              <div class="tab_item">
+                <div class="row">
+                  <div
+                    th:each="producto: ${productos}"
+                    class="col-lg-3 col-md-6 col-sm-6"
+                  >
+                    <div class="single-product-item">
+                      <div class="product_image">
+                        <a href="#">
+                          <img
+                            th:src="@{'/assets/img/' + ${producto.imagen}}"
+                            th:alt="${producto.imagen}"
+                          />
+                        </a>
+                      </div>
+                      <div class="product-content">
+                        <h3>
+                          <a href="#" th:text="*{producto.nombre}"
+                            >Nombre Producto</a
+                          >
+                        </h3>
+                        <div class="product-price">
+                          <span class="new-price"
+                            >$<span
+                              th:text="*{producto.precio}"
+                              class="new-price"
+                              >191.00</span
+                            ></span
+                          >
+                        </div>
+                        <div class="row align-item-end">
+                          <div class="col-lg-7 col-md-6 col-7">
+                            <a
+                              sec:authorize="isAuthenticated()"
+                              class="btn btn-light"
+                              type="button"
+                              style="margin-left: 250px"
+                              th:href="@{carrito/{id}(id=${producto.id})}"
+                              href="#"
+                              >Añadir al carrito</a
+                            >
+                            <a
+                              sec:authorize="!isAuthenticated()"
+                              data-toggle="modal"
+                              data-target="#signUp"
+                              type="button"
+                              style="margin-left: 250px"
+                              href="#"
+                              class="btn btn-light"
+                              >Añadir al carrito</a
+                            >
+                          </div>
+                          <div class="col-lg-7 col-md-6 col-7">
+                            <ul>
+                              <li>
+                                <a
+                                  href="#"
+                                  data-tooltip="tooltip"
+                                  data-placement="top"
+                                  data-bs-toogle="modal"
+                                  data-bs-target="#productQuickView"
+                                  data-bs-original-title="Quick View"
+                                  aria-label="Quick View"
+                                >
+                                  <i class="far fa-eye"> </i
+                                ></a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <div
         class="alert alert-success"
         role="alert"
@@ -87,84 +201,6 @@
         th:if="${carritoNoGuardado != null}"
       >
         <p style="color: aliceblue" th:text="${carritoNoGuardado}"></p>
-      </div>
-      <div
-        class="d-flex"
-        style="
-          background: var(--bs-body-color);
-          width: 90%;
-          margin-right: 5%;
-          margin-left: 5%;
-          height: 200px;
-          margin-top: 60px;
-        "
-        th:each="producto: ${productos}"
-      >
-        <div
-          class="text-center"
-          style="width: 25%; height: 100%; text-align: center"
-        >
-          <div
-            style="
-              width: 150px;
-              height: 150px;
-              margin-right: 31px;
-              margin-left: 31px;
-            "
-          >
-            <img
-              style="width: 100%; height: 100%"
-              th:src="@{'/assets/img/' + ${producto.imagen}}"
-              th:alt="${producto.imagen}"
-            />
-            <h5
-              style="
-                color: var(--bs-white);
-                margin-top: 10px;
-                text-align: center;
-              "
-              th:text="*{producto.nombre}"
-            ></h5>
-          </div>
-        </div>
-        <div class="d-inline" style="width: 75%; height: 100%">
-          <div style="width: 100%; height: 60%">
-            <p th:text="*{producto.descripcion}" style="color: var(--bs-white)">
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout. The
-              point of using Lorem Ipsum is that it has a more-or-less normal
-              distribution of letters, as opposed to using 'Content here,
-              content here', making it look like readable English.&nbsp;<br />
-            </p>
-          </div>
-          <div style="height: 40%; width: 100%">
-            <h3 style="color: var(--bs-white)">
-              $ <span th:text="*{producto.precio}"></span>
-            </h3>
-            <a
-              sec:authorize="isAuthenticated()"
-              class="btn btn-primary"
-              type="button"
-              style="margin-left: 250px"
-              th:href="@{carrito/{id}(id=${producto.id})}"
-            >
-              <!--catalogo/{id}(id=${producto.id})-->
-              Añadir al carrito
-            </a>
-            <a
-              sec:authorize="!isAuthenticated()"
-              data-toggle="modal"
-              data-target="#signUp"
-              class="btn btn-primary"
-              type="button"
-              style="margin-left: 250px"
-              href="#"
-            >
-              <!--catalogo/{id}(id=${producto.id})-->
-              Añadir al carrito
-            </a>
-          </div>
-        </div>
       </div>
     </div>
     <div th:replace="/fragments/signUp :: signUp"></div>
@@ -279,5 +315,21 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        var links = $("ul li a");
+        $.each(links, function (key, va) {
+          if (va.href == document.URL) {
+            var findClass = "red";
+            if ($("this").hasClass(findClass)) {
+              $(this).removeClass(findClass);
+            }
+            $(this).addClass("active");
+          }
+        });
+      });
+      //Aqui esto se quedará en veremos hasta que se complete la plantilla, agregar el activador y eliminador de active
+    </script>
   </body>
 </html>
