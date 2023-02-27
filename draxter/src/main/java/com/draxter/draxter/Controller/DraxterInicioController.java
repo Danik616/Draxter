@@ -91,7 +91,7 @@ public class DraxterInicioController {
     }
 
     @GetMapping("/catalogo")
-    public String mostrarCatalogo(Model model, @PathVariable(required = false) String genero) {
+    public String mostrarCatalogo(Model model, @Param("genero") String genero) {
         model.addAttribute("productos", productoService.obtenerProductoPorGenero(genero));
         return "mostrarCatalogo";
     }
