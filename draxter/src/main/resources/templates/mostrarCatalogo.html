@@ -98,7 +98,7 @@
               <li>
                 <a
                   class=""
-                  th:href="@{/catalogo (genero=${'MASCULINA'})}"
+                  th:href="@{/catalogo (filtro=${'MASCULINA'})}"
                   href="#"
                   >Hombre</a
                 >
@@ -106,13 +106,13 @@
               <li>
                 <a
                   class=""
-                  th:href="@{/catalogo (genero=${'FEMENINA'})}"
+                  th:href="@{/catalogo (filtro=${'FEMENINA'})}"
                   href="#"
                   >Mujer</a
                 >
               </li>
               <li>
-                <a class="" th:href="@{/catalogo (genero=${'UNISEX'})}" href="#"
+                <a class="" th:href="@{/catalogo (filtro=${'UNISEX'})}" href="#"
                   >Unisex</a
                 >
               </li>
@@ -173,13 +173,9 @@
                             <ul>
                               <li>
                                 <a
-                                  href="#"
-                                  data-tooltip="tooltip"
-                                  data-placement="top"
-                                  data-bs-toogle="modal"
-                                  data-bs-target="#productQuickView"
-                                  data-bs-original-title="Quick View"
-                                  aria-label="Quick View"
+                                  th:href="@{/catalogo/{id} (id=${producto.id})}"
+                                  title="Vista Rápida"
+                                  class="link-details"
                                 >
                                   <i class="far fa-eye"> </i
                                 ></a>
@@ -298,35 +294,37 @@
       </div>
     </div>
 
+    <div class="modal productQuickView" tabindex="-1" id="productQuickView">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+
     <footer th:replace="/fragments/footer :: footer"></footer>
-    <script
-      src="assets/bootstrap/js/bootstrap.min.js"
-      th:src="@{/assets/bootstrap/js/bootstrap.min.js}"
-    ></script>
+
+    <script>
+      $(document).ready(function () {
+        $(".link-details").on("click", function (e) {
+          e.preventDefault();
+          $("#productQuickView")
+            .modal("show")
+            .find(".modal-content")
+            .load($(this).attr("href"));
+        });
+      });
+    </script>
     <script
       src="assets/JQuery/jquery.min.js"
       th:src="@{/assets/JQuery/jquery.min.js}"
     ></script>
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      th:src="@{https://code.jquery.com/jquery-3.2.1.slim.min.js}"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-      th:src="@{https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js}"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
       th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js}"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
     ></script>
 
     <script type="text/javascript">
+      //Aqui esto se quedará en veremos hasta que se complete la plantilla, agregar el activador y eliminador de active
       $(document).ready(function () {
         var links = $("ul li a");
         $.each(links, function (key, va) {
@@ -339,7 +337,6 @@
           }
         });
       });
-      //Aqui esto se quedará en veremos hasta que se complete la plantilla, agregar el activador y eliminador de active
     </script>
   </body>
 </html>

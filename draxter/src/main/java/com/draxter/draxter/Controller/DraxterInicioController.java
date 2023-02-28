@@ -91,7 +91,7 @@ public class DraxterInicioController {
     }
 
     @GetMapping("/catalogo")
-    public String mostrarCatalogo(Model model, @Param("genero") String genero) {
+    public String mostrarCatalogo(Model model, @Param("filtro") String genero) {
         model.addAttribute("productos", productoService.obtenerProductoPorGenero(genero));
         return "mostrarCatalogo";
     }
@@ -99,17 +99,13 @@ public class DraxterInicioController {
     @GetMapping("/catalogo/{id}")
     public String mostrarProducto(@PathVariable Long id, Model model) {
         Producto pr = productoService.obtenerProductoPorId(id);
-        model.addAttribute("nombre", pr.getNombre());
-        model.addAttribute("precio", pr.getPrecio());
-        model.addAttribute("descripcion", pr.getDescripcion());
-        model.addAttribute("id", id);
-        model.addAttribute("genero", pr.getGenero());
+        model.addAttribute("producto", pr);
         String caracteristicas = pr.getCaracteristicas();
         String[] caracteristicasVector = caracteristicas.split(",");
         List<String> caracteristicasLista = Arrays.asList(caracteristicasVector);
         model.addAttribute("caracteristicas", caracteristicasLista);
 
-        return "MostrarProducto";
+        return "quickView";
     }
 
     @GetMapping("/catalogo/{id}/pagarPedido")

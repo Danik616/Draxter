@@ -212,9 +212,16 @@ font-size: 18px;
 }
 
 .btn-light {
-  background-color: transparent;
-  color: #222222;
-  border-color: #222222;
+  background-color: transparent!important;
+  border-radius: 0%!important;
+  border-color: #222222 !important;
+}
+
+.btn-light:hover{
+  background-color: black!important;
+  color: white!important;
+  border-radius: 0%!important;
+  transition: (100);
 }
 
 
@@ -230,8 +237,110 @@ width: 100%;
   font-family: 'Font Awesome 5 Free';
 }
 
+.productQuickView .modal-dialog {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.productQuickView .modal-content {
+  border: none;
+  padding: 40px;
+  border-radius: 0;
+}
+
+.productQuickView .modal-content button.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  outline: 0;
+  opacity: 1;
+  color: #222222;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  line-height: 35px;
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+  width: 35px;
+  text-shadow: unset;
+  height: 35px;
+  border: none;
+}
+
+.productQuickView .modal-content {
+  border: none;
+  padding: 40px;
+  border-radius: 0;
+}
+
+.productQuickView .modal-content button.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  outline: 0;
+  opacity: 1;
+  color: #222222;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  line-height: 35px;
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+  width: 35px;
+  text-shadow: unset;
+  height: 35px;
+  border: none;
+}
+
 a{
   display: block;
   transition: 0.5s;
   text-decoration: none;
 }
+
+.productQuickView-image{
+  width: 100%;
+}
+
+.productQuickView-image img{
+  width: 100%;
+  height: 400px;
+}
+
+.productQuickView .modal-dialog {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.productQuickView .modal-content .product-content h3 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.productQuickView .modal-content .product-content .price {
+  margin-bottom: 5px;
+}
+
+.productQuickView .modal-content .product-content .product-info {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+.productQuickView .modal-content .product-content .product-add-to-cart .btn {
+  height: 45px;
+  top: -2px;
+  position: relative;
+}
+
+.productQuickView .modal-content .product-content .product-add-to-cart .btn i {
+  margin-right: 2px;
+}
+
+.fa-cart-plus:before {
+  content: "\f217";
+}
+
+
+
