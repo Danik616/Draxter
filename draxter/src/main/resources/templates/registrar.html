@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head th:replace="/fragments/head :: head"></head>
+  <head th:replace="/fragments/head :: head"> </head>
 
   <body>
     <div th:replace="/fragments/navbar :: navbar"></div>
-    <div style="height: auto; background: var(--bs-body-color)">
-      <section class="register-photo" style="background: var(--bs-body-color)">
-        <div class="form-container" style="width: 500px">
+    <div class="register-image">
+      <section class="register">
+        <div class="form-container">
           <form
             th:action="@{/registrarse}"
             th:object="${usuario}"
@@ -120,6 +120,7 @@
       src="assets/JQuery/jquery.min.js"
       th:src="@{/assets/JQuery/jquery.min.js}"
     ></script>
+    <script th:replace=" /fragments/scriptActive :: scriptActive"></script>
     <script type="text/javascript">
       $(function () {
         $(".checkbox").click(function () {
@@ -130,14 +131,5 @@
         });
       });
     </script>
-    <script src="assets/js/bs-init.js"></script>
-
-    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/jquery.tablesorter.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-filter.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-storage.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/Table-With-Search.js"></script>
   </body>
 </html>
