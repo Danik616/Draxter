@@ -5,72 +5,120 @@
     <div th:replace="/fragments/navbar :: navbar"></div>
     <div class="fontc">
       <section class="login-dark" style="height: 700px">
-        <form method="post" th:action="@{/iniciarSesion}">
-          <h2 class="visually-hidden">Login Form</h2>
-          <div th:if="${param.error}">
-            <div class="alert alert-danger">Usuario o contraseña invalidos</div>
-          </div>
-          <div
-            class="alert alert-success"
-            role="alert"
-            th:if="${resetPasswordMsg != null}"
-          >
-            <p style="color: aliceblue" th:text="${resetPasswordMsg}"></p>
-          </div>
-          <div
-            class="alert alert-danger"
-            role="alert"
-            th:if="${tokenError != null}"
-          >
-            <p style="color: aliceblue" th:text="${tokenError}"></p>
-          </div>
+        <div sec:authorize="!isAuthenticated()">
+          <form method="post" th:action="@{/iniciarSesion}">
+            <h2 class="visually-hidden">Login Form</h2>
+            <div th:if="${param.error}">
+              <div class="alert alert-danger">
+                Usuario o contraseña invalidos
+              </div>
+            </div>
+            <div
+              class="alert alert-success"
+              role="alert"
+              th:if="${resetPasswordMsg != null}"
+            >
+              <p style="color: aliceblue" th:text="${resetPasswordMsg}"></p>
+            </div>
+            <div
+              class="alert alert-danger"
+              role="alert"
+              th:if="${tokenError != null}"
+            >
+              <p style="color: aliceblue" th:text="${tokenError}"></p>
+            </div>
 
-          <div th:if="${param.logout}">
-            <div class="alert alert-danger">Ha cerrado sesion exitosamente</div>
-          </div>
-          <div class="illustration">
-            <i class="icon ion-ios-locked-outline"></i>
-          </div>
-          <div class="mb-3">
-            <input
-              id="username"
-              class="form-control"
-              type="text"
-              name="username"
-              placeholder=" Email"
-              required
-              autofocus="autofocus"
-            />
-          </div>
-          <div class="mb-3">
-            <input
-              id="password"
-              class="form-control"
-              type="password"
-              name="password"
-              placeholder=" Contraseña"
-              required
-              autofocus="autofocus"
-            />
-          </div>
-          <div class="mb-3">
-            <input
-              class="btn btn-primary d-block w-100"
-              type="submit"
-              id="iniciar-submit"
-              value="Iniciar sesión"
-            />
-          </div>
-          <a
-            href="#"
-            data-toggle="modal"
-            class="forgot"
-            data-target="#forgotPasswordModel"
-            >¿Olvidaste tu contraseña?</a
-          ><a class="forgot" th:href="@{/registrarse}"
-            >¿No tienes cuenta? Regístrate aquí</a
-          >
-        </form>
+            <div th:if="${param.logout}">
+              <div class="alert alert-danger">
+                Ha cerrado sesion exitosamente
+              </div>
+            </div>
+            <div class="illustration">
+              <i class="icon ion-ios-locked-outline"></i>
+            </div>
+            <div class="mb-3">
+              <input
+                id="username"
+                class="form-control"
+                type="text"
+                name="username"
+                placeholder=" Email"
+                required
+                autofocus="autofocus"
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                id="password"
+                class="form-control"
+                type="password"
+                name="password"
+                placeholder=" Contraseña"
+                required
+                autofocus="autofocus"
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                class="btn btn-primary d-block w-100"
+                type="submit"
+                id="iniciar-submit"
+                value="Iniciar sesión"
+              />
+            </div>
+            <a
+              href="#"
+              data-toggle="modal"
+              class="forgot"
+              data-target="#forgotPasswordModel"
+              >¿Olvidaste tu contraseña?</a
+            ><a class="forgot" th:href="@{/registrarse}"
+              >¿No tienes cuenta? Regístrate aquí</a
+            >
+          </form>
+        </div>
+        <div sec:authorize="isAuthenticated()">
+          <form method="post" th:action="@{/iniciarSesion}">
+            <h2 class="visually-hidden">Login Form</h2>
+
+            <div class="illustration">
+              <i class="icon ion-ios-locked-outline"></i>
+            </div>
+            <div class="mb-3">
+              <input
+                id="username"
+                class="form-control"
+                type="text"
+                name="username"
+                placeholder=" Email"
+                required
+                autofocus="autofocus"
+                disabled
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                id="password"
+                class="form-control"
+                type="password"
+                name="password"
+                placeholder=" Contraseña"
+                required
+                autofocus="autofocus"
+                disabled
+              />
+            </div>
+            <div class="mb-3">
+              <a
+                class="btn btn-primary d-block w-100"
+                type="submit"
+                id="iniciar-submit"
+                th:href="@{/}"
+                >Usted ya inicio sesión</a
+              >
+            </div>
+          </form>
+        </div>
       </section>
     </div>
 
