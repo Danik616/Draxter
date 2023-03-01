@@ -458,6 +458,11 @@ a{
   content: "\f217";
 }
 
+.title-ours{
+  font-size: 62.88px;
+  font-weight: bold;
+}
+
 .navbar{
   color: var(--bs-body-color);
   background: var(--bs-body-color);
