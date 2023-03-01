@@ -322,21 +322,6 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
       th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js}"
     ></script>
-
-    <script type="text/javascript">
-      //Aqui esto se quedará en veremos hasta que se complete la plantilla, agregar el activador y eliminador de active
-      $(document).ready(function () {
-        var links = $("ul li a");
-        $.each(links, function (key, va) {
-          if (va.href == document.URL) {
-            var findClass = "red";
-            if ($("this").hasClass(findClass)) {
-              $(this).removeClass(findClass);
-            }
-            $(this).addClass("active");
-          }
-        });
-      });
-    </script>
+    <script th:replace=" /fragments/scriptActive :: scriptActive"></script>
   </body>
 </html>
