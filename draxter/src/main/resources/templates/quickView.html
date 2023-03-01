@@ -16,11 +16,13 @@
           $<span class="new price" th:text="*{producto.precio}">Precio</span>
         </p>
       </div>
-      <div class="description">
+      <div class="descripcion">
         <p th:text="*{producto.descripcion}"></p>
       </div>
       <ul class="product-info">
-        <li th:each="caracteristica :${caracteristicas}"></li>
+        <li th:each="caracteristica :${caracteristicas}">
+          <p th:text="*{caracteristica}"></p>
+        </li>
       </ul>
       <div class="product-add-to-cart">
         <a

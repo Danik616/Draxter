@@ -1,3 +1,7 @@
+.carousel{
+  font-family: 'Archivo', sans-serif;
+}
+
 .carousel-indicators li {
     width: 10px;
     height: 10px;
@@ -227,6 +231,7 @@ font-size: 18px;
 
 .products-area {
 width: 100%;
+font-family: 'Archivo', sans-serif;
 }
 
 .gr{
@@ -235,6 +240,10 @@ width: 100%;
 
 .far{
   font-family: 'Font Awesome 5 Free';
+}
+
+.productQuickView{
+  font-family: 'Archivo', sans-serif;
 }
 
 .productQuickView .modal-dialog {
@@ -321,11 +330,30 @@ a{
   margin-bottom: 5px;
 }
 
+.productQuickView .modal-content .product-content .price span{
+  display: inline-block;
+  font-size: 18px;
+  color: #222222;
+}
+
 .productQuickView .modal-content .product-content .product-info {
   list-style-type: none;
   padding: 0;
   margin-top: 20px;
   margin-bottom: 0;
+}
+
+.productQuickView .modal-content .product-content .descripcion {
+  font-size: 18px;
+  color: #222222;
+  margin-bottom: 8px;
+}
+
+.productQuickView .modal-content .product-content .product-info li {
+  font-size: 16px;
+  color: #222222;
+  margin-bottom: 8px;
+  font-style: italic;
 }
 
 .productQuickView .modal-content .product-content .product-add-to-cart .btn {
@@ -340,6 +368,25 @@ a{
 
 .fa-cart-plus:before {
   content: "\f217";
+}
+
+.navbar{
+  color: var(--bs-body-color);
+  background: var(--bs-body-color);
+  font-family: 'Archivo', sans-serif;
+}
+
+
+.navbar-nav{
+  font-size: 13px;
+}
+
+.navbar-light .navbar-brand {
+  color: white !important;
+}
+
+.fontc{
+  font-family: 'Archivo', sans-serif;
 }
 
 

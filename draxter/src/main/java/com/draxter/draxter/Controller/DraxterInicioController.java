@@ -102,8 +102,8 @@ public class DraxterInicioController {
         model.addAttribute("producto", pr);
         String caracteristicas = pr.getCaracteristicas();
         String[] caracteristicasVector = caracteristicas.split(",");
-        List<String> caracteristicasLista = Arrays.asList(caracteristicasVector);
-        model.addAttribute("caracteristicas", caracteristicasLista);
+
+        model.addAttribute("caracteristicas", caracteristicasVector);
 
         return "quickView";
     }
