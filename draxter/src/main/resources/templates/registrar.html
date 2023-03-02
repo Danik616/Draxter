@@ -6,12 +6,11 @@
     <div th:replace="/fragments/navbar :: navbar"></div>
     <div class="register-image">
       <section class="register">
-        <div class="form-container">
+        <div class="form-container fontc">
           <form
             th:action="@{/registrarse}"
             th:object="${usuario}"
             method="post"
-            style="background: var(--bs-dark)"
           >
             <div th:if="${param.exito}">
               <div class="alert alert-info">Se ha registrado exitosamente.</div>
@@ -28,7 +27,7 @@
                 placeholder="Nombres"
                 th:field="*{nombres}"
                 required
-                autofocus="autofocus"
+                autocomplete="off"
               />
             </div>
             <div class="mb-3">
@@ -40,7 +39,7 @@
                 placeholder="Apellidos"
                 th:field="*{apellidos}"
                 required
-                autofocus="autofocus"
+                autocomplete="off"
               />
             </div>
             <div class="mb-3">
@@ -52,7 +51,7 @@
                 placeholder="Usuario"
                 th:field="*{usuario}"
                 required
-                autofocus="autofocus"
+                autocomplete="off"
               />
             </div>
             <div class="mb-3">
@@ -64,7 +63,7 @@
                 placeholder="Email"
                 th:field="*{email}"
                 required
-                autofocus="autofocus"
+                autocomplete="off"
               />
             </div>
             <div class="mb-3">
@@ -76,7 +75,8 @@
                 placeholder="Contraseña"
                 th:field="*{password}"
                 required
-                autofocus="autofocus"
+                autocomplete="off"
+                minlength="8"
               />
             </div>
 
@@ -90,14 +90,14 @@
               </button>
             </div>
             <p style="display: flex">
-              <input type="checkbox" value="Leído" class="checkbox" />
+              <input type="checkbox" value="Leído" class="checkbox ml-4" />
               &nbsp;
               <a
-                class="already"
+                class="already mt-1"
                 href="#"
                 data-toggle="modal"
                 data-target="#termsAndConditions"
-                >He leído los terminos y condiciones</a
+                >*He leído los terminos y condiciones</a
               >
             </p>
 

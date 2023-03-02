@@ -14,14 +14,25 @@
   width: 90%;
   margin: 0 auto;
   box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+  background-color: #1e2833;
 }
 
 .register form {
   display: table-cell;
-  width: 400px;
-  background-color: #ffffff;
+  max-width: 400px;
+  background-color: #1e2833;
   padding: 40px 60px;
   color: #505e6c;
+}
+
+.register .form-container form .form-control{
+  background: none;
+    border: none;
+    border-bottom: 1px solid #434a52;
+    border-radius: 0;
+    box-shadow: none;
+    outline: none;
+    color: inherit;
 }
 
 @media (max-width:991px) {
@@ -486,12 +497,13 @@ a{
   font-family: 'Archivo', sans-serif !important;
 }
 
+
 input{
   caret-color: blue;
 }
 
 input:invalid{
-  border: 2px solid red;
+  border-bottom: 1px solid red;
   animation: shake 0.2s 2;
 }
 
