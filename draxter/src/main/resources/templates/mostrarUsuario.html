@@ -4,121 +4,47 @@
   xmlns:th="http://www.thymeleaf.org"
   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
 >
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-    />
-    <title>Draxter</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css" />
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css" />
-    <link rel="stylesheet" href="assets/fonts/ionicons.min.css" />
-    <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css" />
-    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css" />
-    <link rel="stylesheet" href="assets/css/animated-services.css" />
-    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css" />
-    <link
-      rel="stylesheet"
-      href="assets/css/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.css"
-    />
-    <link rel="stylesheet" href="assets/css/Edit-Form.css" />
-    <link
-      rel="stylesheet"
-      href="assets/css/FAQ-Frequentlly-Asked-Questions-1.css"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/css/FAQ-Frequentlly-Asked-Questions.css"
-    />
-    <link rel="stylesheet" href="assets/css/featured-products-slider-1.css" />
-    <link rel="stylesheet" href="assets/css/featured-products-slider.css" />
-    <link rel="stylesheet" href="assets/css/Footer-Dark.css" />
-    <link rel="stylesheet" href="assets/css/gift-product-long.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
-    />
-    <link rel="stylesheet" href="assets/css/Login-Form-Dark.css" />
-    <link rel="stylesheet" href="assets/css/Ludens-Users---3-Profile.css" />
-    <link rel="stylesheet" href="assets/css/Navigation-Clean.css" />
-    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css" />
-    <link
-      rel="stylesheet"
-      href="assets/css/Search-Input-Responsive-with-Icon.css"
-    />
-    <link rel="stylesheet" href="assets/css/styles.css" />
-    <link rel="stylesheet" href="assets/css/Table-With-Search-1.css" />
-    <link rel="stylesheet" href="assets/css/Table-With-Search.css" />
-    <link
-      rel="stylesheet"
-      href="assets/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css"
-    />
-  </head>
-
+  <head th:replace="/fragments/head :: head"></head>
   <body>
-    <div sec:authorize="hasRole('ADMIN')">
-      <nav
-        class="navbar navbar-light navbar-expand-lg navigation-clean"
-        style="color: var(--bs-body-color); background: var(--bs-body-color)"
-      >
-        <div class="container">
-          <i class="fa fa-star" style="width: 50px; height: 50px"></i
-          ><a
-            class="navbar-brand"
-            th:href="@{/}"
-            style="color: var(--bs-body-bg)"
-            >Draxter</a
-          ><button
-            data-bs-toggle="collapse"
-            class="navbar-toggler"
-            data-bs-target="#navcol-1"
-          >
-            <span class="visually-hidden">Opciones</span
-            ><span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navcol-1">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link active" th:href="@{/}">Perfil</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" th:href="@{/servicios/monitorearPQR}">
-                  PQR</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" th:href="@{/servicios/agregarUsuario}">
-                  + Usuario</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" th:href="@{/servicios/FAQ}">FAQ</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" th:href="@{/servicios/agregarProducto}"
-                  >+ Producto</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" th:href="@{/servicios/monitorearProductos}"
-                  >Productos</a
-                >
-              </li>
-            </ul>
+    <div th:replace="/fragments/navbar :: navbar"></div>
+
+    <div class="container mt-5 mb-5 fontc">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="imgEdit">
+            <img
+              th:src="@{'/assets/img/' + ${user.imagen}}"
+              th:alt="${user.imagen}"
+              class="mb-3"
+            />
+          </div>
+          <div class="mb-3">
+            <a
+              class="btn btn-light d-block"
+              th:href="@{/servicios/editarUsuario/{id} (id=${usuario})}"
+            >
+              <i class="fas fa-pencil-alt"></i>&nbsp; Editar</a
+            >
           </div>
         </div>
-      </nav>
+        <div class="col-md-8">
+          <div class="row"><h1 th:text="*{nombre}">Nombre del Usuario</h1></div>
+          <div class="row"><h2 th:text="*{usuario}">Usuario</h2></div>
+          <div class="row">
+            <p sec:authorization="name" th:text="*{correo}">
+              Correo Electrónico: correo@ejemplo.com
+            </p>
+          </div>
+          <div class="row">
+            <p th:text="*{celular}">Teléfono: 123-456-7890</p>
+          </div>
+          <div class="row"><p th:text="*{pais}">País</p></div>
+          <div class="row"><p th:text="*{direccion}">Dirección</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div sec:authorize="hasRole('ADMIN')">
       <div
         class="d-flex"
         style="height: 100vh; background: var(--bs-body-color)"
@@ -180,59 +106,9 @@
           </h1>
         </div>
       </div>
-      <footer
-        style="
-          height: 10vh;
-          background: var(--bs-body-color);
-          text-align: center;
-        "
-      >
-        <p
-          class="copyright"
-          style="color: var(--bs-secondary); padding-top: 10px"
-        >
-          Draxter © 2022
-        </p>
-      </footer>
     </div>
 
     <div sec:authorize="hasRole('ASESOR')">
-      <nav
-        class="navbar navbar-light navbar-expand-lg navigation-clean"
-        style="color: var(--bs-body-color); background: var(--bs-body-color)"
-      >
-        <div class="container">
-          <i class="fa fa-star" style="width: 50px; height: 50px"></i
-          ><a
-            class="navbar-brand"
-            th:href="@{/}"
-            style="color: var(--bs-body-bg)"
-            >Draxter</a
-          ><button
-            data-bs-toggle="collapse"
-            class="navbar-toggler"
-            data-bs-target="#navcol-1"
-          >
-            <span class="visually-hidden">Opciones</span
-            ><span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navcol-1">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link active" th:href="@{/}">Perfil</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" th:href="@{/servicios/FAQ}">FAQ</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" th:href="@{/servicios/monitorearPQR}"
-                  >MonitorearPQR</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
       <main
         class="page"
         style="min-height: 110vh; background: var(--bs-gray-900)"
@@ -308,60 +184,9 @@
           </div>
         </section>
       </main>
-      <footer
-        style="
-          height: 10vh;
-          background: var(--bs-body-color);
-          text-align: center;
-        "
-      >
-        <p
-          class="copyright"
-          style="color: var(--bs-secondary); padding-top: 10px"
-        >
-          Draxter © 2022
-        </p>
-      </footer>
     </div>
 
     <div sec:authorize="hasRole('USER')">
-      <nav
-        class="navbar navbar-light navbar-expand-lg navigation-clean"
-        style="color: var(--bs-body-color); background: var(--bs-body-color)"
-      >
-        <div class="container">
-          <i class="fa fa-star" style="width: 50px; height: 50px"></i
-          ><a
-            class="navbar-brand"
-            th:href="@{/}"
-            style="color: var(--bs-body-bg)"
-            >Draxter</a
-          ><button
-            data-bs-toggle="collapse"
-            class="navbar-toggler"
-            data-bs-target="#navcol-1"
-          >
-            <span class="visually-hidden">Opciones</span
-            ><span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navcol-1">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link active" th:href="@{/}">Perfil</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" th:href="@{/catalogo}">Catalogo</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" th:href="@{/servicios}">Servicios</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" th:href="@{/pedidos}">Pedidos</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
       <main
         class="page"
         style="
@@ -473,31 +298,18 @@
           </div>
         </section>
       </main>
-      <footer
-        style="
-          height: 10vh;
-          background: var(--bs-body-color);
-          text-align: center;
-        "
-      >
-        <p
-          class="copyright"
-          style="color: var(--bs-secondary); padding-top: 10px"
-        >
-          Draxter © 2022
-        </p>
-      </footer>
     </div>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
-    <script src="assets/js/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.js"></script>
-    <script src="assets/js/featured-products-slider.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/jquery.tablesorter.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-filter.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-storage.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/Table-With-Search.js"></script>
+
+    <footer th:replace="/fragments/footer :: footer"></footer>
+    <script
+      src="assets/JQuery/jquery.min.js"
+      th:src="@{/assets/JQuery/jquery.min.js}"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js}"
+    ></script>
+    <script th:replace=" /fragments/scriptActive :: scriptActive"></script>
   </body>
 </html>

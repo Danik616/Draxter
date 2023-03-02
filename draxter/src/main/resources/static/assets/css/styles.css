@@ -136,6 +136,21 @@
     top: 0;
   }
 
+  .imgEdit{
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+  }
+
+  .imgEdit img{
+    margin-top: -30px;
+    width: 100%;
+    height: auto;
+  }
+
   .products-category-tab .title h2{
     margin-bottom: 0;
     display: inline-block;

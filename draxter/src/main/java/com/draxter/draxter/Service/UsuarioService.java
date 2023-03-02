@@ -72,8 +72,6 @@ public class UsuarioService implements IUsuarioService {
 
     @Override
     public Usuarios guardar(Usuarios usuario) {
-        String contraseña = usuario.getContraseña();
-        usuario.setContraseña(passwordEncoder.encode(contraseña));
         return usuarioRepository.save(usuario);
     }
 

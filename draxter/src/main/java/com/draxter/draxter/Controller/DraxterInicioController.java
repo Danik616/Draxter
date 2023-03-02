@@ -101,7 +101,6 @@ public class DraxterInicioController {
         return "mostrarCatalogo";
     }
 
-
     @GetMapping("/catalogo/{id}")
     public String mostrarProducto(@PathVariable Long id, Model model) {
         Producto pr = productoService.obtenerProductoPorId(id);
@@ -430,7 +429,6 @@ public class DraxterInicioController {
                 Files.write(rutaCompleta, bytesImg);
                 usuarioExistente.setApellidos(usuario.getApellidos());
                 usuarioExistente.setCelular(usuario.getCelular());
-                usuarioExistente.setContraseña(usuario.getContraseña());
                 usuarioExistente.setDireccion(usuario.getDireccion());
                 usuarioExistente.setImagen(nombreArchivo);
                 usuarioExistente.setNombres(usuario.getNombres());
