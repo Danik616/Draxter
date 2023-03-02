@@ -77,6 +77,11 @@ public class DraxterInicioController {
         return "iniciar";
     }
 
+    @RequestMapping("/nosotros")
+    public String nosotros() {
+        return "nosotros";
+    }
+
     @GetMapping("/")
     public String mostrarUsuario(Model model, HttpSession session) {
         usuario = (Usuarios) session.getAttribute("usuariosesion");
@@ -95,6 +100,7 @@ public class DraxterInicioController {
         model.addAttribute("productos", productoService.obtenerProductoPorGenero(genero));
         return "mostrarCatalogo";
     }
+
 
     @GetMapping("/catalogo/{id}")
     public String mostrarProducto(@PathVariable Long id, Model model) {
