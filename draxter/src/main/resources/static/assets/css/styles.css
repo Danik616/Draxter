@@ -140,15 +140,57 @@
     display: inline-block;
     position: relative;
     overflow: hidden;
-    width: 350px;
-    height: 350px;
+    width: 320px;
+    height: 320px;
     border-radius: 50%;
+    border-color: darkblue;
+    border-width: 10px;
+    padding: 2px;
+  }
+
+  @media (max-width:990px) {
+    .imgEdit{
+      width: 200px;
+      height: 200px;
+    }
+    
+  }
+  @media (max-width:767px) {
+    .imgEdit{
+      width: 200px;
+      height: 200px;
+      margin-left: 8rem;
+    }
+    
+  }
+  @media (max-width:540px) {
+    .imgEdit{
+      width: 200px;
+      height: 200px;
+      margin-left: 25%;
+    }
+    
   }
 
   .imgEdit img{
     margin-top: -30px;
     width: 100%;
     height: auto;
+  }
+
+  .tx-sz-10{
+    font-size: 12px;
+  }
+
+  .tx-sz-20{
+    font-size: 15px;
+  }
+  .tx-sz-30{
+    font-size: 33px;
+  }
+
+  .fa-icons{
+    font-family: 'Font Awesome 5 Free';
   }
 
   .products-category-tab .title h2{
@@ -510,6 +552,10 @@ a{
 
 .fontc>*{
   font-family: 'Archivo', sans-serif !important;
+}
+
+.footer-dark{
+  background:var(--bs-body-color) !important;
 }
 
 

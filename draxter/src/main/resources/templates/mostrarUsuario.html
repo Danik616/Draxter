@@ -9,295 +9,69 @@
     <div th:replace="/fragments/navbar :: navbar"></div>
 
     <div class="container mt-5 mb-5 fontc">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="imgEdit">
-            <img
-              th:src="@{'/assets/img/' + ${user.imagen}}"
-              th:alt="${user.imagen}"
-              class="mb-3"
-            />
-          </div>
-          <div class="mb-3">
-            <a
-              class="btn btn-light d-block"
-              th:href="@{/servicios/editarUsuario/{id} (id=${usuario})}"
-            >
-              <i class="fas fa-pencil-alt"></i>&nbsp; Editar</a
-            >
-          </div>
-        </div>
-        <div class="col-md-8">
-          <div class="row"><h1 th:text="*{nombre}">Nombre del Usuario</h1></div>
-          <div class="row"><h2 th:text="*{usuario}">Usuario</h2></div>
-          <div class="row">
-            <p sec:authorization="name" th:text="*{correo}">
-              Correo Electrónico: correo@ejemplo.com
-            </p>
-          </div>
-          <div class="row">
-            <p th:text="*{celular}">Teléfono: 123-456-7890</p>
-          </div>
-          <div class="row"><p th:text="*{pais}">País</p></div>
-          <div class="row"><p th:text="*{direccion}">Dirección</p></div>
-        </div>
-      </div>
-    </div>
-
-    <div sec:authorize="hasRole('ADMIN')">
       <div
-        class="d-flex"
-        style="height: 100vh; background: var(--bs-body-color)"
+        class="p-3 ml-0 mr-0 w-100 rounded shadow-lg border border-secondary"
       >
-        <div
-          class="d-inline media"
-          style="width: 40%; padding-top: 20%; height: 100%"
-        >
-          <div style="height: 200px; width: 100%; text-align: center">
-            <img
-              class="rounded-circle me-3"
-              style="height: 200px; width: 200px"
-              th:src="@{'/assets/img/' + ${user.imagen}}"
-              th:alt="${user.imagen}"
-            />
-          </div>
-          <div
-            class="media-body"
-            style="
-              height: 200px;
-              width: 100%;
-              text-align: left;
-              padding-left: 70px;
-            "
-          >
-            <ul class="list-unstyled fa-ul">
-              <li style="color: var(--bs-white)">
-                <i class="fa fa-user fa-li"></i
-                ><a th:text="*{nombre}" style="color: var(--bs-white)"
-                  >James Doe</a
-                >
-              </li>
-              <li style="color: var(--bs-white)">
-                <i class="fa fa-envelope fa-li"></i
-                ><a
-                  sec:authentication="name"
-                  href="#"
-                  style="color: var(--bs-white)"
-                >
-                </a>
-              </li>
-              <li th:text="*{usuario}" style="color: var(--bs-white)">
-                Usuario
-              </li>
-              <a
-                class="btn btn-primary"
-                th:href="@{/servicios/editarUsuario/{id} (id=${usuario})}"
-                >Editar</a
-              >
-            </ul>
-          </div>
+        <div class="row">
+          <h1 class="text-center">Acerca de tí</h1>
         </div>
-
-        <div style="width: 60%; height: 100%; text-align: center">
-          <h1
-            style="text-align: center; color: var(--bs-white); padding-top: 45%"
-          >
-            Bienvenido de nuevo
-          </h1>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="imgEdit">
+              <img
+                th:src="@{'/assets/img/' + ${user.imagen}}"
+                th:alt="${user.imagen}"
+                class="mb-3"
+              />
+            </div>
+            <div class="mb-3">
+              <a
+                class="btn btn-light d-block mt-2 btn-edit"
+                th:href="@{/servicios/editarUsuario/{id} (id=${usuario})}"
+              >
+                <i class="fas fa-pencil-alt"></i>&nbsp; Editar</a
+              >
+            </div>
+          </div>
+          <div class="col-md-8 mt-5 pl-5">
+            <div class="row">
+              <p class="tx-sz-30" th:text="*{nombre}">Nombre del Usuario</p>
+            </div>
+            <div class="row tx-sz-15">
+              <p class="mb-0 tx-sz-10">Usuario</p>
+              <p class="text-muted" th:text="*{usuario}">Usuario</p>
+            </div>
+            <div class="row">
+              <p class="mb-0 tx-sz-10">Correo electrónico</p>
+              <p
+                class="tx-sz-15 text-muted"
+                sec:authorization="name"
+                th:text="*{correo}"
+              >
+                Tu correo electrónico
+              </p>
+            </div>
+            <div sec:authorize="!hasRole('ADMIN')">
+              <div class="row">
+                <p class="mb-0 tx-sz-10">No° Celular</p>
+                <p class="tx-sz-15 text-muted" th:text="*{celular}">
+                  Tu télefono
+                </p>
+              </div>
+              <div class="row">
+                <p class="mb-0 tx-sz-10">País de residencia</p>
+                <p class="tx-sz-15 text-muted" th:text="*{pais}">Tu país</p>
+              </div>
+              <div class="row">
+                <p class="mb-0 tx-sz-10">Dirección de residencia</p>
+                <p class="tx-sz-15 text-muted" th:text="*{direccion}">
+                  Tu dirección
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div sec:authorize="hasRole('ASESOR')">
-      <main
-        class="page"
-        style="min-height: 110vh; background: var(--bs-gray-900)"
-      >
-        <section class="clean-block about-us" style="height: 520px">
-          <div class="row" style="margin-right: 0px; margin-left: 0px">
-            <div class="col text-center">
-              <h2
-                th:text="*{nombre}"
-                class="text-info"
-                style="color: var(--bs-red)"
-              >
-                Nombre
-              </h2>
-            </div>
-          </div>
-          <div
-            class="row justify-content-center"
-            style="margin-right: 0px; margin-left: 0px"
-          >
-            <div
-              class="col-sm-6 col-lg-4"
-              style="
-                padding-right: 0px;
-                padding-left: 0px;
-                background: var(--bs-gray-900);
-              "
-            >
-              <div class="card clean-card text-center">
-                <img
-                  class="card-img-top w-100 d-block"
-                  th:src="@{'/assets/img/' + ${user.imagen}}"
-                  th:alt="${user.imagen}"
-                />
-                <div
-                  class="card-body info"
-                  style="background: var(--bs-gray-900); color: var(--bs-white)"
-                >
-                  <div class="row" style="margin-top: -24px">
-                    <div class="col-md-12" style="margin-top: 22px">
-                      <div class="row">
-                        <div class="col">
-                          <p class="labels"><strong>Usuario</strong></p>
-                        </div>
-                        <div class="col">
-                          <p th:text="*{usuario}" class="labels">
-                            usuarioPrueba
-                          </p>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                          <p class="labels"><strong>Correo</strong></p>
-                        </div>
-                        <div class="col">
-                          <p sec:authentication="name" class="labels"></p>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <a
-                            class="btn btn-success"
-                            th:href="@{/servicios/editarUsuario/{id} (id=${usuario})}"
-                            ><i class="fas fa-pencil-alt"></i>Editar</a
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-    </div>
-
-    <div sec:authorize="hasRole('USER')">
-      <main
-        class="page"
-        style="
-          min-height: 110vh;
-          max-height: 130vh;
-          background: var(--bs-gray-900);
-        "
-      >
-        <section class="clean-block about-us">
-          <div class="row" style="margin-right: 0px; margin-left: 0px">
-            <div class="col text-center">
-              <h2
-                th:text="*{nombre}"
-                class="text-info"
-                style="color: whitesmoke !important"
-              >
-                Nombre
-              </h2>
-            </div>
-          </div>
-          <div
-            class="row justify-content-center"
-            style="margin-right: 0px; margin-left: 0px"
-          >
-            <div
-              class="col-sm-6 col-lg-4"
-              style="
-                padding-right: 0px;
-                padding-left: 0px;
-                background: var(--bs-gray-900);
-              "
-            >
-              <div class="card clean-card text-center">
-                <img
-                  class="card-img-top w-100 d-block"
-                  th:src="@{'/assets/img/' + ${user.imagen}}"
-                  th:alt="${user.imagen}"
-                />
-                <div
-                  class="card-body info"
-                  style="background: var(--bs-gray-900); color: var(--bs-white)"
-                >
-                  <div class="row" style="margin-top: -24px">
-                    <div class="col-md-12" style="margin-top: 22px">
-                      <div class="row">
-                        <div class="col">
-                          <p class="labels"><strong>Usuario</strong></p>
-                        </div>
-                        <div class="col">
-                          <p th:text="*{usuario}" class="labels">
-                            usuarioPrueba
-                          </p>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                          <p class="labels"><strong>Correo</strong></p>
-                        </div>
-                        <div class="col">
-                          <p
-                            sec:authorization="name"
-                            th:text="*{correo}"
-                            class="labels"
-                          >
-                            example@gmail.com
-                          </p>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                          <p class="labels"><strong>País</strong></p>
-                        </div>
-                        <div class="col">
-                          <p th:text="*{pais}" class="labels">México</p>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                          <p class="labels"><strong>No° celular</strong></p>
-                        </div>
-                        <div class="col">
-                          <p th:text="*{celular}" class="labels">1112223344</p>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                          <p class="labels"><strong>Dirección</strong></p>
-                        </div>
-                        <div class="col">
-                          <p th:text="*{direccion}" class="labels">
-                            calle 1 #3-4
-                          </p>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <a
-                            class="btn btn-success"
-                            th:href="@{/servicios/editarUsuario/{id} (id=${usuario})}"
-                            ><i class="fas fa-pencil-alt"></i>&nbsp;Editar</a
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
     </div>
 
     <footer th:replace="/fragments/footer :: footer"></footer>
