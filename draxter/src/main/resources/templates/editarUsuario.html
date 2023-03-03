@@ -9,6 +9,7 @@
           enctype="multipart/form-data"
         >
           <div class="row">
+            <p class="tx-sz-9 mb-0">Usuario</p>
             <input
               th:field="*{usuario}"
               class="form-control w-75 mb-3 mt-2"
@@ -18,51 +19,7 @@
             />
           </div>
           <div class="row">
-            <input
-              th:field="*{nombres}"
-              class="form-control w-75 mb-3"
-              type="text"
-              placeholder="Nombre/s"
-              aria-label="default input example"
-            />
-          </div>
-          <div class="row">
-            <input
-              th:field="*{apellidos}"
-              class="form-control w-75 mb-3"
-              type="text"
-              placeholder="Apellidos"
-              aria-label="default input example"
-            />
-          </div>
-          <div class="row">
-            <input
-              th:field="*{pais}"
-              class="form-control w-75 mb-3"
-              type="text"
-              placeholder="Pais de Origen"
-              aria-label="default input example"
-            />
-          </div>
-          <div class="row">
-            <input
-              th:field="*{celular}"
-              class="form-control w-75 mb-3"
-              type="number"
-              placeholder="Numero Telefonico"
-              aria-label="default input example"
-            />
-          </div>
-          <div class="row">
-            <input
-              th:field="*{direccion}"
-              class="form-control w-75 mb-3"
-              type="text"
-              placeholder="Dirección"
-              aria-label="default input example"
-            />
-          </div>
-          <div class="row">
+            <p class="tx-sz-9 mb-0">Correo electronico</p>
             <input
               th:field="*{email}"
               class="form-control w-75 mb-3"
@@ -72,8 +29,59 @@
               disabled
             />
           </div>
+          <div class="row">
+            <p class="tx-sz-9 mb-0">Nombres</p>
+            <input
+              th:field="*{nombres}"
+              class="form-control w-75 mb-3"
+              type="text"
+              placeholder="Nombre/s"
+              aria-label="default input example"
+            />
+          </div>
+          <div class="row">
+            <p class="tx-sz-9 mb-0">Apellidos</p>
+            <input
+              th:field="*{apellidos}"
+              class="form-control w-75 mb-3"
+              type="text"
+              placeholder="Apellidos"
+              aria-label="default input example"
+            />
+          </div>
+          <div class="row">
+            <p class="tx-sz-9 mb-0">*País</p>
+            <input
+              th:field="*{pais}"
+              class="form-control w-75 mb-3"
+              type="text"
+              placeholder="Pais de Origen"
+              aria-label="default input example"
+            />
+          </div>
+          <div class="row">
+            <p class="tx-sz-9 mb-0">*Número Telefonico</p>
+            <input
+              th:field="*{celular}"
+              class="form-control w-75 mb-3"
+              type="number"
+              placeholder="Numero Telefonico"
+              aria-label="default input example"
+            />
+          </div>
+          <div class="row">
+            <p class="tx-sz-9 mb-0">*Dirección de residencia</p>
+            <input
+              th:field="*{direccion}"
+              class="form-control w-75 mb-3"
+              type="text"
+              placeholder="Dirección"
+              aria-label="default input example"
+            />
+          </div>
 
           <div class="row">
+            <p class="tx-sz-9 mb-0">Foto del perfil</p>
             <input
               class="form-control w-75 mb-3"
               id="file"

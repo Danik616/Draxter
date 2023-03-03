@@ -178,6 +178,10 @@
     height: auto;
   }
 
+  .tx-sz-9{
+    font-size: 10px;
+  }
+
   .tx-sz-10{
     font-size: 12px;
   }
