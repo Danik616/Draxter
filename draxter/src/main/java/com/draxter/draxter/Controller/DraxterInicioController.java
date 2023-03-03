@@ -427,16 +427,18 @@ public class DraxterInicioController {
                     Files.delete(rutaEliminacion);
                 }
                 Files.write(rutaCompleta, bytesImg);
-                usuarioExistente.setApellidos(usuario.getApellidos());
-                usuarioExistente.setCelular(usuario.getCelular());
-                usuarioExistente.setDireccion(usuario.getDireccion());
+                
                 usuarioExistente.setImagen(nombreArchivo);
-                usuarioExistente.setNombres(usuario.getNombres());
-                usuarioExistente.setPais(usuario.getPais());
+                
             } catch (IOException e) {
                 e.printStackTrace();
 
             }
+            usuarioExistente.setApellidos(usuario.getApellidos());
+            usuarioExistente.setCelular(usuario.getCelular());
+            usuarioExistente.setDireccion(usuario.getDireccion());
+            usuarioExistente.setNombres(usuario.getNombres());
+            usuarioExistente.setPais(usuario.getPais());
             usuarioService.guardar(usuarioExistente);
         } else {
             return "redirect:/";

@@ -558,6 +558,35 @@ a{
   background:var(--bs-body-color) !important;
 }
 
+.edit-form form .row{
+  align-items: center !important;
+  margin-left: 15%;
+}
+
+.edit-form form .row .form-control{
+  background: none;
+  border: none;
+  border-bottom: 1px solid #434a52;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  color: inherit;
+  caret-color: blue;
+}
+
+.btn-danger{
+  background-color: transparent!important;
+  border-radius: 0%!important;
+  border-color: red !important;
+  color: black !important;
+}
+
+.btn-danger:hover{
+  background-color: red!important;
+  color: white!important;
+  border-radius: 0%!important;
+  transition: (100);
+}
 
 input{
   caret-color: blue;

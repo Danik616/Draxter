@@ -74,7 +74,24 @@
       </div>
     </div>
 
+    <div class="modal userEdit" tabindex="-1" id="userEdit">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+
     <footer th:replace="/fragments/footer :: footer"></footer>
+    <script>
+      $(document).ready(function () {
+        $(".btn-edit").on("click", function (e) {
+          e.preventDefault();
+          $("#userEdit")
+            .modal("show")
+            .find(".modal-content")
+            .load($(this).attr("href"));
+        });
+      });
+    </script>
     <script
       src="assets/JQuery/jquery.min.js"
       th:src="@{/assets/JQuery/jquery.min.js}"
