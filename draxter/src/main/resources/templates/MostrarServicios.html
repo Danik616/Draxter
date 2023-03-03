@@ -1,150 +1,29 @@
 <!DOCTYPE html>
-<html lang="en"
-xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-    />
-    <title>Draxter</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css" />
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css" />
-    <link rel="stylesheet" href="assets/fonts/ionicons.min.css" />
-    <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css" />
-    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css" />
-    <link rel="stylesheet" href="assets/css/animated-services.css" />
-    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css" />
-    <link
-      rel="stylesheet"
-      href="assets/css/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.css"
-    />
-    <link rel="stylesheet" href="assets/css/Edit-Form.css" />
-    <link
-      rel="stylesheet"
-      href="assets/css/FAQ-Frequentlly-Asked-Questions-1.css"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/css/FAQ-Frequentlly-Asked-Questions.css"
-    />
-    <link rel="stylesheet" href="assets/css/featured-products-slider-1.css" />
-    <link rel="stylesheet" href="assets/css/featured-products-slider.css" />
-    <link rel="stylesheet" href="assets/css/Footer-Dark.css" />
-    <link rel="stylesheet" href="assets/css/gift-product-long.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
-    />
-    <link rel="stylesheet" href="assets/css/Login-Form-Dark.css" />
-    <link rel="stylesheet" href="assets/css/Ludens-Users---3-Profile.css" />
-    <link rel="stylesheet" href="assets/css/Navigation-Clean.css" />
-    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css" />
-    <link
-      rel="stylesheet"
-      href="assets/css/Search-Input-Responsive-with-Icon.css"
-    />
-    <link rel="stylesheet" href="assets/css/styles.css" />
-    <link rel="stylesheet" href="assets/css/Table-With-Search-1.css" />
-    <link rel="stylesheet" href="assets/css/Table-With-Search.css" />
-    <link
-      rel="stylesheet"
-      href="assets/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css"
-    />
-  </head>
-
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+  <head th:replace="/fragments/head :: head"></head>
   <body>
-    <nav
-      class="navbar navbar-light navbar-expand-lg navigation-clean"
-      style="color: var(--bs-body-color); background: var(--bs-body-color)"
-    >
-      <div class="container">
-        <i class="fa fa-star" style="width: 50px; height: 50px"></i
-        ><a
-          class="navbar-brand"
-          th:href="@{/}"
-          style="color: var(--bs-body-bg)"
-          >Draxter</a
-        ><button
-          data-bs-toggle="collapse"
-          class="navbar-toggler"
-          data-bs-target="#navcol-1"
-        >
-          <span class="visually-hidden">Opciones</span
-          ><span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navcol-1">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/}">Perfil</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/catalogo}">Catalogo</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" th:href="@{/servicios}">Servicios</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/pedidos}">Pedidos</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <section
-      id="services"
-      class="services"
-      style="background: var(--bs-body-color)"
-    >
+    <div th:replace="/fragments/navbar :: navbar"></div>
+    <section id="services" class="services">
       <div class="container-md section-title">
-        <div class="text-center" style="padding-top: 5%"></div>
-        <div class="row g-0">
+        <div class="text-center pt-1"></div>
+        <div class="row g-0 mt-4">
           <div
             class="col-12 text-center col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0"
           >
-            <div class="text-center icon-box" style="min-width: 250px">
+            <div class="text-center icon-box">
               <div class="icon">
-                <i class="far fa-user" style="margin-bottom: 15px"></i>
-                <h4 class="title"><a th:href="@{/servicios/radicarPQR}" style="text-decoration: none;">Radicar PQR</a></h4>
-                <p class="description">
-                  Voluptatum deleniti atque corrupti quos dolores et quas
-                  molestias excepturi<br />&nbsp; &nbsp; &nbsp;&nbsp;
-                </p>
-              </div>
-            </div>
-          </div>
-          <div
-            class="col-12 text-center col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0"
-          >
-            <div class="text-center icon-box" style="min-width: 250px">
-              <div class="icon">
-                <i class="fa fa-search" style="margin-bottom: 15px"></i>
-                <h4 class="title"><a th:href="@{/servicios/monitorearPQR}" style="text-decoration: none;">Monitorear PQR</a></h4>
-                <p class="description">
-                  Voluptatum deleniti atque corrupti quos dolores et quas
-                  molestias excepturi<br />&nbsp; &nbsp; &nbsp;&nbsp;
-                </p>
-              </div>
-            </div>
-          </div>
-          <div
-            class="col-12 text-center col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0"
-          >
-            <div class="text-center icon-box" style="min-width: 250px">
-              <div class="icon">
-                <i class="fa fa-cut" style="margin-bottom: 15px"></i>
-                <h4 class="title"><a th:href="@{/servicios/pedirCorte}" style="text-decoration: none;">Pedir Corte</a></h4>
+                <i class="far fa-user mb-3"></i>
+                <h4 class="title">
+                  <a
+                    th:href="@{/servicios/radicarPQR}"
+                    style="text-decoration: none"
+                    >Radicar PQR</a
+                  >
+                </h4>
                 <p class="description">
                   Voluptatum deleniti atque corrupti quos dolores et quas
                   molestias excepturi<br />&nbsp; &nbsp; &nbsp;&nbsp;
@@ -157,11 +36,54 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
           >
             <div class="text-center icon-box">
               <div class="icon">
-                <i
-                  class="far fa-question-circle"
-                  style="margin-bottom: 15px"
-                ></i>
-                <h4 class="title"><a th:href="@{/servicios/mostrarFAQ}" style="text-decoration: none;">FAQ</a></h4>
+                <i class="fa fa-search mb-3"></i>
+                <h4 class="title">
+                  <a
+                    th:href="@{/servicios/monitorearPQR}"
+                    style="text-decoration: none"
+                    >Monitorear PQR</a
+                  >
+                </h4>
+                <p class="description">
+                  Voluptatum deleniti atque corrupti quos dolores et quas
+                  molestias excepturi<br />&nbsp; &nbsp; &nbsp;&nbsp;
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-12 text-center col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0"
+          >
+            <div class="text-center icon-box">
+              <div class="icon">
+                <i class="fa fa-cut mb-3"></i>
+                <h4 class="title">
+                  <a
+                    th:href="@{/servicios/pedirCorte}"
+                    style="text-decoration: none"
+                    >Pedir Corte</a
+                  >
+                </h4>
+                <p class="description">
+                  Voluptatum deleniti atque corrupti quos dolores et quas
+                  molestias excepturi<br />&nbsp; &nbsp; &nbsp;&nbsp;
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-12 text-center col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0"
+          >
+            <div class="text-center icon-box">
+              <div class="icon">
+                <i class="far fa-question-circle mb-3"></i>
+                <h4 class="title">
+                  <a
+                    th:href="@{/servicios/mostrarFAQ}"
+                    style="text-decoration: none"
+                    >FAQ</a
+                  >
+                </h4>
                 <p class="description">
                   Voluptatum deleniti atque corrupti quos dolores et quas
                   molestias excepturi<br />
@@ -172,58 +94,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
         </div>
       </div>
     </section>
-    <footer class="footer-dark">
-      <div class="container">
-        <div class="row">
-          <div
-            class="col-sm-6 col-md-2 offset-md-0 item"
-            style="text-align: center"
-          >
-            <a
-              href="nosotros.html"
-              style="color: var(--bs-gray-100); text-decoration: none"
-              data-bs-toggle="_blank"
-              >Nosotros</a
-            >
-          </div>
-          <div class="col-md-8 item text">
-            <h3>Draxter</h3>
-            <p>
-              Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus
-              ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique
-              lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.
-            </p>
-          </div>
-          <div class="col-md-2 item social">
-            <a
-              data-bss-hover-animate="flash"
-              href="#"
-              style="margin-bottom: 7px"
-              ><i
-                class="icon ion-social-facebook"
-                data-bss-hover-animate="flash"
-              ></i></a
-            ><a
-              data-bss-hover-animate="flash"
-              href="#"
-              style="margin-bottom: 7px"
-              ><i class="icon ion-social-twitter"></i></a
-            ><a
-              data-bss-hover-animate="flash"
-              href="#"
-              style="margin-bottom: 7px"
-              ><i class="icon ion-social-whatsapp-outline"></i></a
-            ><a
-              data-bss-hover-animate="flash"
-              href="#"
-              style="margin-bottom: 7px"
-              ><i class="icon ion-social-instagram"></i
-            ></a>
-          </div>
-        </div>
-        <p class="copyright">Draxter © 2022</p>
-      </div>
-    </footer>
+    <footer th:replace="/fragments/footer :: footer"></footer>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.js"></script>
