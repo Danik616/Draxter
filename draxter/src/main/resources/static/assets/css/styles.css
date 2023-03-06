@@ -163,6 +163,20 @@
   color: #fff;
 }
 
+/*Esta es la zona de los servicios
+*/
+
+.formSearch .form-control{
+  background: none;
+  border: none;
+  border-bottom: 1px solid #434a52;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  color: inherit;
+  caret-color: blue;
+}
+
 
 /*De aqui en adelante son estilos libres
 */
