@@ -29,9 +29,6 @@ public class ProductoService implements IProductoService {
     @Override
     public List<Producto> obtenerProductoPorGenero(String genero) {
         if (genero != null) {
-            if (genero.equals("TODO")) {
-                return productoRepository.findAll();
-            }
             return productoRepository.obtenerTodosLosProductoPorGenero(genero);
         }
         return productoRepository.findAll();

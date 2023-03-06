@@ -19,6 +19,7 @@
                 <i class="far fa-user mb-3"></i>
                 <h4 class="title">
                   <a
+                    class="btn-action"
                     th:href="@{/servicios/radicarPQR}"
                     style="text-decoration: none"
                     >Radicar PQR</a
@@ -39,6 +40,7 @@
                 <i class="fa fa-search mb-3"></i>
                 <h4 class="title">
                   <a
+                    class="btn-action"
                     th:href="@{/servicios/monitorearPQR}"
                     style="text-decoration: none"
                     >Monitorear PQR</a
@@ -59,6 +61,7 @@
                 <i class="fa fa-cut mb-3"></i>
                 <h4 class="title">
                   <a
+                    class="btn-action"
                     th:href="@{/servicios/pedirCorte}"
                     style="text-decoration: none"
                     >Pedir Corte</a
@@ -79,6 +82,7 @@
                 <i class="far fa-question-circle mb-3"></i>
                 <h4 class="title">
                   <a
+                    class="btn-action"
                     th:href="@{/servicios/mostrarFAQ}"
                     style="text-decoration: none"
                     >FAQ</a
@@ -94,17 +98,35 @@
         </div>
       </div>
     </section>
+
+    <div class="modal userServices" tabindex="-1" id="userServices">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+
     <footer th:replace="/fragments/footer :: footer"></footer>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
-    <script src="assets/js/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.js"></script>
-    <script src="assets/js/featured-products-slider.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/jquery.tablesorter.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-filter.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-storage.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/Table-With-Search.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $(".btn-action").on("click", function (e) {
+          e.preventDefault();
+          $("#userServices")
+            .modal("show")
+            .find(".modal-content")
+            .load($(this).attr("href"));
+        });
+      });
+    </script>
+    <script
+      src="assets/JQuery/jquery.min.js"
+      th:src="@{/assets/JQuery/jquery.min.js}"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js}"
+    ></script>
+    <script th:replace=" /fragments/scriptActive :: scriptActive"></script>
   </body>
 </html>

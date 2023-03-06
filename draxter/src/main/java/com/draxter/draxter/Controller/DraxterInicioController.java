@@ -118,31 +118,6 @@ public class DraxterInicioController {
         return "pagarPedido";
     }
 
-    @RequestMapping("/servicios")
-    public String mostrarServicios() {
-        return "MostrarServicios";
-    }
-
-    @GetMapping("/servicios/radicarPQR")
-    public String radicarPQR() {
-        return "radicarPQR";
-    }
-
-    @ModelAttribute("pqr")
-    public PQR pqr() {
-        return new PQR();
-    }
-
-    @PostMapping("/servicios/radicarPQR")
-    public String radicacionPQR(@ModelAttribute("pqr") PQR pqr, HttpSession session) {
-        usuario = (Usuarios) session.getAttribute("usuariosesion");
-        pqr.setEstado("No respondido");
-        pqr.setUsuario(usuario);
-        pqrService.guardarPQR(pqr);
-
-        return "redirect:/servicios/radicarPQR?exito";
-    }
-
     @GetMapping("/servicios/monitorearPQR")
     public String monitorearPQR(Model model, HttpSession session, @Param("id") String id) {
         usuario = (Usuarios) session.getAttribute("usuariosesion");
@@ -427,9 +402,9 @@ public class DraxterInicioController {
                     Files.delete(rutaEliminacion);
                 }
                 Files.write(rutaCompleta, bytesImg);
-                
+
                 usuarioExistente.setImagen(nombreArchivo);
-                
+
             } catch (IOException e) {
                 e.printStackTrace();
 
