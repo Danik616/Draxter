@@ -46,12 +46,12 @@
       <table class="table">
         <thead class="thead-dark">
           <tr>
-            <th id="trs-hd-1" class="col-lg-2">Código PQR</th>
-            <th id="trs-hd-2" class="col-lg-2">Pregunta</th>
-            <th id="trs-hd-3" class="col-lg-2">Respondido Por</th>
-            <th id="trs-hd-4" class="col-lg-2">Estado</th>
-            <th id="trs-hd-5" class="col-lg-2">Respuesta</th>
-            <th id="trs-hd-6" class="col-lg-2">Cambios</th>
+            <th class="col-lg-2">Código PQR</th>
+            <th class="col-lg-2">Pregunta</th>
+            <th class="col-lg-2">Respondido Por</th>
+            <th class="col-lg-2">Estado</th>
+            <th class="col-lg-2">Respuesta</th>
+            <th class="col-lg-2">Cambios</th>
           </tr>
         </thead>
         <tbody>
@@ -62,7 +62,7 @@
             <td th:text="${pqr.estado}"></td>
             <td th:text="${pqr.respuesta}"></td>
             <td>
-              <div clas="d-flex">
+              <div class="d-flex">
                 <a
                   th:href="@{/editarPQR/{id}(id=${pqr.id_pqr})}"
                   class="btn btn-light"
