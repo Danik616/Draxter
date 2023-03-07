@@ -19,7 +19,7 @@
                 <i class="far fa-user mb-3"></i>
                 <h4 class="title">
                   <a
-                    class="btn-action"
+                    class="btn-action-md"
                     th:href="@{/servicios/radicarPQR}"
                     style="text-decoration: none"
                     >Radicar PQR</a
@@ -40,7 +40,7 @@
                 <i class="fa fa-search mb-3"></i>
                 <h4 class="title">
                   <a
-                    class="btn-action"
+                    class="btn-action-lg"
                     th:href="@{/servicios/monitorearPQR}"
                     style="text-decoration: none"
                     >Monitorear PQR</a
@@ -61,7 +61,7 @@
                 <i class="fa fa-cut mb-3"></i>
                 <h4 class="title">
                   <a
-                    class="btn-action"
+                    class="btn-action-md"
                     th:href="@{/servicios/pedirCorte}"
                     style="text-decoration: none"
                     >Pedir Corte</a
@@ -82,7 +82,7 @@
                 <i class="far fa-question-circle mb-3"></i>
                 <h4 class="title">
                   <a
-                    class="btn-action"
+                    class="btn-action-lg"
                     th:href="@{/servicios/mostrarFAQ}"
                     style="text-decoration: none"
                     >FAQ</a
@@ -99,8 +99,13 @@
       </div>
     </section>
 
-    <div class="modal userServices" tabindex="-1" id="userServices">
+    <div class="modal userServices" tabindex="-1" id="userServices-md">
       <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+    <div class="modal userServices" tabindex="-1" id="userServices-lg">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content"></div>
       </div>
     </div>
@@ -109,9 +114,20 @@
 
     <script>
       $(document).ready(function () {
-        $(".btn-action").on("click", function (e) {
+        $(".btn-action-md").on("click", function (e) {
           e.preventDefault();
-          $("#userServices")
+          $("#userServices-md")
+            .modal("show")
+            .find(".modal-content")
+            .load($(this).attr("href"));
+        });
+      });
+    </script>
+    <script>
+      $(document).ready(function () {
+        $(".btn-action-lg").on("click", function (e) {
+          e.preventDefault();
+          $("#userServices-lg")
             .modal("show")
             .find(".modal-content")
             .load($(this).attr("href"));
