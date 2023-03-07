@@ -28,13 +28,13 @@ import com.draxter.draxter.Entity.PQR;
 import com.draxter.draxter.Entity.Producto;
 import com.draxter.draxter.Entity.Rol;
 import com.draxter.draxter.Entity.Usuarios;
-import com.draxter.draxter.Entity.Corte;
+
 import com.draxter.draxter.Entity.FAQ;
 import com.draxter.draxter.Service.PQRService;
 import com.draxter.draxter.Service.ProductoService;
 import com.draxter.draxter.Service.UsuarioService;
 import com.draxter.draxter.data.ResetPasswordData;
-import com.draxter.draxter.Service.CorteService;
+
 import com.draxter.draxter.Service.FAQService;
 
 @Controller
@@ -49,9 +49,6 @@ public class DraxterInicioController {
     private PQRService pqrService;
 
     @Autowired
-    private CorteService corteService;
-
-    @Autowired
     private FAQService faqService;
 
     @Autowired
@@ -59,11 +56,10 @@ public class DraxterInicioController {
 
     List<Rol> listadoRol = new ArrayList<Rol>();
 
-    public DraxterInicioController(ProductoService productoService, PQRService pqrService, CorteService corteService,
+    public DraxterInicioController(ProductoService productoService, PQRService pqrService,
             FAQService faqService, UsuarioService usuarioService) {
         this.productoService = productoService;
         this.pqrService = pqrService;
-        this.corteService = corteService;
         this.faqService = faqService;
         this.usuarioService = usuarioService;
 
@@ -116,35 +112,6 @@ public class DraxterInicioController {
     @GetMapping("/catalogo/{id}/pagarPedido")
     public String pagarPedido() {
         return "pagarPedido";
-    }
-
-    @GetMapping("/servicios/monitorearPQR")
-    public String monitorearPQR(Model model, HttpSession session, @Param("id") String id) {
-        usuario = (Usuarios) session.getAttribute("usuariosesion");
-        List<PQR> listaPqr = pqrService.obtenerPQRPorId(id, usuario.getUsuario());
-        List<PQR> listaPqrAdmin = pqrService.obtenerPQRPorIdAdmin(id);
-        model.addAttribute("pqrs", listaPqr);
-        model.addAttribute("pqrsAdmin", listaPqrAdmin);
-        model.addAttribute("id", id);
-        return "monitorearPQRCliente";
-    }
-
-    @GetMapping("/servicios/pedirCorte")
-    public String pedirCorte() {
-        return "PedirCorte";
-    }
-
-    @ModelAttribute("corte")
-    public Corte corte() {
-        return new Corte();
-    }
-
-    @PostMapping("/servicios/pedirCorte")
-    public String peticionCorte(@ModelAttribute("corte") Corte corte, HttpSession session) {
-        usuario = (Usuarios) session.getAttribute("usuariosesion");
-        corte.setUsuario(usuario);
-        corteService.guardarCorte(corte);
-        return "redirect:/servicios/pedirCorte?exito";
     }
 
     @GetMapping("/servicios/mostrarFAQ")

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+  <head th:replace="/fragments/head :: head"></head>
+  <body>
+    <div th:replace="/fragments/navbar :: navbar"></div>
+    <div
+      class="d-block container border-secondary border shadow-lg mt-4 mb-4 min-vh-100"
+    >
+      <div class="d-flex justify-content-end">
+        <div class="row d-flex">
+          <div class="m-3 w-100">
+            <form
+              th:action="@{/servicios/monitorearPQR/vistaCompleta}"
+              class="d-flex align-items-center formSearch mr-4"
+            >
+              <input
+                id="id"
+                class="form-control"
+                type="text"
+                placeholder="Buscar por Código..."
+                name="id"
+                th:value="${id}"
+              /><button class="btn btn-light" type="submit" id="btn-validar">
+                Enviar
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="container fontc mt-2">
+        <div class="tabla" sec:authorize="hasRole('USER')">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th class="col-lg-1">Código PQR</th>
+                <th class="col-lg-4">Pregunta</th>
+                <th class="col-lg-3">Estado</th>
+                <th class="col-lg-5">Respuesta</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="pqr: ${pqrs}">
+                <th scope="row" th:text="${pqr.id_pqr}"></th>
+                <td th:text="${pqr.descripcion}"></td>
+                <td th:text="${pqr.estado}"></td>
+                <td th:text="${pqr.respuesta}"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tabla" sec:authorize="!hasRole('USER')">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th class="col-lg-2">Código PQR</th>
+                <th class="col-lg-2">Pregunta</th>
+                <th class="col-lg-2">Respondido Por</th>
+                <th class="col-lg-2">Estado</th>
+                <th class="col-lg-2">Respuesta</th>
+                <th class="col-lg-2">Cambios</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="pqr : ${pqrsAdmin}">
+                <td th:text="${pqr.id_pqr}"></td>
+                <td th:text="${pqr.descripcion}"></td>
+                <td th:text="${pqr.respondidoPor}"></td>
+                <td th:text="${pqr.estado}"></td>
+                <td th:text="${pqr.respuesta}"></td>
+                <td>
+                  <div class="d-flex">
+                    <a
+                      th:href="@{/editarPQR/{id}(id=${pqr.id_pqr})}"
+                      class="btn btn-light"
+                      >Editar</a
+                    >
+                    <a
+                      th:href="@{/borrarPQR/{id}(id=${pqr.id_pqr})}"
+                      class="btn btn-danger"
+                      >Borrar</a
+                    >
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <footer th:replace="/fragments/footer :: footer"></footer>
+    <script
+      src="assets/JQuery/jquery.min.js"
+      th:src="@{/assets/JQuery/jquery.min.js}"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js}"
+    ></script>
+    <script th:replace=" /fragments/scriptActive :: scriptActive"></script>
+    <script type="text/javascript">
+      $("#id").change(function () {
+        //alert("el input cambio");
+        if ($(this).val() == 0) {
+          //si el input es cero
+          $("#btn-validar").attr("disabled", "disabled");
+        } else {
+          // si tiene un valor diferente a cero
+          $("#btn-validar").removeAttr("disabled");
+        }
+      });
+    </script>
+  </body>
+</html>

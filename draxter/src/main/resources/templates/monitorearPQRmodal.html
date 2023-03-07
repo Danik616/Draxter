@@ -6,23 +6,21 @@
 </div>
 <div class="row align-items-center modal-body">
   <div class="container fontc">
-    <div class="m-3 w-50">
-      <form
-        th:action="@{/servicios/monitorearPQR}"
-        class="d-flex align-items-center formSearch"
-      >
-        <input
-          id="id"
-          class="form-control"
-          type="text"
-          placeholder="Buscar por Código..."
-          name="id"
-          th:value="${id}"
-        /><input class="btn btn-light" type="submit" />
-      </form>
+    <div class="service-full-view">
+      <ul>
+        <li>
+          <a
+            th:href="@{/servicios/monitorearPQR/vistaCompleta}"
+            title="Vista completa"
+            class="all-pqr"
+          >
+            <i class="far fa-eye"> </i
+          ></a>
+        </li>
+        <label class="pb-2">Vista completa</label>
+      </ul>
     </div>
-
-    <div class="tabla" sec:authorize="hasRole('USER')">
+    <div class="tabla mt-2" sec:authorize="hasRole('USER')">
       <table class="table">
         <thead class="thead-dark">
           <tr>

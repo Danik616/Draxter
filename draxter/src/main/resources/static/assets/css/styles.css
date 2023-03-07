@@ -177,6 +177,44 @@
   caret-color: blue;
 }
 
+.servi .alert{
+  z-index: 999;
+  position: relative;
+}
+
+.service-full-view ul li a {
+  width: 35px;
+  height: 35px;
+  line-height: 38px;
+  text-align: center;
+  background-color: #ffffff;
+  color: #222222;
+  border-radius: 50%;
+  -webkit-box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 10%);
+  box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 10%);
+}
+
+.service-full-view ul li {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.service-full-view ul {
+  text-align: right;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+.service-full-view ul li a:hover {
+  color: white;
+  background-color: black;
+}
+
+.service-full-view ul li a:focus {
+  color: white;
+  background-color: black;
+}
 
 /*De aqui en adelante son estilos libres
 */
