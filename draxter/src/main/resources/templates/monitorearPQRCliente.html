@@ -6,200 +6,78 @@
 </div>
 <div class="row align-items-center modal-body">
   <div class="container fontc">
-    <div sec:authorize="hasRole('USER')">
-      <div class="m-3 w-50">
-        <form
-          th:action="@{/servicios/monitorearPQR}"
-          class="d-flex align-items-center formSearch"
-        >
-          <input
-            id="id"
-            class="form-control"
-            type="text"
-            placeholder="Buscar por Código..."
-            name="id"
-            th:value="${id}"
-          /><input class="btn btn-light" type="submit" />
-        </form>
-      </div>
-
-      <div class="tabla">
-        <table class="table">
-          <thead class="thead-dark">
-            <tr>
-              <th class="col-lg-1">Código PQR</th>
-              <th class="col-lg-4">Pregunta</th>
-              <th class="col-lg-3">Estado</th>
-              <th class="col-lg-5">Respuesta</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr th:each="pqr: ${pqrs}">
-              <th scope="row" th:text="${pqr.id_pqr}"></th>
-              <td th:text="${pqr.descripcion}"></td>
-              <td th:text="${pqr.estado}"></td>
-              <td th:text="${pqr.respuesta}"></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="m-3 w-50">
+      <form
+        th:action="@{/servicios/monitorearPQR}"
+        class="d-flex align-items-center formSearch"
+      >
+        <input
+          id="id"
+          class="form-control"
+          type="text"
+          placeholder="Buscar por Código..."
+          name="id"
+          th:value="${id}"
+        /><input class="btn btn-light" type="submit" />
+      </form>
     </div>
-  </div>
-</div>
 
-<div sec:authorize="hasRole('ADMIN')">
-  <div
-    style="height: auto; min-height: 100vh; background: var(--bs-body-color)"
-  >
-    <div class="col-md-12 search-table-col" style="margin-top: 0">
-      <div class="form-group pull-right col-lg-4">
-        <div class="col-md-10 offset-md-1" style="width: 90%">
-          <div
-            class="card m-auto"
-            style="
-              max-width: 850px;
-              background: var(--bs-gray-900);
-              width: 100%;
-            "
-          >
-            <div class="card-body">
-              <form
-                th:action="@{/servicios/monitorearPQR}"
-                class="d-flex align-items-center"
-              >
-                <input
-                  id="id"
-                  class="form-control form-control-lg flex-shrink-1 form-control-borderless"
-                  type="text"
-                  placeholder="Buscar por Código..."
-                  name="id"
-                  th:value="${id}"
-                /><input class="btn btn-success btn-lg" type="submit" />
-                Buscar
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <span class="counter pull-right"></span>
-
-      <div class="table-responsive table table-hover table-bordered results">
-        <table class="table table-hover table-bordered">
-          <thead class="bill-header cs">
-            <tr>
-              <th id="trs-hd-1" class="col-lg-2">Código PQR</th>
-              <th id="trs-hd-2" class="col-lg-2">Pregunta</th>
-              <th id="trs-hd-3" class="col-lg-2">Respondido Por</th>
-              <th id="trs-hd-4" class="col-lg-2">Estado</th>
-              <th id="trs-hd-5" class="col-lg-2">Respuesta</th>
-              <th id="trs-hd-6" class="col-lg-2">Cambios</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr th:each="pqr : ${pqrsAdmin}" style="color: white">
-              <td th:text="${pqr.id_pqr}" style="border-color: white"></td>
-              <td th:text="${pqr.descripcion}" style="border-color: white"></td>
-              <td
-                th:text="${pqr.respondidoPor}"
-                style="border-color: white"
-              ></td>
-              <td th:text="${pqr.estado}" style="border-color: white"></td>
-              <td th:text="${pqr.respuesta}" style="border-color: white"></td>
-              <td>
-                <div style="display: flex">
-                  <a
-                    th:href="@{/editarPQR/{id}(id=${pqr.id_pqr})}"
-                    class="btn btn-primary"
-                    >Editar</a
-                  >
-                  <a
-                    th:href="@{/borrarPQR/{id}(id=${pqr.id_pqr})}"
-                    class="btn btn-danger"
-                    >Borrar</a
-                  >
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="tabla" sec:authorize="hasRole('USER')">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th class="col-lg-1">Código PQR</th>
+            <th class="col-lg-4">Pregunta</th>
+            <th class="col-lg-3">Estado</th>
+            <th class="col-lg-5">Respuesta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="pqr: ${pqrs}">
+            <th scope="row" th:text="${pqr.id_pqr}"></th>
+            <td th:text="${pqr.descripcion}"></td>
+            <td th:text="${pqr.estado}"></td>
+            <td th:text="${pqr.respuesta}"></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  </div>
-</div>
-
-<div sec:authorize="hasRole('ASESOR')">
-  <div style="height: 100vh; background: var(--bs-body-color)">
-    <div class="col-md-12 search-table-col" style="margin-top: 0">
-      <div class="form-group pull-right col-lg-4">
-        <div class="col-md-10 offset-md-1" style="width: 90%">
-          <div
-            class="card m-auto"
-            style="
-              max-width: 850px;
-              background: var(--bs-gray-900);
-              width: 100%;
-            "
-          >
-            <div class="card-body">
-              <form
-                th:action="@{/servicios/monitorearPQR}"
-                class="d-flex align-items-center"
-              >
-                <input
-                  id="id"
-                  class="form-control form-control-lg flex-shrink-1 form-control-borderless"
-                  type="text"
-                  placeholder="Buscar por Código..."
-                  name="id"
-                  th:value="${id}"
-                /><input class="btn btn-success btn-lg" type="submit" />
-                Buscar
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <span class="counter pull-right"></span>
-      <div class="table-responsive table table-hover table-bordered results">
-        <table class="table table-hover table-bordered">
-          <thead class="bill-header cs">
-            <tr>
-              <th id="trs-hd-1" class="col-lg-2">Código PQR</th>
-              <th id="trs-hd-2" class="col-lg-2">Pregunta</th>
-              <th id="trs-hd-3" class="col-lg-2">Respondido Por</th>
-              <th id="trs-hd-4" class="col-lg-2">Estado</th>
-              <th id="trs-hd-5" class="col-lg-2">Respuesta</th>
-              <th id="trs-hd-6" class="col-lg-2">Cambios</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr th:each="pqr : ${pqrsAdmin}" style="color: white">
-              <td th:text="${pqr.id_pqr}" style="border-color: white"></td>
-              <td th:text="${pqr.descripcion}" style="border-color: white"></td>
-              <td
-                th:text="${pqr.respondidoPor}"
-                style="border-color: white"
-              ></td>
-              <td th:text="${pqr.estado}" style="border-color: white"></td>
-              <td th:text="${pqr.respuesta}" style="border-color: white"></td>
-              <td>
-                <div style="display: flex">
-                  <a
-                    th:href="@{/editarPQR/{id}(id=${pqr.id_pqr})}"
-                    class="btn btn-primary"
-                    >Editar</a
-                  >
-                  <a
-                    th:href="@{/borrarPQR/{id}(id=${pqr.id_pqr})}"
-                    class="btn btn-danger"
-                    >Borrar</a
-                  >
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="tabla" sec:authorize="!hasRole('USER')">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th id="trs-hd-1" class="col-lg-2">Código PQR</th>
+            <th id="trs-hd-2" class="col-lg-2">Pregunta</th>
+            <th id="trs-hd-3" class="col-lg-2">Respondido Por</th>
+            <th id="trs-hd-4" class="col-lg-2">Estado</th>
+            <th id="trs-hd-5" class="col-lg-2">Respuesta</th>
+            <th id="trs-hd-6" class="col-lg-2">Cambios</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="pqr : ${pqrsAdmin}">
+            <td th:text="${pqr.id_pqr}"></td>
+            <td th:text="${pqr.descripcion}"></td>
+            <td th:text="${pqr.respondidoPor}"></td>
+            <td th:text="${pqr.estado}"></td>
+            <td th:text="${pqr.respuesta}"></td>
+            <td>
+              <div clas="d-flex">
+                <a
+                  th:href="@{/editarPQR/{id}(id=${pqr.id_pqr})}"
+                  class="btn btn-light"
+                  >Editar</a
+                >
+                <a
+                  th:href="@{/borrarPQR/{id}(id=${pqr.id_pqr})}"
+                  class="btn btn-danger"
+                  >Borrar</a
+                >
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
