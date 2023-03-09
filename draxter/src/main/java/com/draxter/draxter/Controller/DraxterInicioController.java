@@ -29,13 +29,10 @@ import com.draxter.draxter.Entity.Producto;
 import com.draxter.draxter.Entity.Rol;
 import com.draxter.draxter.Entity.Usuarios;
 
-import com.draxter.draxter.Entity.FAQ;
 import com.draxter.draxter.Service.PQRService;
 import com.draxter.draxter.Service.ProductoService;
 import com.draxter.draxter.Service.UsuarioService;
 import com.draxter.draxter.data.ResetPasswordData;
-
-import com.draxter.draxter.Service.FAQService;
 
 @Controller
 public class DraxterInicioController {
@@ -49,18 +46,15 @@ public class DraxterInicioController {
     private PQRService pqrService;
 
     @Autowired
-    private FAQService faqService;
-
-    @Autowired
     private UsuarioService usuarioService;
 
     List<Rol> listadoRol = new ArrayList<Rol>();
 
     public DraxterInicioController(ProductoService productoService, PQRService pqrService,
-            FAQService faqService, UsuarioService usuarioService) {
+            UsuarioService usuarioService) {
         this.productoService = productoService;
         this.pqrService = pqrService;
-        this.faqService = faqService;
+
         this.usuarioService = usuarioService;
 
         listadoRol.add(new Rol("ROLE_ASESOR"));
@@ -114,13 +108,6 @@ public class DraxterInicioController {
         return "pagarPedido";
     }
 
-    @GetMapping("/servicios/mostrarFAQ")
-    public String mostrarFAQ(Model model, HttpSession session) {
-        usuario = (Usuarios) session.getAttribute("usuariosesion");
-        model.addAttribute("faqs", faqService.obtenerFAQs());
-        return "mostrarFAQ";
-    }
-
     @GetMapping("/editarPQR/{id}")
     public String editarPQR(Model model, HttpSession session, @PathVariable(name = "id") String id) {
         PQR pqr = pqrService.obtenerUnPQRPorID(id);
@@ -151,64 +138,6 @@ public class DraxterInicioController {
     public String borrarPQR(Model model, HttpSession session, @PathVariable(name = "id") String id) {
         pqrService.eliminarPQR(id);
         return "redirect:/servicios/monitorearPQR";
-    }
-
-    @GetMapping("/servicios/FAQ")
-    public String mostrarFAQ(Model model, HttpSession session, @Param("id") String id) {
-        if (id != null) {
-            faqService.eliminarFAQsporID(id);
-            model.addAttribute("id", id);
-            return "redirect:/servicios/FAQ";
-        }
-        model.addAttribute("faqs", faqService.obtenerFAQs());
-
-        return "FAQ";
-    }
-
-    @GetMapping("/servicios/FAQ/nuevoFAQ")
-    public String nuevoFAQ(Model model, HttpSession session) {
-        return "nuevoFAQ";
-    }
-
-    @ModelAttribute("FAQ")
-    public FAQ nuevoFaq() {
-        return new FAQ();
-    }
-
-    @PostMapping("/servicios/FAQ/nuevoFAQ")
-    public String peticionFAQ(@ModelAttribute("FAQ") FAQ faq, HttpSession session) {
-        usuario = (Usuarios) session.getAttribute("usuariosesion");
-        faq.setUsuario(usuario);
-        faqService.guardarFAQ(faq);
-        return "redirect:/servicios/FAQ";
-    }
-
-    @GetMapping("/editarFAQ/{id}")
-    public String editarFAQ(Model model, HttpSession session, @PathVariable(name = "id") String id) {
-        FAQ faq = faqService.obtenerFAQporID(id);
-        model.addAttribute("faq", faq);
-        model.addAttribute("pregunta", faq.getPregunta());
-        model.addAttribute("respuesta", faq.getRespuesta());
-        return "editarFAQ";
-    }
-
-    @PostMapping("/actualizarFAQ/{id}")
-    public String actualizarFAQ(HttpSession session, @PathVariable("id") String id,
-            @ModelAttribute("faq") FAQ faq, Model model) {
-        FAQ faqExistente = faqService.obtenerFAQporID(id);
-
-        if (faqExistente != null) {
-            faqExistente.setPregunta(faq.getPregunta());
-            faqExistente.setRespuesta(faq.getRespuesta());
-            faqExistente.setUsuario(usuario);
-
-            faqService.guardarFAQ(faqExistente);
-            return "redirect:/servicios/FAQ";
-        } else {
-
-            return "redirect:/editarFAQ/{" + id + "}?error))";
-        }
-
     }
 
     @GetMapping("/servicios/agregarProducto")

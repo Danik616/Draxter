@@ -4,24 +4,26 @@ import javax.servlet.http.HttpSession;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.ui.Model;
-import org.springframework.data.repository.query.Param;
 
 import com.draxter.draxter.Entity.PQR;
 import com.draxter.draxter.Entity.Usuarios;
 import com.draxter.draxter.Entity.Corte;
+import com.draxter.draxter.Entity.FAQ;
 import com.draxter.draxter.Service.PQRService;
 import com.draxter.draxter.Service.CorteService;
+import com.draxter.draxter.Service.FAQService;
 
 @Controller
 public class DraxterServicioController {
@@ -36,6 +38,9 @@ public class DraxterServicioController {
 
     @Autowired
     private CorteService corteService;
+
+    @Autowired
+    private FAQService faqService;
 
     @RequestMapping("/servicios")
     public String mostrarServicios() {
@@ -106,6 +111,71 @@ public class DraxterServicioController {
         redirAttr.addFlashAttribute("corteSuccessMsg",
                 messageSource.getMessage("corte.success.msg", null, LocaleContextHolder.getLocale()));
         return "redirect:/servicios";
+    }
+
+    @GetMapping("/servicios/mostrarFAQ")
+    public String mostrarFAQ(Model model, HttpSession session) {
+        usuario = (Usuarios) session.getAttribute("usuariosesion");
+        model.addAttribute("faqs", faqService.obtenerFAQs());
+        return "mostrarFAQ";
+    }
+
+    @GetMapping("/servicios/FAQ")
+    public String mostrarFAQ(Model model, HttpSession session, @Param("id") String id) {
+        if (id != null) {
+            faqService.eliminarFAQsporID(id);
+            model.addAttribute("id", id);
+            return "redirect:/servicios/FAQ";
+        }
+        model.addAttribute("faqs", faqService.obtenerFAQs());
+
+        return "FAQ";
+    }
+
+    @GetMapping("/servicios/FAQ/nuevoFAQ")
+    public String nuevoFAQ(Model model, HttpSession session) {
+        return "nuevoFAQ";
+    }
+
+    @ModelAttribute("FAQ")
+    public FAQ nuevoFaq() {
+        return new FAQ();
+    }
+
+    @PostMapping("/servicios/FAQ/nuevoFAQ")
+    public String peticionFAQ(@ModelAttribute("FAQ") FAQ faq, HttpSession session) {
+        usuario = (Usuarios) session.getAttribute("usuariosesion");
+        faq.setUsuario(usuario);
+        faqService.guardarFAQ(faq);
+        return "redirect:/servicios/FAQ";
+    }
+
+    @GetMapping("/editarFAQ/{id}")
+    public String editarFAQ(Model model, HttpSession session, @PathVariable(name = "id") String id) {
+        FAQ faq = faqService.obtenerFAQporID(id);
+        model.addAttribute("faq", faq);
+        model.addAttribute("pregunta", faq.getPregunta());
+        model.addAttribute("respuesta", faq.getRespuesta());
+        return "editarFAQ";
+    }
+
+    @PostMapping("/actualizarFAQ/{id}")
+    public String actualizarFAQ(HttpSession session, @PathVariable("id") String id,
+            @ModelAttribute("faq") FAQ faq, Model model) {
+        FAQ faqExistente = faqService.obtenerFAQporID(id);
+
+        if (faqExistente != null) {
+            faqExistente.setPregunta(faq.getPregunta());
+            faqExistente.setRespuesta(faq.getRespuesta());
+            faqExistente.setUsuario(usuario);
+
+            faqService.guardarFAQ(faqExistente);
+            return "redirect:/servicios/FAQ";
+        } else {
+
+            return "redirect:/editarFAQ/{" + id + "}?error))";
+        }
+
     }
 
 }
