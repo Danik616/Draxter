@@ -15,9 +15,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.draxter.draxter.Entity.Producto;
 import com.draxter.draxter.Entity.Usuarios;
+import com.draxter.draxter.Entity.Carrito;
 import com.draxter.draxter.Service.CarritoService;
 import com.draxter.draxter.Service.ProductoService;
-import com.draxter.draxter.Service.UsuarioService;
 
 @Controller
 public class DraxterCarritoOrdenController {
@@ -28,18 +28,14 @@ public class DraxterCarritoOrdenController {
     private ProductoService productoService;
 
     @Autowired
-    private UsuarioService usuarioService;
-
-    @Autowired
     private CarritoService carritoService;
 
     @Autowired
     private MessageSource messageSource;
 
-    public DraxterCarritoOrdenController(ProductoService productoService, UsuarioService usuarioService,
+    public DraxterCarritoOrdenController(ProductoService productoService,
             CarritoService carritoService) {
         this.productoService = productoService;
-        this.usuarioService = usuarioService;
         this.carritoService = carritoService;
     }
 
@@ -73,7 +69,7 @@ public class DraxterCarritoOrdenController {
     }
 
     @GetMapping("eliminarDelCarrito/{id}")
-    public String eliminarDelCarrito(Model model, HttpSession session, @PathVariable Long id,
+    public String eliminarDelCarrito(Model model, @PathVariable Long id,
             RedirectAttributes redirAttr) {
         carritoService.eliminarCarritoPorIdProducto(id);
         redirAttr.addFlashAttribute("eliminacionCarrito",
@@ -82,4 +78,31 @@ public class DraxterCarritoOrdenController {
         return "redirect:/carrito";
     }
 
+    @GetMapping("carrito/producto/{id}")
+    public String verDetalles(Model model, RedirectAttributes redirAttr, HttpSession session, @PathVariable Long id) {
+        Producto pr = productoService.obtenerProductoPorId(id);
+        model.addAttribute("producto", pr);
+        String caracteristicas = pr.getCaracteristicas();
+        String[] caracteristicasVector = caracteristicas.split(",");
+        // pasar un objeto de tipo orden
+        model.addAttribute("caracteristicas", caracteristicasVector);
+        return "productoCarrito";
+    }
+
+    // Desde aqui se va a manejar las ordenes
+
+    // convertir en un post mapping para traer el producto orden y añadirle la
+    // información completa
+    @GetMapping("comprarProducto/{id}")
+    public String comprarProducto(Model model, RedirectAttributes redirAttr, HttpSession session,
+            @PathVariable Long id) {
+        Producto pr = productoService.obtenerProductoPorId(id);
+        Carrito carrito = carritoService.obtenerCarritoPorIdProducto(id);
+        model.addAttribute("producto", pr);
+        String caracteristicas = pr.getCaracteristicas();
+        String[] caracteristicasVector = caracteristicas.split(",");
+
+        model.addAttribute("caracteristicas", caracteristicasVector);
+        return "productoCarrito";
+    }
 }

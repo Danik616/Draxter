@@ -13,9 +13,9 @@ import com.draxter.draxter.Repository.ICarritoRepository;
 
 @Service
 public class CarritoService implements ICarritoService {
-    private final ICarritoRepository carritoRepository;
-
     @Autowired
+    private ICarritoRepository carritoRepository;
+
     public CarritoService(ICarritoRepository carritoRepository) {
         this.carritoRepository = carritoRepository;
     }
@@ -41,6 +41,11 @@ public class CarritoService implements ICarritoService {
     public void eliminarCarritoPorIdProducto(long id) {
         Carrito carrito = carritoRepository.obtenerCarritoPorIdProducto(id);
         carritoRepository.delete(carrito);
+    }
+
+    @Override
+    public Carrito obtenerCarritoPorIdProducto(long id) {
+        return carritoRepository.obtenerCarritoPorIdProducto(id);
     }
 
 }
