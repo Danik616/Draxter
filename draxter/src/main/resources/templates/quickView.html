@@ -1,5 +1,5 @@
 <button class="close" type="button" data-dismiss="modal">&times;</button>
-<div class="row align-items-center modal-body">
+<div class="row align-items-center modal-body fontc">
   <div class="col-lg-6 col-md-6">
     <div class="productQuickView-image">
       <img
@@ -21,9 +21,19 @@
       </div>
       <ul class="product-info">
         <li th:each="caracteristica :${caracteristicas}">
-          <p th:text="*{caracteristica}"></p>
+          <p th:text="*{caracteristica}" class="text-muted tx-sz-20"></p>
         </li>
       </ul>
+      <div class="product-size-wrapper">
+        <h6 class="text-secondary">Tallas disponibles</h6>
+        <div class="lista">
+          <ul>
+            <li th:each="talla : ${tallas}">
+              <a th:text="*{talla}"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
       <div class="product-add-to-cart">
         <a
           sec:authorize="isAuthenticated()"

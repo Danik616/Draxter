@@ -101,14 +101,9 @@ public class DraxterInicioController {
         String[] caracteristicasVector = caracteristicas.split(",");
 
         model.addAttribute("caracteristicas", caracteristicasVector);
-        model.addAttribute("tallaje", tallajeVector);
+        model.addAttribute("tallas", tallajeVector);
 
         return "quickView";
-    }
-
-    @GetMapping("/catalogo/{id}/pagarPedido")
-    public String pagarPedido() {
-        return "pagarPedido";
     }
 
     @GetMapping("/editarPQR/{id}")
