@@ -284,17 +284,15 @@ public class DraxterInicioController {
 
             }
 
-            productoExistente.setCaracteristicas(producto.getCaracteristicas());
-            productoExistente.setDescripcion(producto.getDescripcion());
-            productoExistente.setNombre(producto.getNombre());
-            productoExistente.setPrecio(producto.getPrecio());
-            productoExistente.setGenero(producto.getGenero());
-            productoExistente.setTallaje(producto.getTallaje());
-            productoService.guardaProducto(productoExistente);
-        } else {
-            return "redirect:/servicios/monitorearProductos?vacio";
         }
 
+        productoExistente.setCaracteristicas(producto.getCaracteristicas());
+        productoExistente.setDescripcion(producto.getDescripcion());
+        productoExistente.setNombre(producto.getNombre());
+        productoExistente.setPrecio(producto.getPrecio());
+        productoExistente.setGenero(producto.getGenero());
+        productoExistente.setTallaje(producto.getTallaje());
+        productoService.guardaProducto(productoExistente);
         return "redirect:/servicios/monitorearProductos";
 
     }
