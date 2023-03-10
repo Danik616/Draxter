@@ -83,9 +83,12 @@ public class DraxterCarritoOrdenController {
         Producto pr = productoService.obtenerProductoPorId(id);
         model.addAttribute("producto", pr);
         String caracteristicas = pr.getCaracteristicas();
+        String tallaje = pr.getTallaje();
         String[] caracteristicasVector = caracteristicas.split(",");
+        String[] tallajeVector = tallaje.split(",");
         // pasar un objeto de tipo orden
         model.addAttribute("caracteristicas", caracteristicasVector);
+        model.addAttribute("tallas", tallajeVector);
         return "productoCarrito";
     }
 
