@@ -96,9 +96,12 @@ public class DraxterInicioController {
         Producto pr = productoService.obtenerProductoPorId(id);
         model.addAttribute("producto", pr);
         String caracteristicas = pr.getCaracteristicas();
+        String tallaje = pr.getTallaje();
+        String[] tallajeVector = tallaje.split(",");
         String[] caracteristicasVector = caracteristicas.split(",");
 
         model.addAttribute("caracteristicas", caracteristicasVector);
+        model.addAttribute("tallaje", tallajeVector);
 
         return "quickView";
     }
@@ -143,10 +146,18 @@ public class DraxterInicioController {
     @GetMapping("/servicios/agregarProducto")
     public String agregarProducto(Model model, HttpSession session) {
         List<String> listadoGenero = new ArrayList<String>();
+        List<String> listadoTallas = new ArrayList<String>();
         listadoGenero.add("FEMENINA");
         listadoGenero.add("MASCULINA");
         listadoGenero.add("UNISEX");
+        listadoTallas.add("XS");
+        listadoTallas.add("S");
+        listadoTallas.add("M");
+        listadoTallas.add("L");
+        listadoTallas.add("XL");
+
         model.addAttribute("listadoGenero", listadoGenero);
+        model.addAttribute("tallas", listadoTallas);
         return "agregarProducto";
     }
 
@@ -228,6 +239,19 @@ public class DraxterInicioController {
     public String editarProducto(Model model, HttpSession session, @PathVariable(name = "id") String id) {
         long idBusqueda = Long.parseLong(id);
         Producto producto = productoService.obtenerProductoPorId(idBusqueda);
+        List<String> listadoGenero = new ArrayList<String>();
+        List<String> listadoTallas = new ArrayList<String>();
+        listadoGenero.add("FEMENINA");
+        listadoGenero.add("MASCULINA");
+        listadoGenero.add("UNISEX");
+        listadoTallas.add("XS");
+        listadoTallas.add("S");
+        listadoTallas.add("M");
+        listadoTallas.add("L");
+        listadoTallas.add("XL");
+
+        model.addAttribute("listadoGenero", listadoGenero);
+        model.addAttribute("tallas", listadoTallas);
         model.addAttribute("producto", producto);
         return "editarProducto";
     }
@@ -255,14 +279,17 @@ public class DraxterInicioController {
                 }
                 Files.write(rutaCompleta, bytesImg);
                 productoExistente.setImagen(nombreArchivo);
-                productoExistente.setCaracteristicas(producto.getCaracteristicas());
-                productoExistente.setDescripcion(producto.getDescripcion());
-                productoExistente.setNombre(producto.getNombre());
-                productoExistente.setPrecio(producto.getPrecio());
             } catch (IOException e) {
                 e.printStackTrace();
 
             }
+
+            productoExistente.setCaracteristicas(producto.getCaracteristicas());
+            productoExistente.setDescripcion(producto.getDescripcion());
+            productoExistente.setNombre(producto.getNombre());
+            productoExistente.setPrecio(producto.getPrecio());
+            productoExistente.setGenero(producto.getGenero());
+            productoExistente.setTallaje(producto.getTallaje());
             productoService.guardaProducto(productoExistente);
         } else {
             return "redirect:/servicios/monitorearProductos?vacio";

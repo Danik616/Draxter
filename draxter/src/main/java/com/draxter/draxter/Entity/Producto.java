@@ -42,6 +42,9 @@ public class Producto {
     @Column(name = "genero")
     public String genero;
 
+    @Column(name = "tallaje")
+    public String tallaje;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_usuario")
     private Usuarios usuario;
@@ -63,6 +66,14 @@ public class Producto {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getTallaje() {
+        return tallaje;
+    }
+
+    public void setTallaje(String tallaje) {
+        this.tallaje = tallaje;
     }
 
     public String getDescripcion() {

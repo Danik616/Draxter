@@ -259,6 +259,18 @@
             name="caracteristicas"
             placeholder="Caracteristicas- Separelas por comas"
           ></textarea>
+
+          <label>
+            Tallas
+            <input
+              type="checkbox"
+              name="tallaje"
+              th:each="talla : ${tallas}"
+              th:text="${talla}"
+              th:value="${talla}"
+              field="*{tallaje}"
+            />
+          </label>
           <button type="submit" name="guardar" class="btn btn_warning"></button>
         </form>
       </div>

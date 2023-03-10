@@ -259,6 +259,25 @@
             rows="3"
             placeholder="Caracteristicas del Producto"
           ></textarea>
+          <select field="*{genero}" name="genero" id="genero" required>
+            <option value="" disabled>Seleccione el genero</option>
+            <option
+              th:each="genero :${listadoGenero}"
+              th:value="${genero}"
+              th:text="${genero}"
+            ></option>
+          </select>
+          <label>
+            Tallas
+            <input
+              type="checkbox"
+              name="tallaje"
+              th:each="talla : ${tallas}"
+              th:text="${talla}"
+              th:value="${talla}"
+              field="*{tallaje}"
+            />
+          </label>
           <button type="submit" name="guardar" class="btn btn-warning">
             Guardar
           </button>
