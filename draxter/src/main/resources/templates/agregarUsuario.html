@@ -5,336 +5,126 @@
   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
   xlmns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 >
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-    />
-    <title>Agregar Productos</title>
-    <link
-      rel="stylesheet"
-      th:href="@{assets/css/estilos.css}"
-      href="assets/css/estilos.css"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/bootstrap/css/bootstrap.min.css"
-      th:href="@{/assets/bootstrap/css/bootstrap.min.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/fonts/fontawesome-all.min.css"
-      th:href="@{/assets/fonts/fontawesome-all.min.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/fonts/font-awesome.min.css"
-      th:href="@{/assets/fonts/font-awesome.min.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/fonts/ionicons.min.css"
-      th:href="@{/assets/fonts/ionicons.min.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/fonts/simple-line-icons.min.css"
-      th:href="@{/assets/fonts/simple-line-icons.min.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/fonts/fontawesome5-overrides.min.css"
-      th:href="@{/assets/fonts/fontawesome5-overrides.min.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/css/animated-services.css"
-      th:href="@{/assets/css/animated-services.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/css/Contact-Form-Clean.css"
-      th:href="@{/assets/css/Contact-Form-Clean.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/css/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.css"
-      th:href="@{/assets/css/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/css/Edit-Form.css"
-      th:href="@{/assets/css/Edit-Form.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/css/FAQ-Frequentlly-Asked-Questions-1.css"
-      th:href="@{/assets/css/FAQ-Frequentlly-Asked-Questions-1.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/css/FAQ-Frequentlly-Asked-Questions.css"
-      th:href="@{/assets/css/FAQ-Frequentlly-Asked-Questions.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/css/featured-products-slider-1.css"
-      th:href="@{/assets/css/featured-products-slider-1.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/css/featured-products-slider.css"
-      th:href="@{/assets/css/featured-products-slider.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/css/Footer-Dark.css"
-      th:href="@{/assets/css/Footer-Dark.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/css/gift-product-long.css"
-      th:href="@{/assets/css/gift-product-long.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/css/Login-Form-Dark.css"
-      th:href="@{/assets/css/Login-Form-Dark.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/css/Ludens-Users---3-Profile.css"
-      th:href="@{/assets/css/Ludens-Users---3-Profile.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/css/Navigation-Clean.css"
-      th:href="@{/assets/css/Navigation-Clean.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/css/Registration-Form-with-Photo.css"
-      th:href="@{/assets/css/Registration-Form-with-Photo.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/css/Search-Input-Responsive-with-Icon.css"
-      th:href="@{/assets/css/Search-Input-Responsive-with-Icon.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/css/styles.css"
-      th:href="@{/assets/css/styles.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/css/Table-With-Search-1.css"
-      th:href="@{/assets/css/Table-With-Search-1.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/css/Table-With-Search.css"
-      th:href="@{/assets/css/Table-With-Search.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css"
-      th:href="@{/assets/css/User-Information-Panel---Lite--Secondary-User-Panel-Footer.css}"
-    />
-  </head>
+  <head th:replace="/fragments/head :: head"></head>
   <body>
-    <nav
-      class="navbar navbar-light navbar-expand-lg navigation-clean"
-      style="color: var(--bs-body-color); background: var(--bs-body-color)"
-    >
-      <div class="container">
-        <i class="fa fa-star" style="width: 50px; height: 50px"></i
-        ><a
-          class="navbar-brand"
-          th:href="@{/}"
-          style="
-            color: var(--bs-body-bg);
-            margin: 5px;
-            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold',
-              sans-serif;
-          "
-          >Draxter</a
-        ><button
-          data-bs-toggle="collapse"
-          class="navbar-toggler"
-          data-bs-target="#navcol-1"
-          style="height: 22px"
-        >
-          <span class="visually-hidden">Opciones</span
-          ><span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navcol-1">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/}">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/servicios/monitorearPQR}"> PQR</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" th:href="@{/servicios/agregarUsuario}">
-                + Usuario</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/servicios/FAQ}">FAQ</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/servicios/agregarProducto}"
-                >+ Producto</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/servicios/monitorearProductos}"
-                >Productos</a
-              >
-            </li>
-          </ul>
+    <div th:replace="/fragments/navbar :: navbar"></div>
+
+    <div class="container">
+      <div class="mt-4 mb-4 p-4 card align-items-center d-flex">
+        <div class="row mb-2">
+          <h3>Agregar usuario</h3>
         </div>
-      </div>
-    </nav>
-    <div style="width: 100%; height: 100%; background: var(--bs-dark)">
-      <div style="height: 90vh">
         <form
           th:action="@{/servicios/agregarUsuario}"
           th:object="${usuario}"
           autocomplete="off"
           method="POST"
+          class="w-50 add-user"
         >
-          <input
-            type="text"
-            name="usuario"
-            placeholder="Nombre de Usuario"
-            class="item"
-            th:field="*{usuario}"
-          />
-          <select th:field="*{bck}" name="rol" id="rol" required>
-            <option value="" disabled>Seleccione el Rol</option>
-            <option
-              th:each="rol :${listadoRol}"
-              th:value="${rol}"
-              th:text="${rol}"
-            ></option>
-          </select>
-          <input
-            th:field="*{nombres}"
-            type="text"
-            name="nombres"
-            placeholder="Nombres"
-            class="item"
-          />
-          <input
-            th:field="*{apellidos}"
-            type="text"
-            name="apellidos"
-            placeholder="apellidos"
-            class="item"
-          />
-          <input
-            th:field="*{email}"
-            type="email"
-            name="email"
-            placeholder="Email"
-            class="item"
-          />
-          <input
-            th:field="*{celular}"
-            type="text"
-            name="celular"
-            placeholder="Numero de telefono"
-            class="item"
-          />
-          <input
-            th:field="*{contraseña}"
-            type="password"
-            name="contraseña"
-            placeholder="Contraseña"
-            class="item"
-          />
-          <button
-            type="submit"
-            name="Guardar"
-            id=""
-            value="Crear"
-            class="btn btn-warning"
-          >
-            Crear
-          </button>
+          <div class="row mb-2">
+            <p class="tx-sz-10 text-muted mb-2">Nombre de usuario</p>
+            <input
+              type="text"
+              name="usuario"
+              placeholder="Nombre de Usuario"
+              class="form-control"
+              th:field="*{usuario}"
+            />
+          </div>
+          <div class="row mb-2">
+            <p class="tx-sz-10 text-muted mb-2">Rol:</p>
+            <select th:field="*{bck}" name="rol" id="rol" required>
+              <option value="" disabled>Seleccione el Rol</option>
+              <option
+                th:each="rol :${listadoRol}"
+                th:value="${rol}"
+                th:text="${rol}"
+              ></option>
+            </select>
+          </div>
+          <div class="row mb-2">
+            <p class="tx-sz-10 text-muted mb-2">Nombres</p>
+            <input
+              th:field="*{nombres}"
+              type="text"
+              name="nombres"
+              placeholder="Nombres"
+              class="form-control"
+            />
+          </div>
+          <div class="row mb-2">
+            <p class="tx-sz-10 text-muted mb-2">Apellidos</p>
+            <input
+              th:field="*{apellidos}"
+              type="text"
+              name="apellidos"
+              placeholder="apellidos"
+              class="form-control"
+            />
+          </div>
+          <div class="row mb-2">
+            <p class="tx-sz-10 text-muted mb-2">Email:</p>
+            <input
+              th:field="*{email}"
+              type="email"
+              name="email"
+              placeholder="Email"
+              class="form-control"
+            />
+          </div>
+          <div class="row mb-2">
+            <p class="tx-sz-10 text-muted mb-2">Número de celular:</p>
+            <input
+              th:field="*{celular}"
+              type="text"
+              name="celular"
+              placeholder="Numero de telefono"
+              class="form-control"
+            />
+          </div>
+          <div class="row mb-2">
+            <p class="tx-sz-10 text-muted mb-2">Contraseña:</p>
+            <input
+              th:field="*{contraseña}"
+              type="password"
+              name="contraseña"
+              placeholder="Contraseña"
+              class="form-control"
+            />
+          </div>
+          <div class="row mb-2 mt-4">
+            <div class="col-6">
+              <button
+                type="submit"
+                name="Guardar"
+                value="Crear"
+                class="btn btn-warning w-75"
+              >
+                Añadir usuario
+              </button>
+            </div>
+            <div class="col-6">
+              <a
+                th:href="@{/servicios/monitorearUsuarios}"
+                class="btn btn-primary w-75"
+                >Monitorear usuarios</a
+              >
+            </div>
+          </div>
         </form>
-        <a
-          th:href="@{/servicios/monitorearUsuarios}"
-          class="btn btn-primary"
-        ></a>
       </div>
     </div>
-    <footer class="footer-dark">
-      <div class="container">
-        <div class="row">
-          <div style="text-align: center">
-            <a
-              th:href="@{/nosotros}"
-              style="color: var(--bs-gray-100); text-decoration: none"
-              data-bs-toggle="_blank"
-              >Nosotros</a
-            >
-          </div>
-          <div>
-            <h3>Draxter</h3>
-            <p>
-              Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus
-              ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique
-              lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.
-            </p>
-          </div>
-          <div>
-            <a
-              data-bss-hover-animate="flash"
-              href="#"
-              style="margin-bottom: 7px"
-              ><i
-                class="icon ion-social-facebook"
-                data-bss-hover-animate="flash"
-              ></i></a
-            ><a
-              data-bss-hover-animate="flash"
-              href="#"
-              style="margin-bottom: 7px"
-              ><i class="icon ion-social-twitter"></i></a
-            ><a
-              data-bss-hover-animate="flash"
-              href="#"
-              style="margin-bottom: 7px"
-              ><i class="icon ion-social-whatsapp-outline"></i></a
-            ><a
-              data-bss-hover-animate="flash"
-              href="#"
-              style="margin-bottom: 7px"
-              ><i class="icon ion-social-instagram"></i
-            ></a>
-          </div>
-        </div>
 
-        <p class="copyright">Draxter © 2022</p>
-      </div>
-    </footer>
+    <footer th:replace="/fragments/footer :: footer"></footer>
+    <script
+      src="assets/JQuery/jquery.min.js"
+      th:src="@{/assets/JQuery/jquery.min.js}"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js}"
+    ></script>
+    <script th:replace=" /fragments/scriptActive :: scriptActive"></script>
   </body>
 </html>

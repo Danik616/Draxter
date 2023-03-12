@@ -40,42 +40,5 @@
         </tbody>
       </table>
     </div>
-    <div class="tabla" sec:authorize="!hasRole('USER')">
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th class="col-lg-2">Código PQR</th>
-            <th class="col-lg-2">Pregunta</th>
-            <th class="col-lg-2">Respondido Por</th>
-            <th class="col-lg-2">Estado</th>
-            <th class="col-lg-2">Respuesta</th>
-            <th class="col-lg-2">Cambios</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="pqr : ${pqrsAdmin}">
-            <td th:text="${pqr.id_pqr}"></td>
-            <td th:text="${pqr.descripcion}"></td>
-            <td th:text="${pqr.respondidoPor}"></td>
-            <td th:text="${pqr.estado}"></td>
-            <td th:text="${pqr.respuesta}"></td>
-            <td>
-              <div class="d-flex">
-                <a
-                  th:href="@{/editarPQR/{id}(id=${pqr.id_pqr})}"
-                  class="btn btn-light"
-                  >Editar</a
-                >
-                <a
-                  th:href="@{/borrarPQR/{id}(id=${pqr.id_pqr})}"
-                  class="btn btn-danger"
-                  >Borrar</a
-                >
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
   </div>
 </div>
