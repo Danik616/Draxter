@@ -29,49 +29,63 @@
             <div class="row">
               <p>$<span th:text="*{producto.precio}"></span></p>
             </div>
-            <p class="tx-sz-10 text-muted mb-0">Tallas:</p>
-            <div class="product-size">
-              <label th:each="talla: ${tallas}">
-                <input type="radio" name="talla" th:value="${talla}" required />
-                <span class="radio-caja" th:text="*{talla}">S</span>
-              </label>
-            </div>
-            <p class="tx-sz-10 text-muted mb-0">Cantidad a comprar:</p>
-            <div class="product-quantity row">
-              <div class="col-8">
-                <input
-                  type="range"
-                  name="quantity"
-                  id="quantity"
-                  min="0"
-                  max="100"
-                  step="1"
-                  class="w-100"
-                  required
-                />
-              </div>
-              <div class="col-4 text-left">
-                <label for="quantity" id="rangeLabel"></label>
-              </div>
-            </div>
+
             <div class="evento">
-              <form>
-                <div class="row">
-                  <!--Aqui se pondra la cantidad y la talla para el carrito-->
+              <form
+                class="fontc"
+                th:action="@{/comprarProducto/{id} (id=${producto.id})}"
+                th:object="${orden}"
+                method="post"
+              >
+                <p class="tx-sz-10 text-muted mb-0">Tallas:</p>
+                <div class="product-size">
+                  <label th:each="talla: ${producto.tallaje.split(',')}">
+                    <input
+                      type="radio"
+                      th:id="'talla-' + ${talla}"
+                      th:name="tallaje"
+                      th:value="${talla}"
+                      th:checked="${talla == orden.tallaje}"
+                      th:field="*{tallaje}"
+                      required
+                    />
+                    <span
+                      class="radio-caja"
+                      th:for="'talla-' + ${talla}"
+                      th:text="${talla}"
+                      >S</span
+                    >
+                  </label>
+                </div>
+                <p class="tx-sz-10 text-muted mb-0">Cantidad a comprar:</p>
+                <div class="product-quantity row">
+                  <div class="col-8">
+                    <input
+                      type="range"
+                      name="quantity"
+                      id="quantity"
+                      min="1"
+                      max="100"
+                      step="1"
+                      class="w-100"
+                      th:field="*{cantidad}"
+                      required
+                    />
+                  </div>
+                  <div class="col-4 text-left">
+                    <label for="quantity" id="rangeLabel"></label>
+                  </div>
                 </div>
                 <div class="row">
                   <div class="col-6">
+                    <button class="btn btn-light" type="submit">Comprar</button>
+                  </div>
+                  <div class="col-6">
                     <a
-                      th:href="@{eliminarDelCarrito/{id} (id=${producto.id})}"
+                      th:href="@{/eliminarDelCarrito/{id} (id=${producto.id})}"
                       class="btn btn-danger"
                       >Cancelar</a
                     >
-                  </div>
-                  <div class="col-6">
-                    <a class="btn btn-light" href="">
-                      <!--Convertir este anchor en un botón para que se suba el form-->
-                      Comprar
-                    </a>
                   </div>
                 </div>
               </form>
