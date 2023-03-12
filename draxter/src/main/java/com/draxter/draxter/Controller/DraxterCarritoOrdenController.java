@@ -116,6 +116,9 @@ public class DraxterCarritoOrdenController {
         orden.setValorTotal(cantidad * precio);
         ordenService.guardarOrden(orden);
         redirAttr.addFlashAttribute("orden", orden);
+        redirAttr.addFlashAttribute("eliminacionCarrito",
+                messageSource.getMessage("user.shopping.kart.shop.succesful", null,
+                        LocaleContextHolder.getLocale()));
         return "redirect:/carrito";
     }
 }
