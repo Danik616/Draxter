@@ -39,6 +39,7 @@
                 <i class="fas fa-trash"></i>
                 &nbsp; Eliminar
               </a>
+              <div sec:authorize="!hasRole('ADMIN')"></div>
             </div>
           </div>
           <div class="col-md-8 mt-5 pl-5">
@@ -50,39 +51,41 @@
                 Apellidos del usuario/p>
               </p>
             </div>
-
-            <div class="row tx-sz-15">
-              <p class="mb-0 tx-sz-10">Usuario</p>
-              <p class="text-muted" th:text="*{usuario.usuario}">Usuario</p>
-            </div>
             <div class="row">
-              <p class="mb-0 tx-sz-10">Correo electrónico</p>
-              <p
-                class="tx-sz-15 text-muted"
-                sec:authorization="name"
-                th:text="*{usuario.email}"
-              >
-                Tu correo electrónico
-              </p>
-            </div>
-            <div sec:authorize="!hasRole('ADMIN')">
-              <div class="row">
-                <p class="mb-0 tx-sz-10">No° Celular</p>
-                <p class="tx-sz-15 text-muted" th:text="*{celular}">
-                  Tu télefono
-                </p>
+              <div class="col-4">
+                <div class="row tx-sz-15">
+                  <p class="mb-0 tx-sz-10">Usuario</p>
+                  <p class="text-muted" th:text="*{usuario.usuario}">Usuario</p>
+                </div>
+                <div class="row">
+                  <p class="mb-0 tx-sz-10">Correo electrónico</p>
+                  <p
+                    class="tx-sz-15 text-muted"
+                    sec:authorization="name"
+                    th:text="*{usuario.email}"
+                  >
+                    Tu correo electrónico
+                  </p>
+                </div>
               </div>
-              <div class="row">
-                <p class="mb-0 tx-sz-10">País de residencia</p>
-                <p class="tx-sz-15 text-muted" th:text="*{pais}">Tu país</p>
+              <div class="col-4 pl-5">
+                <div class="row">
+                  <p class="mb-0 tx-sz-10">No° Celular</p>
+                  <p class="tx-sz-15 text-muted" th:text="*{celular}">
+                    Tu télefono
+                  </p>
+                </div>
+                <div class="row">
+                  <p class="mb-0 tx-sz-10">País de residencia</p>
+                  <p class="tx-sz-15 text-muted" th:text="*{pais}">Tu país</p>
+                </div>
+                <div class="row">
+                  <p class="mb-0 tx-sz-10">Dirección de residencia</p>
+                  <p class="tx-sz-15 text-muted" th:text="*{usuario.direccion}">
+                    Tu dirección
+                  </p>
+                </div>
               </div>
-              <div class="row">
-                <p class="mb-0 tx-sz-10">Dirección de residencia</p>
-                <p class="tx-sz-15 text-muted" th:text="*{usuario.direccion}">
-                  Tu dirección
-                </p>
-              </div>
-              <div class="row"></div>
             </div>
           </div>
         </div>
