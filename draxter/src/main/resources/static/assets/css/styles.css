@@ -397,10 +397,29 @@
     padding: 2px;
   }
 
+  .user-img{
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    width: 260px;
+    height: 260px;
+    margin-left: 30px;
+    border-radius: 50%;
+    border-color: darkblue;
+    border-width: 10px;
+    padding: 2px;
+  }
+
   @media (max-width:990px) {
     .imgEdit{
       width: 200px;
       height: 200px;
+    }
+
+    .user-img{
+      width: 180px;
+      height: 180px;
+      margin-left: 0;
     }
     
   }
@@ -410,6 +429,11 @@
       height: 200px;
       margin-left: 8rem;
     }
+    .user-img{
+      width: 180px;
+      height: 180px;
+      margin-left: 7rem;
+    }
     
   }
   @media (max-width:540px) {
@@ -418,10 +442,21 @@
       height: 200px;
       margin-left: 25%;
     }
+    .user-img{
+      width: 180px;
+      height: 180px;
+      margin-left: 10%;
+    }
     
   }
 
   .imgEdit img{
+    margin-top: -30px;
+    width: 100%;
+    height: auto;
+  }
+
+  .user-img img{
     margin-top: -30px;
     width: 100%;
     height: auto;

@@ -7,98 +7,83 @@
   <head th:replace="/fragments/head :: head"></head>
   <body>
     <div th:replace="/fragments/navbar :: navbar"></div>
-    <div
-      style="
-        height: auto;
-        background: var(--bs-body-color);
-        padding-top: 50px;
-        padding-bottom: 50px;
-      "
-    >
+
+    <div class="container fontc">
       <a
-        class="btn btn-danger"
+        class="btn btn-danger ml-3 mt-4 mb-4"
         type="button"
-        style="margin-left: 250px"
         th:href="@{/servicios/agregarUsuario}"
       >
-        Atrás
+        &larr; Atrás
       </a>
+      <h1 class="text-center">Usuarios actuales</h1>
       <div
-        class="d-flex"
-        style="
-          background: var(--bs-body-color);
-          width: 90%;
-          margin-right: 5%;
-          margin-left: 5%;
-          height: 200px;
-          margin-top: 60px;
-        "
+        class="mt-5 mb-5 ml-3 mr-3 p-3 row border border-secondary shadow-lg"
         th:each="usuario: ${usuarios}"
       >
-        <div
-          class="text-center"
-          style="width: 25%; height: 100%; text-align: center"
-        >
-          <div
-            style="
-              width: 150px;
-              height: 150px;
-              margin-right: 31px;
-              margin-left: 31px;
-            "
-          >
-            <img style="width: 100%; height: 100%" />
-            <h5
-              style="
-                color: var(--bs-white);
-                margin-top: 10px;
-                text-align: center;
-              "
-              th:text="*{usuario.usuario}"
-            ></h5>
-            <h4
-              style="
-                color: var(--bs-white);
-                margin-top: 10px;
-                text-align: center;
-              "
-              th:text="*{usuario.nombres}"
-            ></h4>
-            <h4
-              style="
-                color: var(--bs-white);
-                margin-top: 10px;
-                text-align: center;
-              "
-              th:text="*{usuario.apellidos}"
-            ></h4>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="user-img">
+              <img
+                th:src="@{'/assets/img/' + ${usuario.imagen}}"
+                th:alt="${usuario.imagen}"
+                class="mb-3"
+              />
+            </div>
+            <div class="mb-3">
+              <a
+                class="btn btn-danger d-block mt-2 btn-edit"
+                type="button"
+                th:href="@{/servicios/borrarUsuarios/{id}(id=${usuario.usuario})}"
+              >
+                <i class="fas fa-trash"></i>
+                &nbsp; Eliminar
+              </a>
+            </div>
           </div>
-        </div>
-        <div class="d-inline" style="width: 75%; height: 100%">
-          <div style="width: 100%; height: 60%">
-            <p th:text="*{usuario.email}" style="color: var(--bs-white)">
-              <br />
-            </p>
-          </div>
-          <div style="height: 40%; width: 100%">
-            <h3 style="color: var(--bs-white)">
-              <span
-                style="
-                  color: var(--bs-white);
-                  margin-top: 10px;
-                  text-align: center;
-                "
-                th:text="*{usuario.direccion}"
-              ></span>
-            </h3>
-            <a
-              class="btn btn-danger"
-              type="button"
-              style="margin-left: 250px"
-              th:href="@{/servicios/borrarUsuarios/{id}(id=${usuario.usuario})}"
-            >
-              Eliminar
-            </a>
+          <div class="col-md-8 mt-5 pl-5">
+            <div class="row">
+              <p class="tx-sz-30" th:text="*{usuario.nombres}">
+                Nombre del Usuario
+              </p>
+              <p class="tx-sz-30" th:text="*{usuario.apellidos}">
+                Apellidos del usuario/p>
+              </p>
+            </div>
+
+            <div class="row tx-sz-15">
+              <p class="mb-0 tx-sz-10">Usuario</p>
+              <p class="text-muted" th:text="*{usuario.usuario}">Usuario</p>
+            </div>
+            <div class="row">
+              <p class="mb-0 tx-sz-10">Correo electrónico</p>
+              <p
+                class="tx-sz-15 text-muted"
+                sec:authorization="name"
+                th:text="*{usuario.email}"
+              >
+                Tu correo electrónico
+              </p>
+            </div>
+            <div sec:authorize="!hasRole('ADMIN')">
+              <div class="row">
+                <p class="mb-0 tx-sz-10">No° Celular</p>
+                <p class="tx-sz-15 text-muted" th:text="*{celular}">
+                  Tu télefono
+                </p>
+              </div>
+              <div class="row">
+                <p class="mb-0 tx-sz-10">País de residencia</p>
+                <p class="tx-sz-15 text-muted" th:text="*{pais}">Tu país</p>
+              </div>
+              <div class="row">
+                <p class="mb-0 tx-sz-10">Dirección de residencia</p>
+                <p class="tx-sz-15 text-muted" th:text="*{usuario.direccion}">
+                  Tu dirección
+                </p>
+              </div>
+              <div class="row"></div>
+            </div>
           </div>
         </div>
       </div>
