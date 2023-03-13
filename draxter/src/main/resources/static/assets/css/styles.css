@@ -374,6 +374,9 @@
   caret-color: blue;
 }
 
+.borde-r{
+  border-right: 2px solid black !important;
+}
  /*Carousel
 */
 .carousel{

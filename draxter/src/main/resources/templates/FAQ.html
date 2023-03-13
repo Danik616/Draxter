@@ -78,7 +78,12 @@
         </div>
       </div>
     </div>
-    <div class="modal" tabindex="-1" id="faq">
+    <div class="modal" tabindex="-1" id="faq-edit">
+      <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+    <div class="modal" tabindex="-1" id="faq-new">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content"></div>
       </div>
@@ -88,7 +93,7 @@
       $(document).ready(function () {
         $(".btn-edit").on("click", function (e) {
           e.preventDefault();
-          $("#faq")
+          $("#faq-edit")
             .modal("show")
             .find(".modal-content")
             .load($(this).attr("href"));
@@ -100,7 +105,7 @@
       $(document).ready(function () {
         $(".btn-new").on("click", function (e) {
           e.preventDefault();
-          $("#faq")
+          $("#faq-new")
             .modal("show")
             .find(".modal-content")
             .load($(this).attr("href"));
