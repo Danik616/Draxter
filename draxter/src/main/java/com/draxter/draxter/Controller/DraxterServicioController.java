@@ -2,6 +2,8 @@ package com.draxter.draxter.Controller;
 
 import javax.servlet.http.HttpSession;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +22,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.draxter.draxter.Entity.PQR;
 import com.draxter.draxter.Entity.Usuarios;
 import com.draxter.draxter.Entity.Corte;
+import com.draxter.draxter.Entity.Rol;
 import com.draxter.draxter.Entity.FAQ;
 import com.draxter.draxter.Service.PQRService;
 import com.draxter.draxter.Service.CorteService;
 import com.draxter.draxter.Service.FAQService;
+import com.draxter.draxter.Service.UsuarioService;
 
 @Controller
 public class DraxterServicioController {
@@ -41,6 +45,9 @@ public class DraxterServicioController {
 
     @Autowired
     private FAQService faqService;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     @RequestMapping("/servicios")
     public String mostrarServicios() {
@@ -89,6 +96,73 @@ public class DraxterServicioController {
         model.addAttribute("pqrsAdmin", listaPqrAdmin);
         model.addAttribute("id", id);
         return "monitorearPQR";
+    }
+
+    @GetMapping("/editarPQR/{id}")
+    public String editarPQR(Model model, HttpSession session, @PathVariable(name = "id") String id) {
+        PQR pqr = pqrService.obtenerUnPQRPorID(id);
+        model.addAttribute("pqr", pqr);
+        model.addAttribute("pregunta", pqr.getDescripcion());
+        return "editarPQR";
+    }
+
+    @PostMapping("/actualizarPQR/{id}")
+    public String actualizarPQR(HttpSession session, @PathVariable("id") String id,
+            @ModelAttribute("pqr") PQR pqr, Model model) {
+        PQR pqrExistente = pqrService.obtenerUnPQRPorID(id);
+        if (pqrExistente != null) {
+            pqrExistente.setRespondidoPor(usuario.getUsuario());
+            pqrExistente.setEstado("respondido");
+            pqrExistente.setRespuesta(pqr.getRespuesta());
+
+            pqrService.guardarPQR(pqrExistente);
+            return "redirect:/servicios/monitorearPQR/vistaCompleta";
+        } else {
+
+            return "redirect:/editarPQR/{" + id + "}?error))";
+        }
+
+    }
+
+    @GetMapping("/borrarPQR/{id}")
+    public String borrarPQR(Model model, HttpSession session, @PathVariable(name = "id") String id) {
+        pqrService.eliminarPQR(id);
+        return "redirect:/servicios/monitorearPQR";
+    }
+
+    @GetMapping("/servicios/agregarUsuario")
+    public String agregarUsuario(Model model, HttpSession session) {
+
+        List<String> listadoPrueba = new ArrayList<String>();
+        listadoPrueba.add("ROLE_ADMIN");
+        listadoPrueba.add("ROLE_ASESOR");
+        model.addAttribute("listadoRol", listadoPrueba);
+        model.addAttribute("usuario", new Usuarios());
+        return "agregarUsuario";
+    }
+
+    @PostMapping("/servicios/agregarUsuario")
+    public String agregarNuevoUsuario(Model model, HttpSession session,
+            @ModelAttribute("usuario") Usuarios usuario) {
+        Rol rol = new Rol();
+        rol.setNombre(usuario.getBck());
+        usuario.setRoles(Arrays.asList(rol));
+        usuario.setBck(null);
+        usuarioService.guardar(usuario);
+
+        return "redirect:/servicios/monitorearUsuarios";
+    }
+
+    @GetMapping("/servicios/monitorearUsuarios")
+    public String monitorearUsuarios(Model model, HttpSession session) {
+        model.addAttribute("usuarios", usuarioService.obtenerUsuarios());
+        return "monitorearUsuarios";
+    }
+
+    @GetMapping("/servicios/borrarUsuarios/{id}")
+    public String borrarUsuario(Model model, HttpSession session, @PathVariable(name = "id") String id) {
+        usuarioService.eliminarUsuarioPorID(id);
+        return "redirect:/servicios/monitorearUsuarios";
     }
 
     @GetMapping("/servicios/pedirCorte")

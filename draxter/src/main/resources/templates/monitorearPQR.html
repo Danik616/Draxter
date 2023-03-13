@@ -76,7 +76,7 @@
                   <div class="d-flex">
                     <a
                       th:href="@{/editarPQR/{id}(id=${pqr.id_pqr})}"
-                      class="btn btn-light mr-2"
+                      class="btn btn-light mr-2 btn-edit"
                       >Editar</a
                     >
                     <a
@@ -92,7 +92,23 @@
         </div>
       </div>
     </div>
+    <div class="modal userEdit" tabindex="-1" id="pqr-edit">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content"></div>
+      </div>
+    </div>
     <footer th:replace="/fragments/footer :: footer"></footer>
+    <script>
+      $(document).ready(function () {
+        $(".btn-edit").on("click", function (e) {
+          e.preventDefault();
+          $("#pqr-edit")
+            .modal("show")
+            .find(".modal-content")
+            .load($(this).attr("href"));
+        });
+      });
+    </script>
     <script
       src="assets/JQuery/jquery.min.js"
       th:src="@{/assets/JQuery/jquery.min.js}"

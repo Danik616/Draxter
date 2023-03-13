@@ -842,19 +842,7 @@ padding: 10px 20px;
   transition: (100);
 }
 
-.btn-primary {
-  background-color: transparent!important;
-  border-radius: 0%!important;
-  border-color: blue !important;
-  color: black !important;
-}
 
-.btn-primary:hover{
-  background-color: blue!important;
-  color: white!important;
-  border-radius: 0%!important;
-  transition: (100);
-}
 
 a{
   display: block;

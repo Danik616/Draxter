@@ -24,12 +24,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 //import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.draxter.draxter.Entity.PQR;
 import com.draxter.draxter.Entity.Producto;
 import com.draxter.draxter.Entity.Rol;
 import com.draxter.draxter.Entity.Usuarios;
 
-import com.draxter.draxter.Service.PQRService;
 import com.draxter.draxter.Service.ProductoService;
 import com.draxter.draxter.Service.UsuarioService;
 import com.draxter.draxter.data.ResetPasswordData;
@@ -43,22 +41,15 @@ public class DraxterInicioController {
     private ProductoService productoService;
 
     @Autowired
-    private PQRService pqrService;
-
-    @Autowired
     private UsuarioService usuarioService;
 
     List<Rol> listadoRol = new ArrayList<Rol>();
 
-    public DraxterInicioController(ProductoService productoService, PQRService pqrService,
+    public DraxterInicioController(ProductoService productoService,
             UsuarioService usuarioService) {
         this.productoService = productoService;
-        this.pqrService = pqrService;
 
         this.usuarioService = usuarioService;
-
-        listadoRol.add(new Rol("ROLE_ASESOR"));
-        listadoRol.add(new Rol("ROLE_ADMIN"));
     }
 
     @RequestMapping("/iniciarSesion")
@@ -106,38 +97,6 @@ public class DraxterInicioController {
         return "quickView";
     }
 
-    @GetMapping("/editarPQR/{id}")
-    public String editarPQR(Model model, HttpSession session, @PathVariable(name = "id") String id) {
-        PQR pqr = pqrService.obtenerUnPQRPorID(id);
-        model.addAttribute("pqr", pqr);
-        model.addAttribute("pregunta", pqr.getDescripcion());
-        return "editarPQR";
-    }
-
-    @PostMapping("/actualizarPQR/{id}")
-    public String actualizarPQR(HttpSession session, @PathVariable("id") String id,
-            @ModelAttribute("pqr") PQR pqr, Model model) {
-        PQR pqrExistente = pqrService.obtenerUnPQRPorID(id);
-        if (pqrExistente != null) {
-            pqrExistente.setRespondidoPor(usuario.getUsuario());
-            pqrExistente.setEstado("respondido");
-            pqrExistente.setRespuesta(pqr.getRespuesta());
-
-            pqrService.guardarPQR(pqrExistente);
-            return "redirect:/servicios/monitorearPQR";
-        } else {
-
-            return "redirect:/editarPQR/{" + id + "}?error))";
-        }
-
-    }
-
-    @GetMapping("/borrarPQR/{id}")
-    public String borrarPQR(Model model, HttpSession session, @PathVariable(name = "id") String id) {
-        pqrService.eliminarPQR(id);
-        return "redirect:/servicios/monitorearPQR";
-    }
-
     @GetMapping("/servicios/agregarProducto")
     public String agregarProducto(Model model, HttpSession session) {
         List<String> listadoGenero = new ArrayList<String>();
@@ -181,41 +140,6 @@ public class DraxterInicioController {
         }
 
         return "redirect:/servicios/agregarProducto?Sucess";
-    }
-
-    @GetMapping("/servicios/agregarUsuario")
-    public String agregarUsuario(Model model, HttpSession session) {
-
-        List<String> listadoPrueba = new ArrayList<String>();
-        listadoPrueba.add("ROLE_ADMIN");
-        listadoPrueba.add("ROLE_ASESOR");
-        model.addAttribute("listadoRol", listadoPrueba);
-        model.addAttribute("usuario", new Usuarios());
-        return "agregarUsuario";
-    }
-
-    @PostMapping("/servicios/agregarUsuario")
-    public String agregarNuevoUsuario(Model model, HttpSession session,
-            @ModelAttribute("usuario") Usuarios usuario) {
-        Rol rol = new Rol();
-        rol.setNombre(usuario.getBck());
-        usuario.setRoles(Arrays.asList(rol));
-        usuario.setBck(null);
-        usuarioService.guardar(usuario);
-
-        return "redirect:/servicios/monitorearUsuarios";
-    }
-
-    @GetMapping("/servicios/monitorearUsuarios")
-    public String monitorearUsuarios(Model model, HttpSession session) {
-        model.addAttribute("usuarios", usuarioService.obtenerUsuarios());
-        return "monitorearUsuarios";
-    }
-
-    @GetMapping("/servicios/borrarUsuarios/{id}")
-    public String borrarUsuario(Model model, HttpSession session, @PathVariable(name = "id") String id) {
-        usuarioService.eliminarUsuarioPorID(id);
-        return "redirect:/servicios/monitorearUsuarios";
     }
 
     @GetMapping("/servicios/monitorearProductos")
