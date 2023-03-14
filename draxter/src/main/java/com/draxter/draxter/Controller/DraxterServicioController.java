@@ -143,13 +143,22 @@ public class DraxterServicioController {
 
     @PostMapping("/servicios/agregarUsuario")
     public String agregarNuevoUsuario(Model model, HttpSession session,
-            @ModelAttribute("usuario") Usuarios usuario) {
+            @ModelAttribute("usuario") Usuarios usuario, RedirectAttributes redirAttr) {
+        String email = usuario.getEmail();
+        Usuarios usuarioExistente = usuarioService.obtenerPorEmail(email);
+        if (usuarioExistente.getEmail().equals(email)) {
+            redirAttr.addFlashAttribute("emailNotValid",
+                    messageSource.getMessage("email.not.valid", null, LocaleContextHolder.getLocale()));
+            return "redirect:/servicios/monitorearUsuarios";
+        }
         Rol rol = new Rol();
         rol.setNombre(usuario.getBck());
         usuario.setRoles(Arrays.asList(rol));
         usuario.setBck(null);
 
         usuarioService.guardarUsuarioAdmin(usuario);
+        redirAttr.addFlashAttribute("userSuccessSignUp",
+                messageSource.getMessage("user.admin.sign.up", null, LocaleContextHolder.getLocale()));
 
         return "redirect:/servicios/monitorearUsuarios";
     }
