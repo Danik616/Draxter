@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.draxter.draxter.Entity.PQR;
 import com.draxter.draxter.Entity.Usuarios;
+
 import com.draxter.draxter.Entity.Corte;
 import com.draxter.draxter.Entity.Rol;
 import com.draxter.draxter.Entity.FAQ;
@@ -193,8 +194,11 @@ public class DraxterServicioController {
     @PostMapping("/servicios/pedirCorte")
     public String peticionCorte(@ModelAttribute("corte") Corte corte, HttpSession session,
             RedirectAttributes redirAttr) {
+
         usuario = (Usuarios) session.getAttribute("usuariosesion");
         corte.setUsuario(usuario);
+
+        corteService.sendCorteEmailFirst(usuario);
         corteService.guardarCorte(corte);
 
         redirAttr.addFlashAttribute("corteSuccessMsg",
