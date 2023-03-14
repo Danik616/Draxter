@@ -95,4 +95,11 @@ public class UsuarioService implements IUsuarioService {
     public Usuarios obtenerPorEmail(String email) {
         return usuarioRepository.findByEmail(email);
     }
+
+    @Override
+    public Usuarios guardarUsuarioAdmin(Usuarios usuario) {
+        String contraseña = usuario.getContraseña();
+        usuario.setContraseña(passwordEncoder.encode(contraseña));
+        return usuarioRepository.save(usuario);
+    }
 }

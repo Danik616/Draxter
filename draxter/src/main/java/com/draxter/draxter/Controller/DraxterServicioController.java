@@ -148,7 +148,8 @@ public class DraxterServicioController {
         rol.setNombre(usuario.getBck());
         usuario.setRoles(Arrays.asList(rol));
         usuario.setBck(null);
-        usuarioService.guardar(usuario);
+
+        usuarioService.guardarUsuarioAdmin(usuario);
 
         return "redirect:/servicios/monitorearUsuarios";
     }

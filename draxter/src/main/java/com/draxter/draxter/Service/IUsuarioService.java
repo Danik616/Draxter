@@ -20,4 +20,6 @@ public interface IUsuarioService extends UserDetailsService {
     public Usuarios obtenerUsuarioPorID(String id);
 
     public Usuarios obtenerPorEmail(String email);
+
+    public Usuarios guardarUsuarioAdmin(Usuarios usuario);
 }
