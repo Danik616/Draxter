@@ -390,6 +390,23 @@
   color: inherit;
   caret-color: blue;
 }
+/*Monitorear productos
+*/
+
+.product-view-admin .btn-primary{
+  background-color: transparent!important;
+  border-radius: 0%!important;
+  border-color: blue !important;
+  color: black;
+
+}
+
+.product-view-admin .btn-primary:hover{
+  background-color: blue!important;
+  color: white!important;
+  border-radius: 0%!important;
+  transition: (100);
+}
  /*Carousel
 */
 .carousel{

@@ -211,90 +211,88 @@
     </div>
     <div th:replace="/fragments/signUp :: signUp"></div>
 
-    <div
-      sec:authorize="hasRole('ADMIN')"
-      style="
-        height: auto;
-        background: var(--bs-body-color);
-        padding-top: 50px;
-        padding-bottom: 50px;
-      "
-    >
-      <div
-        class="d-flex"
-        style="
-          background: var(--bs-body-color);
-          width: 90%;
-          margin-right: 5%;
-          margin-left: 5%;
-          height: 200px;
-          margin-top: 60px;
-        "
-        th:each="producto: ${productos}"
-      >
+    <div sec:authorize="hasRole('ADMIN')">
+      <div class="container fontc text-center">
+        <h1 class="mt-2">Carrito de compras</h1>
         <div
-          class="text-center"
-          style="width: 25%; height: 100%; text-align: center"
+          class="mt-5 mb-5 ml-3 mr-3 p-3 row border border-secondary shadow-lg"
+          th:each="producto :${productos}"
         >
-          <div
-            style="
-              width: 150px;
-              height: 150px;
-              margin-right: 31px;
-              margin-left: 31px;
-            "
-          >
-            <img
-              style="width: 100%; height: 100%"
-              th:src="@{'/assets/img/' + ${producto.imagen}}"
-              th:alt="${producto.imagen}"
-            />
-            <h5
-              style="
-                color: var(--bs-white);
-                margin-top: 10px;
-                text-align: center;
-              "
-              th:text="*{producto.nombre}"
-            ></h5>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <div class="kart-image jutify-content-center">
+              <img
+                th:src="@{'/assets/img/' + ${producto.imagen}}"
+                th:alt="${producto.imagen}"
+              />
+            </div>
           </div>
-        </div>
-        <div class="d-inline" style="width: 75%; height: 100%">
-          <div style="width: 100%; height: 60%">
-            <p th:text="*{producto.descripcion}" style="color: var(--bs-white)">
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout. The
-              point of using Lorem Ipsum is that it has a more-or-less normal
-              distribution of letters, as opposed to using 'Content here,
-              content here', making it look like readable English.&nbsp;<br />
-            </p>
-          </div>
-          <div style="height: 40%; width: 100%">
-            <h3 style="color: var(--bs-white)">
-              $ <span th:text="*{producto.precio}"></span>
-            </h3>
-            <a
-              class="btn btn-primary"
-              type="button"
-              style="margin-left: 250px"
-              th:href="@{/servicios/monitorearProductos/{id}(id=${producto.id})}"
-            >
-              Eliminar
-            </a>
-            <a
-              class="btn btn-primary"
-              type="button"
-              style="margin-left: 250px"
-              th:href="@{/servicios/monitorearProductos/editar/{id} (id=${producto.id})}"
-            >
-              Editar
-            </a>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            <div class="kart-details h-100">
+              <div class="row">
+                <h2 th:text="*{producto.nombre}">Nombre del producto</h2>
+              </div>
+              <div class="row text-left kart-description mt-4">
+                <div class="col-6">
+                  <p class="tx-sz-25" th:text="*{producto.descripcion}">
+                    descripcion
+                  </p>
+                </div>
+                <div class="col-6">
+                  <p
+                    class="tx-sz-20 text-muted"
+                    th:each="caracteristica :${producto.caracteristicas.split(',')}"
+                    th:text="*{caracteristica}"
+                  >
+                    Caracteristicas
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                  <p>
+                    $ &nbsp;&nbsp;<span th:text="*{producto.precio}"
+                      >Precio</span
+                    >
+                  </p>
+                </div>
+                <div
+                  class="col-8 col-lg-8 col-md-8 col-sm-8 col-xs-8 justify-content-start d-flex"
+                >
+                  <div class="row product-view-admin">
+                    <div class="col-6">
+                      <a
+                        class="btn btn-danger"
+                        type="button"
+                        th:href="@{/servicios/monitorearProductos/{id}(id=${producto.id})}"
+                      >
+                        Eliminar
+                      </a>
+                    </div>
+                    <div class="col-6 justify-content-center">
+                      <a
+                        class="btn btn-primary btn-edit"
+                        type="button"
+                        th:href="@{/servicios/monitorearProductos/editar/{id} (id=${producto.id})}"
+                      >
+                        Editar
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="modal productQuickView" tabindex="-1" id="productQuickView">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+
+    <div class="modal" tabindex="-1" id="product-view">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content"></div>
       </div>
@@ -307,6 +305,18 @@
         $(".link-details").on("click", function (e) {
           e.preventDefault();
           $("#productQuickView")
+            .modal("show")
+            .find(".modal-content")
+            .load($(this).attr("href"));
+        });
+      });
+    </script>
+
+    <script>
+      $(document).ready(function () {
+        $(".btn-edit").on("click", function (e) {
+          e.preventDefault();
+          $("#product-view")
             .modal("show")
             .find(".modal-content")
             .load($(this).attr("href"));
