@@ -407,6 +407,21 @@
   border-radius: 0%!important;
   transition: (100);
 }
+
+.pro-service .btn-primary{
+  background-color: transparent!important;
+  border-radius: 0%!important;
+  border-color: blue !important;
+  color: black;
+
+}
+
+.pro-service .btn-primary:hover{
+  background-color: blue!important;
+  color: white!important;
+  border-radius: 0%!important;
+  transition: (100);
+}
  /*Carousel
 */
 .carousel{
