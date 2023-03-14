@@ -377,6 +377,19 @@
 .borde-r{
   border-right: 2px solid black !important;
 }
+
+/*AgregarProducto
+*/
+
+.form-control-description{
+  background: none;
+  border: 1px solid #434a52;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  color: inherit;
+  caret-color: blue;
+}
  /*Carousel
 */
 .carousel{
