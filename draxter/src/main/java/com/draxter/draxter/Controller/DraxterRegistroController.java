@@ -43,6 +43,11 @@ public class DraxterRegistroController {
                     messageSource.getMessage("email.not.valid", null, LocaleContextHolder.getLocale()));
             return "redirect:/registrarse";
         }
+        if (usuarioExistente.getUsuario().equals(registroDTO.getUsuario())) {
+            redirAttr.addFlashAttribute("userNotValid",
+                    messageSource.getMessage("user.not.valid", null, LocaleContextHolder.getLocale()));
+            return "redirect:/registrarse";
+        }
         usuarioService.save(registroDTO);
         redirAttr.addFlashAttribute("userSucessSignUp",
                 messageSource.getMessage("user.sign.up", null, LocaleContextHolder.getLocale()));

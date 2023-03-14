@@ -151,6 +151,11 @@ public class DraxterServicioController {
                     messageSource.getMessage("email.not.valid", null, LocaleContextHolder.getLocale()));
             return "redirect:/servicios/monitorearUsuarios";
         }
+        if (usuarioExistente.getUsuario().equals(usuario.getUsuario())) {
+            redirAttr.addFlashAttribute("userNotValid",
+                    messageSource.getMessage("user.not.valid", null, LocaleContextHolder.getLocale()));
+            return "redirect:/servicios/monitorearUsuarios";
+        }
         Rol rol = new Rol();
         rol.setNombre(usuario.getBck());
         usuario.setRoles(Arrays.asList(rol));
