@@ -104,12 +104,10 @@
           </div>
         </div>
 
-        <div
-          class="alert alert-success alerta"
-          role="alert"
-          th:if="${corteSuccessMsg != null}"
-        >
-          <p th:text="${corteSuccessMsg}"></p>
+        <div class="CkEXb-WARNING alerta" th:if="${corteSuccessMsg != null}">
+          <div class="a0A37 hAkP2">
+            <p th:text="${corteSuccessMsg}"></p>
+          </div>
         </div>
       </div>
     </section>
@@ -149,13 +147,7 @@
         });
       });
     </script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        setTimeout(function () {
-          $(".alerta").fadeOut(1500);
-        }, 3000);
-      });
-    </script>
+    <script th:replace="/fragments/alerta :: alerta"></script>
     <script
       src="assets/JQuery/jquery.min.js"
       th:src="@{/assets/JQuery/jquery.min.js}"

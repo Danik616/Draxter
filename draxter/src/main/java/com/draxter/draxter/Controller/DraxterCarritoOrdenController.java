@@ -49,7 +49,14 @@ public class DraxterCarritoOrdenController {
     @GetMapping("carrito/{id}")
     public String añadirAlCarrito(Model model, HttpSession session, @PathVariable Long id,
             RedirectAttributes redirAttr) {
+
         usuario = (Usuarios) session.getAttribute("usuariosesion");
+        if (usuario == null) {
+            redirAttr.addFlashAttribute("signUp",
+                    messageSource.getMessage("user.sign.up.kart", null,
+                            LocaleContextHolder.getLocale()));
+            return "redirect:/catalogo";
+        }
         Producto productoExistente = productoService.obtenerProductoPorId(id);
         List<Producto> productos = carritoService.obtenerProductosPorUsuario(usuario);
         if (productos.contains(productoExistente)) {
@@ -69,6 +76,7 @@ public class DraxterCarritoOrdenController {
 
     @GetMapping("carrito")
     public String mostrarPedidos(Model model, HttpSession session) {
+
         usuario = (Usuarios) session.getAttribute("usuariosesion");
         List<Producto> productos = carritoService.obtenerProductosPorUsuario(usuario);
         model.addAttribute("productos", productos);
