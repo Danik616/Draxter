@@ -12,6 +12,6 @@ public interface ICorteService {
 
     public Corte guardarCorte(Corte corte);
 
-    public void sendCorteEmailFirst(Usuarios usuario);
+    public void sendCorteEmailFirst(Usuarios usuario, Corte corte);
 
 }

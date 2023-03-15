@@ -198,7 +198,7 @@ public class DraxterServicioController {
         usuario = (Usuarios) session.getAttribute("usuariosesion");
         corte.setUsuario(usuario);
 
-        corteService.sendCorteEmailFirst(usuario);
+        corteService.sendCorteEmailFirst(usuario, corte);
         corteService.guardarCorte(corte);
 
         redirAttr.addFlashAttribute("corteSuccessMsg",

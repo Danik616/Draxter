@@ -41,13 +41,14 @@ public class CorteService implements ICorteService {
     }
 
     @Override
-    public void sendCorteEmailFirst(Usuarios usuario) {
-        sendCorteEmail(usuario);
+    public void sendCorteEmailFirst(Usuarios usuario, Corte corte) {
+        sendCorteEmail(usuario, corte);
     }
 
-    protected void sendCorteEmail(Usuarios usuario) {
+    protected void sendCorteEmail(Usuarios usuario, Corte corte) {
         CorteEmail emailContext = new CorteEmail();
         emailContext.init(usuario);
+        emailContext.setCorte(corte);
         try {
             emailService.sendMail(emailContext);
         } catch (MessagingException e) {
