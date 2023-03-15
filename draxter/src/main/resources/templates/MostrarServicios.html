@@ -98,13 +98,12 @@
         </div>
       </div>
       <div class="servi d-flex">
-        <div
-          class="alert alert-success alerta"
-          role="alert"
-          th:if="${pqrSuccessMsg != null}"
-        >
-          <p th:text="${pqrSuccessMsg}"></p>
+        <div class="CkEXb-WARNING alerta" th:if="${pqrSuccessMsg != null}">
+          <div class="a0A37 hAkP2">
+            <p class="m-0" th:text="${pqrSuccessMsg}"></p>
+          </div>
         </div>
+
         <div
           class="alert alert-success alerta"
           role="alert"
@@ -153,7 +152,7 @@
     <script type="text/javascript">
       $(document).ready(function () {
         setTimeout(function () {
-          $(".alert").fadeOut(1500);
+          $(".alerta").fadeOut(1500);
         }, 3000);
       });
     </script>
