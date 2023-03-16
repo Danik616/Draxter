@@ -8,10 +8,8 @@
         <div sec:authorize="!isAuthenticated()">
           <form method="post" th:action="@{/iniciarSesion}">
             <h2 class="visually-hidden">Login Form</h2>
-            <div th:if="${param.error}">
-              <div class="alert alert-danger">
-                Usuario o contraseña invalidos
-              </div>
+            <div th:if="${param.error}" class="alert alert-danger" role="alert">
+              <p class="mb-0">Usuario o contraseña invalidos</p>
             </div>
             <div
               class="CkEXb-WARNING alerta"
@@ -21,17 +19,14 @@
                 <p th:text="${resetPasswordMsg}"></p>
               </div>
             </div>
-            <div
-              class="alert alert-danger"
-              role="alert"
-              th:if="${tokenError != null}"
-            >
-              <p style="color: aliceblue" th:text="${tokenError}"></p>
+            <div class="CkEXb-DANGER alerta" th:if="${tokenError != null}">
+              <div class="a0A37 hAkP2">
+                <p th:text="${tokenError}"></p>
+              </div>
             </div>
-
-            <div th:if="${param.logout}">
-              <div class="alert alert-danger">
-                Ha cerrado sesion exitosamente
+            <div class="CkEXb-PRIMARY alerta" th:if="${param.logout}">
+              <div class="a0A37 hAkP2">
+                <p>Ha cerrado sesion exitosamente</p>
               </div>
             </div>
             <div class="illustration">

@@ -1,5 +1,5 @@
 /*Pruebas*/
-.CkEXb {
+.CkEXb-PRIMARY {
   width: 100%;
   z-index: 101;
   pointer-events: none;
@@ -11,13 +11,13 @@
   left: 0;
 }
 
-.CkEXb .a0A37.hAkP2 {
-  background: red;
+.CkEXb-PRIMARY .a0A37.hAkP2 {
+  background: BLUE;
   color: white;
   animation: .3s ease-in P8JEa,.3s ease-out 7.7s aNHK7;
 }
 
-.CkEXb .a0A37 {
+.CkEXb-PRIMARY .a0A37 {
   font-family: 'Archivo', sans-serif;
   background: white;
   color: black;
@@ -34,7 +34,51 @@
   box-shadow: 0 0 15px rgb(0 0 0 / 50%);
 }
 
-.CkEXb .a0A37 svg {
+.CkEXb-PRIMARY .a0A37 p{
+  font-size: 20 !important;
+}
+
+.CkEXb-PRIMARY .a0A37 svg {
+  min-height: 20px;
+  min-width: 20px;
+  margin-right: 8px;
+}
+.CkEXb-DANGER {
+  width: 100%;
+  z-index: 101;
+  pointer-events: none;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  position: fixed;
+  bottom: 40px;
+  left: 0;
+}
+
+.CkEXb-DANGER .a0A37.hAkP2 {
+  background: red;
+  color: white;
+  animation: .3s ease-in P8JEa,.3s ease-out 7.7s aNHK7;
+}
+
+.CkEXb-DANGER .a0A37 {
+  font-family: 'Archivo', sans-serif;
+  background: white;
+  color: black;
+  pointer-events: all;
+  border-radius: 3px;
+  align-items: center;
+  margin-bottom: 2px;
+  padding: 10px 12px;
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  animation: .3s ease-in P8JEa,.3s ease-out 3.7s aNHK7;
+  display: flex;
+  box-shadow: 0 0 15px rgb(0 0 0 / 50%);
+}
+
+.CkEXb-DANGER .a0A37 svg {
   min-height: 20px;
   min-width: 20px;
   margin-right: 8px;
