@@ -251,12 +251,8 @@ public class DraxterServicioController {
 
     @GetMapping("/servicios/FAQ/nuevoFAQ")
     public String nuevoFAQ(Model model, HttpSession session) {
+        model.addAttribute("FAQ", new FAQ());
         return "nuevoFAQ";
-    }
-
-    @ModelAttribute("FAQ")
-    public FAQ nuevoFaq() {
-        return new FAQ();
     }
 
     @PostMapping("/servicios/FAQ/nuevoFAQ")
