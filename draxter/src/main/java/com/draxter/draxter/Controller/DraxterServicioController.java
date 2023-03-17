@@ -150,17 +150,23 @@ public class DraxterServicioController {
     @PostMapping("/servicios/agregarUsuario")
     public String agregarNuevoUsuario(Model model, HttpSession session,
             @ModelAttribute("usuario") Usuarios usuario, RedirectAttributes redirAttr) {
-        String email = usuario.getEmail();
-        Usuarios usuarioExistente = usuarioService.obtenerPorEmail(email);
-        if (usuarioExistente.getEmail().equals(email)) {
-            redirAttr.addFlashAttribute("emailNotValid",
-                    messageSource.getMessage("email.not.valid", null, LocaleContextHolder.getLocale()));
-            return "redirect:/servicios/monitorearUsuarios";
+        String email = usuario.getEmail().toLowerCase();
+        String id = usuario.getUsuario();
+        Usuarios usuarioExistenteEmail = usuarioService.obtenerPorEmail(email);
+        Usuarios usuarioExistenteID = usuarioService.obtenerUsuarioPorID(id);
+        if (usuarioExistenteEmail != null) {
+            if (usuarioExistenteEmail.getEmail().equals(email)) {
+                redirAttr.addFlashAttribute("emailNotValid",
+                        messageSource.getMessage("email.not.valid", null, LocaleContextHolder.getLocale()));
+                return "redirect:/servicios/agregarUsuario";
+            }
         }
-        if (usuarioExistente.getUsuario().equals(usuario.getUsuario())) {
-            redirAttr.addFlashAttribute("userNotValid",
-                    messageSource.getMessage("user.not.valid", null, LocaleContextHolder.getLocale()));
-            return "redirect:/servicios/monitorearUsuarios";
+        if (usuarioExistenteID != null) {
+            if (usuarioExistenteID.getUsuario().equals(id)) {
+                redirAttr.addFlashAttribute("userNotValid",
+                        messageSource.getMessage("user.not.valid", null, LocaleContextHolder.getLocale()));
+                return "redirect:/servicios/agregarUsuario";
+            }
         }
         Rol rol = new Rol();
         rol.setNombre(usuario.getBck());
@@ -171,7 +177,7 @@ public class DraxterServicioController {
         redirAttr.addFlashAttribute("userSuccessSignUp",
                 messageSource.getMessage("user.admin.sign.up", null, LocaleContextHolder.getLocale()));
 
-        return "redirect:/servicios/monitorearUsuarios";
+        return "redirect:/servicios/agregarUsuario";
     }
 
     @GetMapping("/servicios/monitorearUsuarios")
