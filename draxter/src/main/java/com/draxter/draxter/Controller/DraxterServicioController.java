@@ -182,12 +182,16 @@ public class DraxterServicioController {
 
     @GetMapping("/servicios/monitorearUsuarios")
     public String monitorearUsuarios(Model model, HttpSession session) {
-        model.addAttribute("usuarios", usuarioService.obtenerUsuarios());
+        usuario = (Usuarios) session.getAttribute("usuariosesion");
+        model.addAttribute("usuarios", usuarioService.obtenerUsuarios(usuario));
         return "monitorearUsuarios";
     }
 
     @GetMapping("/servicios/borrarUsuarios/{id}")
-    public String borrarUsuario(Model model, HttpSession session, @PathVariable(name = "id") String id) {
+    public String borrarUsuario(Model model, HttpSession session, @PathVariable(name = "id") String id,
+            RedirectAttributes redirAttr) {
+        redirAttr.addFlashAttribute("userEliminated",
+                messageSource.getMessage("user.admin.eliminated", null, LocaleContextHolder.getLocale()));
         usuarioService.eliminarUsuarioPorID(id);
         return "redirect:/servicios/monitorearUsuarios";
     }

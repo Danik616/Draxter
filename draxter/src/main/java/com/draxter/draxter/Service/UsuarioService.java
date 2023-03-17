@@ -20,6 +20,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import com.draxter.draxter.Entity.Rol;
 import com.draxter.draxter.Entity.Usuarios;
+import com.draxter.draxter.Repository.IRolRepository;
 import com.draxter.draxter.Repository.IUsuarioRepository;
 import com.draxter.draxter.dto.UsuarioRegistroDTO;
 
@@ -29,10 +30,12 @@ public class UsuarioService implements IUsuarioService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
     private IUsuarioRepository usuarioRepository;
+    private IRolRepository rolRepository;
 
-    public UsuarioService(IUsuarioRepository usuarioRepository) {
+    public UsuarioService(IUsuarioRepository usuarioRepository, IRolRepository rolRepository) {
         super();
         this.usuarioRepository = usuarioRepository;
+        this.rolRepository = rolRepository;
     }
 
     @Override
@@ -76,12 +79,18 @@ public class UsuarioService implements IUsuarioService {
     }
 
     @Override
-    public List<Usuarios> obtenerUsuarios() {
-        return usuarioRepository.findAll();
+    public List<Usuarios> obtenerUsuarios(Usuarios usuario) {
+        String id = usuario.getUsuario();
+        return usuarioRepository.obtenerTodosLosUsuarios(id);
     }
 
     @Override
     public void eliminarUsuarioPorID(String id) {
+        Usuarios usuario = usuarioRepository.obtenerUsuarioPorID(id);
+        Collection<Rol> roles = usuario.getRoles();
+        for (Rol rol : roles) {
+            rolRepository.deleteById(rol.getId());
+        }
         usuarioRepository.deleteById(id);
 
     }

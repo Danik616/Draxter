@@ -13,7 +13,7 @@ public interface IUsuarioService extends UserDetailsService {
 
     public Usuarios guardar(Usuarios usuario);
 
-    public List<Usuarios> obtenerUsuarios();
+    public List<Usuarios> obtenerUsuarios(Usuarios usuario);
 
     public void eliminarUsuarioPorID(String id);
 

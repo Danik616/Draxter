@@ -92,6 +92,11 @@
       </div>
     </div>
 
+    <div class="CkEXb-SUCCESS alerta" th:if="${userEliminated != null}">
+      <div class="a0A37 hAkP2">
+        <p class="mb-0" th:text="${userEliminated}"></p>
+      </div>
+    </div>
     <footer th:replace="/fragments/footer :: footer"></footer>
     <script
       src="assets/JQuery/jquery.min.js"
@@ -103,5 +108,6 @@
       th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js}"
     ></script>
     <script th:replace=" /fragments/scriptActive :: scriptActive"></script>
+    <script th:replace=" /fragments/alerta :: alerta"></script>
   </body>
 </html>
