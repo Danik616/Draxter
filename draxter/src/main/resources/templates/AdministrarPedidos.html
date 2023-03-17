@@ -55,6 +55,11 @@
         <p class="mb-0" th:text="${eliminacionCarrito}"></p>
       </div>
     </div>
+    <div class="CkEXb-SUCCESS alerta" th:if="${shopSuccess != null}">
+      <div class="a0A37 hAkP2">
+        <p class="mb-0" th:text="${shopSuccess}"></p>
+      </div>
+    </div>
 
     <footer th:replace="/fragments/footer :: footer"></footer>
     <script type="text/javascript">

@@ -63,7 +63,7 @@ public class DraxterCarritoOrdenController {
             redirAttr.addFlashAttribute("carritoNoGuardado",
                     messageSource.getMessage("user.shopping.kart.no.saved", null,
                             LocaleContextHolder.getLocale()));
-            return "redirect:/catalogo"; 
+            return "redirect:/catalogo";
         } else {
             redirAttr.addFlashAttribute("carritoGuardado",
                     messageSource.getMessage("user.shopping.kart.saved", null,
@@ -106,10 +106,6 @@ public class DraxterCarritoOrdenController {
         return "productoCarrito";
     }
 
-    // Desde aqui se va a manejar las ordenes
-
-    // convertir en un post mapping para traer el producto orden y añadirle la
-    // información completa
     @PostMapping("comprarProducto/{id}")
     public String comprarProducto(RedirectAttributes redirAttr, HttpSession session,
             @PathVariable Long id, @ModelAttribute("orden") Orden orden) {
@@ -124,7 +120,7 @@ public class DraxterCarritoOrdenController {
         orden.setValorTotal(cantidad * precio);
         ordenService.guardarOrden(orden);
         redirAttr.addFlashAttribute("orden", orden);
-        redirAttr.addFlashAttribute("eliminacionCarrito",
+        redirAttr.addFlashAttribute("shopSuccess",
                 messageSource.getMessage("user.shopping.kart.shop.succesful", null,
                         LocaleContextHolder.getLocale()));
         return "redirect:/carrito";
