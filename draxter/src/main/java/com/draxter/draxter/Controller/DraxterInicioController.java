@@ -164,8 +164,11 @@ public class DraxterInicioController {
     }
 
     @GetMapping("/servicios/monitorearProductos/{id}")
-    public String eliminarProducto(Model model, HttpSession session, @PathVariable(name = "id") String id) {
+    public String eliminarProducto(Model model, HttpSession session, @PathVariable(name = "id") String id,
+            RedirectAttributes redirAttr) {
         productoService.eliminarProductoPorID(id);
+        redirAttr.addFlashAttribute("productDeleted",
+                messageSource.getMessage("product.deleted", null, LocaleContextHolder.getLocale()));
         return "redirect:/servicios/monitorearProductos";
     }
 
@@ -193,7 +196,7 @@ public class DraxterInicioController {
     @PostMapping("/servicios/monitorearProductos/editar/{id}")
     public String actualizarProducto(@RequestParam("file") MultipartFile imagen, HttpSession session,
             @PathVariable(name = "id") String id,
-            @ModelAttribute("producto") Producto producto) {
+            @ModelAttribute("producto") Producto producto, RedirectAttributes redirAttr) {
         usuario = (Usuarios) session.getAttribute("usuariosesion");
         long idBusqueda = Long.parseLong(id);
         Producto productoExistente = productoService.obtenerProductoPorId(idBusqueda);
@@ -220,13 +223,20 @@ public class DraxterInicioController {
 
         }
 
-        productoExistente.setCaracteristicas(producto.getCaracteristicas());
-        productoExistente.setDescripcion(producto.getDescripcion());
-        productoExistente.setNombre(producto.getNombre());
-        productoExistente.setPrecio(producto.getPrecio());
-        productoExistente.setGenero(producto.getGenero());
-        productoExistente.setTallaje(producto.getTallaje());
-        productoService.guardaProducto(productoExistente);
+        if (producto.getTallaje() != null) {
+            productoExistente.setCaracteristicas(producto.getCaracteristicas());
+            productoExistente.setDescripcion(producto.getDescripcion());
+            productoExistente.setNombre(producto.getNombre());
+            productoExistente.setPrecio(producto.getPrecio());
+            productoExistente.setGenero(producto.getGenero());
+            productoExistente.setTallaje(producto.getTallaje());
+            productoService.guardaProducto(productoExistente);
+            redirAttr.addFlashAttribute("infoSaved",
+                    messageSource.getMessage("info.saved", null, LocaleContextHolder.getLocale()));
+        } else {
+            redirAttr.addFlashAttribute("tallajeEmpty",
+                    messageSource.getMessage("tallaje.empty", null, LocaleContextHolder.getLocale()));
+        }
         return "redirect:/servicios/monitorearProductos";
 
     }

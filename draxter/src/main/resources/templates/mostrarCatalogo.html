@@ -276,6 +276,11 @@
         <p th:text="${carritoGuardado}"></p>
       </div>
     </div>
+    <div class="CkEXb-SUCCESS alerta" th:if="${infoSaved != null}">
+      <div class="a0A37 hAkP2">
+        <p th:text="${infoSaved}"></p>
+      </div>
+    </div>
     <div class="CkEXb-DANGER alerta" th:if="${carritoNoGuardado != null}">
       <div class="a0A37 hAkP2">
         <p th:text="${carritoNoGuardado}"></p>
@@ -286,6 +291,17 @@
         <p th:text="${signUp}"></p>
       </div>
     </div>
+    <div class="CkEXb-DANGER alerta" th:if="${productDeleted != null}">
+      <div class="a0A37 hAkP2">
+        <p th:text="${productDeleted}"></p>
+      </div>
+    </div>
+    <div class="CkEXb-DANGER alerta" th:if="${tallajeEmpty != null}">
+      <div class="a0A37 hAkP2">
+        <p th:text="${tallajeEmpty}"></p>
+      </div>
+    </div>
+
     <footer th:replace="/fragments/footer :: footer"></footer>
 
     <script>
