@@ -92,6 +92,21 @@
         </div>
       </div>
     </div>
+    <div class="CkEXb-DANGER alerta" th:if="${pqrDeleted != null}">
+      <div class="a0A37 hAkP2">
+        <p class="mb-0" th:text="${pqrDeleted}"></p>
+      </div>
+    </div>
+    <div class="CkEXb-DANGER alerta" th:if="${errorInfo != null}">
+      <div class="a0A37 hAkP2">
+        <p class="mb-0" th:text="${errorInfo}"></p>
+      </div>
+    </div>
+    <div class="CkEXb-SUCCESS alerta" th:if="${infoSaved != null}">
+      <div class="a0A37 hAkP2">
+        <p class="mb-0" th:text="${infoSaved}"></p>
+      </div>
+    </div>
     <div class="modal userEdit" tabindex="-1" id="pqr-edit">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content"></div>
@@ -119,6 +134,7 @@
       th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js}"
     ></script>
     <script th:replace=" /fragments/scriptActive :: scriptActive"></script>
+    <script th:replace=" /fragments/alerta :: alerta"></script>
     <script type="text/javascript">
       $("#id").change(function () {
         //alert("el input cambio");
