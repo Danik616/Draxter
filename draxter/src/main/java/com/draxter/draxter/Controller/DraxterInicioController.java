@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import java.util.ArrayList;
 
 import java.util.List;
@@ -166,9 +167,15 @@ public class DraxterInicioController {
     @GetMapping("/servicios/monitorearProductos/{id}")
     public String eliminarProducto(Model model, HttpSession session, @PathVariable(name = "id") String id,
             RedirectAttributes redirAttr) {
-        productoService.eliminarProductoPorID(id);
-        redirAttr.addFlashAttribute("productDeleted",
-                messageSource.getMessage("product.deleted", null, LocaleContextHolder.getLocale()));
+        try {
+            productoService.eliminarProductoPorID(id);
+            redirAttr.addFlashAttribute("productDeleted",
+                    messageSource.getMessage("product.deleted", null, LocaleContextHolder.getLocale()));
+        } catch (Exception ex) {
+            redirAttr.addFlashAttribute("productNotDeleted",
+                    messageSource.getMessage("product.not.deleted", null, LocaleContextHolder.getLocale()));
+        }
+
         return "redirect:/servicios/monitorearProductos";
     }
 

@@ -1,5 +1,6 @@
 package com.draxter.draxter.Service;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -41,7 +42,7 @@ public class ProductoService implements IProductoService {
     }
 
     @Override
-    public void eliminarProductoPorID(String id) {
+    public void eliminarProductoPorID(String id) throws SQLIntegrityConstraintViolationException, Exception {
         long idBusqueda = Long.parseLong(id);
         productoRepository.deleteById(idBusqueda);
 
