@@ -63,13 +63,13 @@ public class DraxterCarritoOrdenController {
             redirAttr.addFlashAttribute("carritoNoGuardado",
                     messageSource.getMessage("user.shopping.kart.no.saved", null,
                             LocaleContextHolder.getLocale()));
-            return "redirect:/catalogo"; // crear un modal o ventana emergente
+            return "redirect:/catalogo"; 
         } else {
             redirAttr.addFlashAttribute("carritoGuardado",
                     messageSource.getMessage("user.shopping.kart.saved", null,
                             LocaleContextHolder.getLocale()));
             carritoService.addToCarrito(usuario, productoExistente);
-            return "redirect:/catalogo"; // crear un modal o ventana emergente
+            return "redirect:/catalogo";
         }
 
     }

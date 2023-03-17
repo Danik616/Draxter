@@ -182,28 +182,6 @@
           </div>
         </div>
       </section>
-
-      <div
-        class="alert alert-success"
-        role="alert"
-        th:if="${carritoGuardado != null}"
-      >
-        <p style="color: aliceblue" th:text="${carritoGuardado}"></p>
-      </div>
-
-      <div
-        class="alert alert-success"
-        role="alert"
-        th:if="${carritoNoGuardado != null}"
-      >
-        <p style="color: aliceblue" th:text="${carritoNoGuardado}"></p>
-      </div>
-    </div>
-
-    <div class="CkEXb-WARNING alerta" th:if="${signUp != null}">
-      <div class="a0A37 hAkP2">
-        <p th:text="${signUp}"></p>
-      </div>
     </div>
 
     <div sec:authorize="hasRole('ADMIN')">
@@ -293,6 +271,21 @@
       </div>
     </div>
 
+    <div class="CkEXb-SUCCESS alerta" th:if="${carritoGuardado != null}">
+      <div class="a0A37 hAkP2">
+        <p th:text="${carritoGuardado}"></p>
+      </div>
+    </div>
+    <div class="CkEXb-DANGER alerta" th:if="${carritoNoGuardado != null}">
+      <div class="a0A37 hAkP2">
+        <p th:text="${carritoNoGuardado}"></p>
+      </div>
+    </div>
+    <div class="CkEXb-DANGER alerta" th:if="${signUp != null}">
+      <div class="a0A37 hAkP2">
+        <p th:text="${signUp}"></p>
+      </div>
+    </div>
     <footer th:replace="/fragments/footer :: footer"></footer>
 
     <script>
@@ -328,5 +321,6 @@
       th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js}"
     ></script>
     <script th:replace=" /fragments/scriptActive :: scriptActive"></script>
+    <script th:replace=" /fragments/alerta :: alerta"></script>
   </body>
 </html>
