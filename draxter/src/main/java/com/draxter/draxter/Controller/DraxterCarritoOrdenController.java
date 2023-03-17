@@ -109,6 +109,12 @@ public class DraxterCarritoOrdenController {
     @PostMapping("comprarProducto/{id}")
     public String comprarProducto(RedirectAttributes redirAttr, HttpSession session,
             @PathVariable Long id, @ModelAttribute("orden") Orden orden) {
+        if (orden.getTallaje() == null) {
+            redirAttr.addFlashAttribute("EmptyTalla",
+                    messageSource.getMessage("user.shopping.kart.talla.empty", null,
+                            LocaleContextHolder.getLocale()));
+            return "redirect:/carrito/producto/" + id;
+        }
         usuario = (Usuarios) session.getAttribute("usuariosesion");
         Producto pr = productoService.obtenerProductoPorId(id);
         carritoService.eliminarCarritoPorIdProducto(id);
