@@ -229,14 +229,23 @@ public class DraxterServicioController {
     }
 
     @GetMapping("/servicios/FAQ")
-    public String mostrarFAQ(Model model, HttpSession session, @Param("id") String id) {
-        if (id != null) {
-            faqService.eliminarFAQsporID(id);
-            model.addAttribute("id", id);
-            return "redirect:/servicios/FAQ";
-        }
-        model.addAttribute("faqs", faqService.obtenerFAQs());
+    public String mostrarFAQ(Model model, HttpSession session, @Param("id") String id, RedirectAttributes redirAttr) {
 
+        if (id != null) {
+            if (!id.isBlank()) {
+                faqService.eliminarFAQsporID(id);
+                model.addAttribute("id", id);
+
+                redirAttr.addFlashAttribute("FAQSuccessEliminated",
+                        messageSource.getMessage("faq.eliminated", null, LocaleContextHolder.getLocale()));
+                return "redirect:/servicios/FAQ";
+            } else {
+                return "redirect:/servicios/FAQ";
+            }
+
+        }
+
+        model.addAttribute("faqs", faqService.obtenerFAQs());
         return "FAQ";
     }
 
@@ -251,10 +260,12 @@ public class DraxterServicioController {
     }
 
     @PostMapping("/servicios/FAQ/nuevoFAQ")
-    public String peticionFAQ(@ModelAttribute("FAQ") FAQ faq, HttpSession session) {
+    public String peticionFAQ(@ModelAttribute("FAQ") FAQ faq, HttpSession session, RedirectAttributes redirAttr) {
         usuario = (Usuarios) session.getAttribute("usuariosesion");
         faq.setUsuario(usuario);
         faqService.guardarFAQ(faq);
+        redirAttr.addFlashAttribute("FAQSuccessMsg",
+                messageSource.getMessage("info.saved", null, LocaleContextHolder.getLocale()));
         return "redirect:/servicios/FAQ";
     }
 
@@ -269,7 +280,7 @@ public class DraxterServicioController {
 
     @PostMapping("/actualizarFAQ/{id}")
     public String actualizarFAQ(HttpSession session, @PathVariable("id") String id,
-            @ModelAttribute("faq") FAQ faq, Model model) {
+            @ModelAttribute("faq") FAQ faq, Model model, RedirectAttributes redirAttr) {
         FAQ faqExistente = faqService.obtenerFAQporID(id);
 
         if (faqExistente != null) {
@@ -278,10 +289,13 @@ public class DraxterServicioController {
             faqExistente.setUsuario(usuario);
 
             faqService.guardarFAQ(faqExistente);
+            redirAttr.addFlashAttribute("FAQSuccessMsg",
+                    messageSource.getMessage("info.saved", null, LocaleContextHolder.getLocale()));
             return "redirect:/servicios/FAQ";
         } else {
-
-            return "redirect:/editarFAQ/{" + id + "}?error))";
+            redirAttr.addFlashAttribute("errorInfo",
+                    messageSource.getMessage("error.info", null, LocaleContextHolder.getLocale()));
+            return "redirect:/servicios/FAQ";
         }
 
     }
