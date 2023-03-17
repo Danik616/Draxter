@@ -122,29 +122,39 @@ public class DraxterInicioController {
 
     @PostMapping("/servicios/agregarProducto")
     public String guardarProducto(HttpSession session, @RequestParam("file") MultipartFile imagen,
-            @ModelAttribute("producto") Producto producto, Model model) {
+            @ModelAttribute("producto") Producto producto, Model model, RedirectAttributes redirAttr) {
         usuario = (Usuarios) session.getAttribute("usuariosesion");
         producto.setUsuario(usuario);
         if (!imagen.isEmpty()) {
-            String rutaAbsoluta = "draxter//src//main//resources//static//assets//img";
+            if (producto.getTallaje() != null) {
+                String rutaAbsoluta = "draxter//src//main//resources//static//assets//img";
 
-            try {
-                byte[] bytesImg = imagen.getBytes();
-                String id = producto.getNombre();
-                String nombreArchivo = id + imagen.getOriginalFilename();
-                Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + nombreArchivo);
-                Files.write(rutaCompleta, bytesImg);
-                producto.setImagen(nombreArchivo);
-            } catch (IOException e) {
-                e.printStackTrace();
+                try {
+                    byte[] bytesImg = imagen.getBytes();
+                    String id = producto.getNombre();
+                    String nombreArchivo = id + imagen.getOriginalFilename();
+                    Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + nombreArchivo);
+                    Files.write(rutaCompleta, bytesImg);
+                    producto.setImagen(nombreArchivo);
+                } catch (IOException e) {
+                    e.printStackTrace();
 
+                }
+                productoService.guardaProducto(producto);
+                redirAttr.addFlashAttribute("infoSaved",
+                        messageSource.getMessage("info.saved", null, LocaleContextHolder.getLocale()));
+                return "redirect:/servicios/agregarProducto";
+            } else {
+                redirAttr.addFlashAttribute("tallajeEmpty",
+                        messageSource.getMessage("tallaje.empty", null, LocaleContextHolder.getLocale()));
+                return "redirect:/servicios/agregarProducto";
             }
-            productoService.guardaProducto(producto);
         } else {
-            return "redirect:/servicios/agregarProducto?vacio";
+            redirAttr.addFlashAttribute("imgNotEmpty",
+                    messageSource.getMessage("img.not.empty", null, LocaleContextHolder.getLocale()));
+            return "redirect:/servicios/agregarProducto";
         }
 
-        return "redirect:/servicios/agregarProducto?Sucess";
     }
 
     @GetMapping("/servicios/monitorearProductos")
