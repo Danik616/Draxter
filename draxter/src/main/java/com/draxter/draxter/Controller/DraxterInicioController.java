@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-//import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 
 import com.draxter.draxter.Entity.Producto;
 import com.draxter.draxter.Entity.Rol;
@@ -42,6 +44,9 @@ public class DraxterInicioController {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @Autowired
+    private MessageSource messageSource;
 
     List<Rol> listadoRol = new ArrayList<Rol>();
 
@@ -226,7 +231,7 @@ public class DraxterInicioController {
     @PostMapping("/servicios/editarUsuario/{id}")
     public String actualizarUsuario(Model model, @RequestParam("file") MultipartFile imagen, HttpSession session,
             @PathVariable(name = "id") String id,
-            @ModelAttribute("usuario") Usuarios usuario) {
+            @ModelAttribute("usuario") Usuarios usuario, RedirectAttributes redirAttr) {
         Usuarios usuarioExistente = usuarioService.obtenerUsuarioPorID(id);
         String nombreAnteriorImagen = usuarioExistente.getImagen();
         if (!imagen.isEmpty()) {
@@ -249,17 +254,19 @@ public class DraxterInicioController {
                 e.printStackTrace();
 
             }
-            usuarioExistente.setApellidos(usuario.getApellidos());
-            usuarioExistente.setCelular(usuario.getCelular());
-            usuarioExistente.setDireccion(usuario.getDireccion());
-            usuarioExistente.setNombres(usuario.getNombres());
-            usuarioExistente.setPais(usuario.getPais());
-            usuarioService.guardar(usuarioExistente);
-        } else {
+
             return "redirect:/";
         }
-
+        usuarioExistente.setApellidos(usuario.getApellidos());
+        usuarioExistente.setCelular(usuario.getCelular());
+        usuarioExistente.setDireccion(usuario.getDireccion());
+        usuarioExistente.setNombres(usuario.getNombres());
+        usuarioExistente.setPais(usuario.getPais());
+        usuarioService.guardar(usuarioExistente);
+        redirAttr.addFlashAttribute("infoSaved",
+                messageSource.getMessage("info.saved", null, LocaleContextHolder.getLocale()));
         return "redirect:/";
+
     }
 
 }
