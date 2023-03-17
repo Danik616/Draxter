@@ -11,24 +11,7 @@
             <div th:if="${param.error}" class="alert alert-danger" role="alert">
               <p class="mb-0">Usuario o contraseña invalidos</p>
             </div>
-            <div
-              class="CkEXb-WARNING alerta"
-              th:if="${resetPasswordMsg != null}"
-            >
-              <div class="a0A37 hAkP2">
-                <p th:text="${resetPasswordMsg}"></p>
-              </div>
-            </div>
-            <div class="CkEXb-DANGER alerta" th:if="${tokenError != null}">
-              <div class="a0A37 hAkP2">
-                <p th:text="${tokenError}"></p>
-              </div>
-            </div>
-            <div class="CkEXb-PRIMARY alerta" th:if="${param.logout}">
-              <div class="a0A37 hAkP2">
-                <p>Ha cerrado sesion exitosamente</p>
-              </div>
-            </div>
+
             <div class="illustration">
               <i class="icon ion-ios-locked-outline"></i>
             </div>
@@ -117,7 +100,21 @@
         </div>
       </section>
     </div>
-
+    <div class="CkEXb-WARNING alerta" th:if="${resetPasswordMsg != null}">
+      <div class="a0A37 hAkP2">
+        <p th:text="${resetPasswordMsg}"></p>
+      </div>
+    </div>
+    <div class="CkEXb-DANGER alerta" th:if="${tokenError != null}">
+      <div class="a0A37 hAkP2">
+        <p th:text="${tokenError}"></p>
+      </div>
+    </div>
+    <div class="CkEXb-PRIMARY alerta" th:if="${param.logout}">
+      <div class="a0A37 hAkP2">
+        <p>Ha cerrado sesion exitosamente</p>
+      </div>
+    </div>
     <footer th:replace="/fragments/footer :: footer"></footer>
     <div th:replace="/emails/forgotPassword :: forgotPasswordModel"></div>
     <script
@@ -133,7 +130,7 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
       th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js}"
     ></script>
-
+    <script th:replace=" /fragments/alerta :: alerta"></script>
     <script th:replace=" /fragments/scriptActive :: scriptActive"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.js"></script>
