@@ -12,9 +12,6 @@
             th:object="${usuario}"
             method="post"
           >
-            <div th:if="${param.exito}">
-              <div class="alert alert-info">Se ha registrado exitosamente.</div>
-            </div>
             <h2 class="text-center" style="color: var(--bs-white)">
               <strong>Registrarse</strong>
             </h2>
@@ -111,6 +108,21 @@
         ></div>
       </section>
     </div>
+    <div class="CkEXb-DANGER alerta" th:if="${emailNotValid != null}">
+      <div class="a0A37 hAkP2">
+        <p th:text="${emailNotValid}"></p>
+      </div>
+    </div>
+    <div class="CkEXb-DANGER alerta" th:if="${userNotValid != null}">
+      <div class="a0A37 hAkP2">
+        <p th:text="${userNotValid}"></p>
+      </div>
+    </div>
+    <div class="CkEXb-SUCCESS alerta" th:if="${userSucessSignUp != null}">
+      <div class="a0A37 hAkP2">
+        <p th:text="${userSucessSignUp}"></p>
+      </div>
+    </div>
     <footer th:replace="/fragments/footer :: footer"></footer>
     <script
       src="assets/bootstrap/js/bootstrap.min.js"
@@ -120,6 +132,7 @@
       src="assets/JQuery/jquery.min.js"
       th:src="@{/assets/JQuery/jquery.min.js}"
     ></script>
+    <script th:replace=" /fragments/alerta :: alerta"></script>
     <script th:replace=" /fragments/scriptActive :: scriptActive"></script>
     <script type="text/javascript">
       $(function () {

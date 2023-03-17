@@ -36,18 +36,25 @@ public class DraxterRegistroController {
     @PostMapping
     public String registrarCuentaDeUsuario(@ModelAttribute("usuario") UsuarioRegistroDTO registroDTO,
             RedirectAttributes redirAttr) {
-        String email = registroDTO.getEmail();
-        Usuarios usuarioExistente = usuarioService.obtenerPorEmail(email);
-        if (usuarioExistente.getEmail().equals(email)) {
-            redirAttr.addFlashAttribute("emailNotValid",
-                    messageSource.getMessage("email.not.valid", null, LocaleContextHolder.getLocale()));
-            return "redirect:/registrarse";
+        String email = registroDTO.getEmail().toLowerCase();
+        String id = registroDTO.getUsuario();
+        Usuarios usuarioExistenteEmail = usuarioService.obtenerPorEmail(email);
+        Usuarios usuarioExistenteID = usuarioService.obtenerUsuarioPorID(id);
+        if (usuarioExistenteEmail != null) {
+            if (usuarioExistenteEmail.getEmail().equals(email)) {
+                redirAttr.addFlashAttribute("emailNotValid",
+                        messageSource.getMessage("email.not.valid", null, LocaleContextHolder.getLocale()));
+                return "redirect:/registrarse";
+            }
         }
-        if (usuarioExistente.getUsuario().equals(registroDTO.getUsuario())) {
-            redirAttr.addFlashAttribute("userNotValid",
-                    messageSource.getMessage("user.not.valid", null, LocaleContextHolder.getLocale()));
-            return "redirect:/registrarse";
+        if (usuarioExistenteID != null) {
+            if (usuarioExistenteID.getUsuario().equals(registroDTO.getUsuario())) {
+                redirAttr.addFlashAttribute("userNotValid",
+                        messageSource.getMessage("user.not.valid", null, LocaleContextHolder.getLocale()));
+                return "redirect:/registrarse";
+            }
         }
+        registroDTO.setEmail(email);
         usuarioService.save(registroDTO);
         redirAttr.addFlashAttribute("userSucessSignUp",
                 messageSource.getMessage("user.sign.up", null, LocaleContextHolder.getLocale()));
