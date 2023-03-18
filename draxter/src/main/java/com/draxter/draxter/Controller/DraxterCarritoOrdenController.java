@@ -81,10 +81,16 @@ public class DraxterCarritoOrdenController {
     }
 
     @GetMapping("carrito")
-    public String mostrarPedidos(Model model, HttpSession session) {
+    public String mostrarPedidos(Model model, HttpSession session, RedirectAttributes redirAttr) {
 
         usuario = (Usuarios) session.getAttribute("usuariosesion");
         List<Producto> productos = carritoService.obtenerProductosPorUsuario(usuario);
+        if (productos.isEmpty()) {
+            redirAttr.addFlashAttribute("kartEmpty", messageSource.getMessage("kart.empty", null,
+                    LocaleContextHolder.getLocale()));
+            return "redirect:/catalogo";
+
+        }
         model.addAttribute("productos", productos);
         return "AdministrarPedidos";
     }

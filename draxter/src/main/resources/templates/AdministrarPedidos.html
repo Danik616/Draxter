@@ -8,8 +8,9 @@
   <body>
     <div th:replace="/fragments/navbar :: navbar"></div>
 
-    <div class="container fontc text-center">
+    <div class="container fontc text-center min-vh-100">
       <h1 class="mt-2">Carrito de compras</h1>
+
       <div
         class="mt-5 mb-5 ml-3 mr-3 p-3 row border border-secondary shadow-lg"
         th:each="producto :${productos}"
