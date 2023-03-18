@@ -135,17 +135,5 @@
     ></script>
     <script th:replace=" /fragments/scriptActive :: scriptActive"></script>
     <script th:replace=" /fragments/alerta :: alerta"></script>
-    <script type="text/javascript">
-      $("#id").change(function () {
-        //alert("el input cambio");
-        if ($(this).val() == 0) {
-          //si el input es cero
-          $("#btn-validar").attr("disabled", "disabled");
-        } else {
-          // si tiene un valor diferente a cero
-          $("#btn-validar").removeAttr("disabled");
-        }
-      });
-    </script>
   </body>
 </html>
