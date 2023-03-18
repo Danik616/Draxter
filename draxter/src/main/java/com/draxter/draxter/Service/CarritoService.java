@@ -32,7 +32,10 @@ public class CarritoService implements ICarritoService {
         List<Carrito> carritos = carritoRepository.obtenerTodosLoscarritoPorIdUsuario(idBusqueda);
         List<Producto> productos = new ArrayList<>();
         for (Carrito carrito : carritos) {
-            productos.add(carrito.getProducto());
+            if (carrito.getProducto().isVisibilidad() == true) {
+                productos.add(carrito.getProducto());
+            }
+
         }
         return productos;
     }
