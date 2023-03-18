@@ -1,4 +1,8 @@
-/*Pruebas*/
+/*tamaños*/
+.min-vh-50{
+  min-height: 50vh;
+}
+/*Alertas*/
 .CkEXb-PRIMARY {
   width: 100%;
   z-index: 301;

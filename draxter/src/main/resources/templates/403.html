@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Acceso denegado</title>
-  </head>
+  <head th:replace="/fragments/head :: head"></head>
   <body>
-    <h1>Acceso denegado</h1>
-    <p>No tienes permiso para acceder a esta página.</p>
+    <div th:replace="/fragments/navbar :: navbar"></div>
+    <div class="container w-100 m-5 p-5 align-items-center min-vh-50">
+      <div class="row"><h1>Acceso denegado</h1></div>
+      <div class="row">
+        <p>No tienes permiso para acceder a esta página.</p>
+      </div>
+    </div>
+
+    <footer th:replace="/fragments/footer :: footer"></footer>
+    <script
+      src="assets/JQuery/jquery.min.js"
+      th:src="@{/assets/JQuery/jquery.min.js}"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js}"
+    ></script>
+    <script th:replace=" /fragments/scriptActive :: scriptActive"></script>
   </body>
 </html>
