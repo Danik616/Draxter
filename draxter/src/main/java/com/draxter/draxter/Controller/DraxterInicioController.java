@@ -317,4 +317,9 @@ public class DraxterInicioController {
 
     }
 
+    @GetMapping("/acceso-denegado")
+    public String accessDenied() {
+        return "403";
+    }
+
 }

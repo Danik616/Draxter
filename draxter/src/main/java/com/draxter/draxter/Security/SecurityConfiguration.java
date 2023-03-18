@@ -18,6 +18,9 @@ public class SecurityConfiguration {
     @Autowired
     private IUsuarioService iUsuarioService;
 
+    @Autowired
+    CustomAccessDeniedHandler accessDeniedHandler;
+
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -45,9 +48,22 @@ public class SecurityConfiguration {
                 "/iniciarSesion",
                 "/password/**",
                 "/assets/**").permitAll()
-                .regexMatchers("").hasRole("USER")
-                .regexMatchers("").hasRole("ADMIN")
-                .regexMatchers("").hasRole("ASESOR")
+                .antMatchers("/", "/servicios/monitorearPQR/vistaCompleta", "/servicios/editarUsuario/**")
+                .authenticated()
+                .antMatchers("/servicios", "/servicios/radicarPQR", "/servicios/monitorearPQR",
+                        "/servicios/pedirCorte", "/servicios/mostrarFAQ", "/carrito", "/carrito/**",
+                        "/eliminarDelCarrito/**", "/carrito/producto/**", "/comprarProducto/**")
+                .hasRole("USER")
+                .antMatchers("/editarPQR/**", "/actualizarPQR/**", "/borrarPQR/**", "/servicios/FAQ",
+                        "/servicios/FAQ/nuevoFAQ", "/editarFAQ/**", "/actualizarFAQ/**",
+                        "/servicios/agregarUsuario", "/servicios/monitorearUsuarios",
+                        "/servicios/borrarUsuarios/**", "/servicios/agregarProducto",
+                        "/servicios/monitorearProductos", "/servicios/monitorearProductos/**",
+                        "/servicios/monitorearProductos/editar/**")
+                .hasRole("ADMIN")
+                .antMatchers("/editarPQR/**", "/actualizarPQR/**", "/borrarPQR/**", "/servicios/FAQ",
+                        "/servicios/FAQ/nuevoFAQ", "/editarFAQ/**", "/actualizarFAQ/**")
+                .hasRole("ASESOR")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -59,7 +75,7 @@ public class SecurityConfiguration {
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/salir"))
                 .logoutSuccessUrl("/iniciarSesion?salir")
-                .permitAll();
+                .permitAll().and().exceptionHandling().accessDeniedHandler(accessDeniedHandler);
 
         return http.build();
     }
