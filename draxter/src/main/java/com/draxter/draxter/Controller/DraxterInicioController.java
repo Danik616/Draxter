@@ -89,8 +89,15 @@ public class DraxterInicioController {
     }
 
     @GetMapping("/catalogo/{id}")
-    public String mostrarProducto(@PathVariable Long id, Model model) {
+    public String mostrarProducto(@PathVariable Long id, Model model, RedirectAttributes redirAttr) {
+
         Producto pr = productoService.obtenerProductoPorId(id);
+        if (pr.isVisibilidad() == false) {
+            redirAttr.addFlashAttribute("productNoDispo",
+                    messageSource.getMessage("product.not.dispo", null,
+                            LocaleContextHolder.getLocale()));
+            return "redirect:/catalogo";
+        }
         model.addAttribute("producto", pr);
         String caracteristicas = pr.getCaracteristicas();
         String tallaje = pr.getTallaje();
@@ -126,6 +133,7 @@ public class DraxterInicioController {
             @ModelAttribute("producto") Producto producto, Model model, RedirectAttributes redirAttr) {
         usuario = (Usuarios) session.getAttribute("usuariosesion");
         producto.setUsuario(usuario);
+        producto.setVisibilidad(true);
         if (!imagen.isEmpty()) {
             if (producto.getTallaje() != null) {
                 String rutaAbsoluta = "draxter//src//main//resources//static//assets//img";
@@ -172,6 +180,10 @@ public class DraxterInicioController {
             redirAttr.addFlashAttribute("productDeleted",
                     messageSource.getMessage("product.deleted", null, LocaleContextHolder.getLocale()));
         } catch (Exception ex) {
+            long idBusqueda = Long.parseLong(id);
+            Producto producto = productoService.obtenerProductoPorId(idBusqueda);
+            producto.setVisibilidad(false);
+            productoService.guardaProducto(producto);
             redirAttr.addFlashAttribute("productNotDeleted",
                     messageSource.getMessage("product.not.deleted", null, LocaleContextHolder.getLocale()));
         }
@@ -180,9 +192,17 @@ public class DraxterInicioController {
     }
 
     @GetMapping("/servicios/monitorearProductos/editar/{id}")
-    public String editarProducto(Model model, HttpSession session, @PathVariable(name = "id") String id) {
+    public String editarProducto(Model model, HttpSession session, @PathVariable(name = "id") String id,
+            RedirectAttributes redirAttr) {
         long idBusqueda = Long.parseLong(id);
         Producto producto = productoService.obtenerProductoPorId(idBusqueda);
+
+        if (producto.isVisibilidad() == false) {
+            redirAttr.addFlashAttribute("productNoDispo",
+                    messageSource.getMessage("product.not.dispo", null,
+                            LocaleContextHolder.getLocale()));
+            return "redirect:/servicios/monitorearProductos";
+        }
         List<String> listadoGenero = new ArrayList<String>();
         List<String> listadoTallas = new ArrayList<String>();
         listadoGenero.add("FEMENINA");
@@ -237,6 +257,7 @@ public class DraxterInicioController {
             productoExistente.setPrecio(producto.getPrecio());
             productoExistente.setGenero(producto.getGenero());
             productoExistente.setTallaje(producto.getTallaje());
+            productoExistente.setVisibilidad(true);
             productoService.guardaProducto(productoExistente);
             redirAttr.addFlashAttribute("infoSaved",
                     messageSource.getMessage("info.saved", null, LocaleContextHolder.getLocale()));

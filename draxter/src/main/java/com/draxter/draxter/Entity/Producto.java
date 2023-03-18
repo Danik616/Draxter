@@ -45,6 +45,9 @@ public class Producto {
     @Column(name = "tallaje")
     public String tallaje;
 
+    @Column(name = "visibilidad")
+    public boolean visibilidad;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_usuario")
     private Usuarios usuario;
@@ -130,6 +133,22 @@ public class Producto {
 
     public String getGenero() {
         return genero;
+    }
+
+    public boolean isVisibilidad() {
+        return visibilidad;
+    }
+
+    public void setVisibilidad(boolean visibilidad) {
+        this.visibilidad = visibilidad;
+    }
+
+    public Set<Carrito> getCarrito() {
+        return carrito;
+    }
+
+    public void setCarrito(Set<Carrito> carrito) {
+        this.carrito = carrito;
     }
 
     public void setGenero(String genero) {

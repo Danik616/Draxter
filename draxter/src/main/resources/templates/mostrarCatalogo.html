@@ -301,6 +301,11 @@
         <p th:text="${productNotDeleted}"></p>
       </div>
     </div>
+    <div class="CkEXb-DANGER alerta" th:if="${productNoDispo != null}">
+      <div class="a0A37 hAkP2">
+        <p th:text="${productNoDispo}"></p>
+      </div>
+    </div>
     <div class="CkEXb-DANGER alerta" th:if="${tallajeEmpty != null}">
       <div class="a0A37 hAkP2">
         <p th:text="${tallajeEmpty}"></p>

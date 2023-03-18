@@ -58,6 +58,12 @@ public class DraxterCarritoOrdenController {
             return "redirect:/catalogo";
         }
         Producto productoExistente = productoService.obtenerProductoPorId(id);
+        if (productoExistente.isVisibilidad() == false) {
+            redirAttr.addFlashAttribute("productNoDispo",
+                    messageSource.getMessage("product.not.dispo", null,
+                            LocaleContextHolder.getLocale()));
+            return "redirect:/catalogo";
+        }
         List<Producto> productos = carritoService.obtenerProductosPorUsuario(usuario);
         if (productos.contains(productoExistente)) {
             redirAttr.addFlashAttribute("carritoNoGuardado",
@@ -96,6 +102,12 @@ public class DraxterCarritoOrdenController {
     @GetMapping("carrito/producto/{id}")
     public String verDetalles(Model model, RedirectAttributes redirAttr, HttpSession session, @PathVariable Long id) {
         Producto pr = productoService.obtenerProductoPorId(id);
+        if (pr.isVisibilidad() == false) {
+            redirAttr.addFlashAttribute("productNoDispo",
+                    messageSource.getMessage("product.not.dispo", null,
+                            LocaleContextHolder.getLocale()));
+            return "redirect:/carrito";
+        }
         model.addAttribute("producto", pr);
         String caracteristicas = pr.getCaracteristicas();
         String[] caracteristicasVector = caracteristicas.split(",");
@@ -117,6 +129,12 @@ public class DraxterCarritoOrdenController {
         }
         usuario = (Usuarios) session.getAttribute("usuariosesion");
         Producto pr = productoService.obtenerProductoPorId(id);
+        if (pr.isVisibilidad() == false) {
+            redirAttr.addFlashAttribute("productNoDispo",
+                    messageSource.getMessage("product.not.dispo", null,
+                            LocaleContextHolder.getLocale()));
+            return "redirect:/carrito";
+        }
         carritoService.eliminarCarritoPorIdProducto(id);
         orden.setProducto(pr);
         orden.setUsuario(usuario);

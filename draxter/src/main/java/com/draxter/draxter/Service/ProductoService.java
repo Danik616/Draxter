@@ -19,7 +19,7 @@ public class ProductoService implements IProductoService {
 
     @Override
     public List<Producto> obtenerProductos() {
-        return productoRepository.findAll();
+        return productoRepository.obtenerTodosLosProductos(false);
     }
 
     @Override
@@ -30,9 +30,9 @@ public class ProductoService implements IProductoService {
     @Override
     public List<Producto> obtenerProductoPorGenero(String genero) {
         if (genero != null) {
-            return productoRepository.obtenerTodosLosProductoPorGenero(genero);
+            return productoRepository.obtenerTodosLosProductoPorGenero(genero, false);
         }
-        return productoRepository.findAll();
+        return productoRepository.obtenerTodosLosProductos(false);
 
     }
 
